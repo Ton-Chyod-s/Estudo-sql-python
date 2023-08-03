@@ -9,7 +9,6 @@ engine = create_engine(connection_url, echo=True)
 conn = engine.connect()
 Session = sessionmaker(bind=engine)
 session = Session()
-
 Base = declarative_base()
 
 # Entidades
@@ -26,7 +25,7 @@ session.add(data_insert)
 session.commit()
 
 #delete
-session.query(Frame).filter(Frame.name=="klayton").delete()
+session.query(Frame).filter(Frame.name == "klayton").delete()
 session.commit()
 """
 
