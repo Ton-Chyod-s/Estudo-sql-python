@@ -47,5 +47,3 @@ df_reordenado = df.sort_values(by='Classificação')
 
 # Save the DataFrame to a CSV file
 df_reordenado.to_excel('produtos.xlsx', index=False)
-
-    
