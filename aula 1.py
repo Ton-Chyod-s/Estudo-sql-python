@@ -1,5 +1,5 @@
 from sqlalchemy.orm import declarative_base, sessionmaker, Mapped, mapped_column
-from sqlalchemy import String, select
+from sqlalchemy import String, select, update, delete
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from asyncio import run
 
@@ -36,12 +36,31 @@ async def criar_pessoa(nome, email):
         s.add(Pessoa(nome=nome, email=email))
         await s.commit()
 
-async def buscar_pessoa(nome):
+async def buscar_pessoa(nome='klayton'):
     async with session() as s:
         query = await s.execute(
             select(Pessoa).where(Pessoa.nome == nome)
         )
+        result = query.scalars().all()
+        #result = query.all()
+        return result
 
+async def atualizar_nome(nome_antigo, none_novo):
+    async with session() as s:
+        query = await s.execute(
+            update(Pessoa).where(Pessoa.nome == nome_antigo).values(nome=none_novo)
+        )
+        await s.commit()
+
+async def deletar_pessoa(nome):
+    async with session() as s:
+        query = await s.execute(
+            delete(Pessoa).where(Pessoa.nome == nome)
+        )
+        await s.commit()
 
 #run(create_database())
-run(criar_pessoa('klayton','arqkdias@gmail.com'))
+#run(criar_pessoa('joão','joão_santos@gmail.com'))
+#print(run(buscar_pessoa()))
+#run(atualizar_nome('joão','gabriel'))
+run(deletar_pessoa('gabriel'))
