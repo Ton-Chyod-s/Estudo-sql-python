@@ -25,7 +25,7 @@ layout_login = [
      sg.Text('Outros',size=(13,1),justification='center')
      ],
     [sg.Input(size=(16,1)),sg.Input(size=(16,1)),
-     sg.Input(size=(11,1))
+     sg.Input(size=(11,1)),sg.Button('Excel',size=(9,1))
      ],
      [sg.Button('Inserir',size=(10,1)),sg.Button('Atualizar',size=(10,1)),sg.Button('Deletar',size=(10,1))]
     ]
