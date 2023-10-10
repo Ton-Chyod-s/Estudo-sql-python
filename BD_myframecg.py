@@ -2,7 +2,6 @@ from sqlalchemy.orm import declarative_base, sessionmaker, relationship
 from sqlalchemy import String, Integer, select, update, delete, ForeignKey, Column, Float
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from asyncio import run
-import bd
 
 url_do_branco = 'sqlite+aiosqlite:///myframecg.db'
 engine = create_async_engine(url_do_branco)
@@ -113,33 +112,38 @@ async def deletar_pessoa(nome):
         )
         await s.commit()
 
-run(create_database())
-#run(venda_realizada('klayton','arqkdias@gmail.com', '67991799956','campo grande','20x25', 1, '65.00','09/10/2023'))
 
-for i in bd.estoque_2023:
-    linha = i.split(",")
-    lol = linha[3].replace(".",",")
-    run(estoque(linha[0],linha[1],linha[2],lol,linha[4]))
 
-#run(venda_realizada('nome','email', 'telefone','localidade','quadro descrição', 'quantidade', 'valor','data venda','uber flash','impressão','outros'))
-
-for linha in bd.venda_2023:
-    linha = linha.split(",")
-    valor = linha[6].replace(".",",")
-    nome = linha[0]
-    email = linha[1]
-    telefone = linha[2]
-    localidade = linha[3]
-    quadro_descricao = linha[4]
-    quantidade = linha[5]
-    data_venda = linha[7].replace("yyyy","2023")
-    if float(linha[8]) > 0:
-        uber_flash = linha[8].replace(".",",")
-    else:
-        uber_flash = '0'
-    try:
-        impressao = linha[9]
-    except:
-        impressao = '0'
+if __name__ == '__main__':
+    import bd
     
-    run(venda_realizada(linha[0], linha[1], linha[2], linha[3], linha[4], linha[5], valor, data_venda, uber_flash, impressao,'0'))
+    run(create_database())
+    #run(venda_realizada('klayton','arqkdias@gmail.com', '67991799956','campo grande','20x25', 1, '65.00','09/10/2023'))
+
+    for i in bd.estoque_2023:
+        linha = i.split(",")
+        lol = linha[3].replace(".",",")
+        run(estoque(linha[0],linha[1],linha[2],lol,linha[4]))
+
+    #run(venda_realizada('nome','email', 'telefone','localidade','quadro descrição', 'quantidade', 'valor','data venda','uber flash','impressão','outros'))
+
+    for linha in bd.venda_2023:
+        linha = linha.split(",")
+        valor = linha[6].replace(".",",")
+        nome = linha[0]
+        email = linha[1]
+        telefone = linha[2]
+        localidade = linha[3]
+        quadro_descricao = linha[4]
+        quantidade = linha[5]
+        data_venda = linha[7].replace("yyyy","2023")
+        if float(linha[8]) > 0:
+            uber_flash = linha[8].replace(".",",")
+        else:
+            uber_flash = '0'
+        try:
+            impressao = linha[9]
+        except:
+            impressao = '0'
+        
+        run(venda_realizada(linha[0], linha[1], linha[2], linha[3], linha[4], linha[5], valor, data_venda, uber_flash, impressao,'0'))
