@@ -2,9 +2,9 @@ from sqlalchemy.orm import declarative_base, sessionmaker, relationship
 from sqlalchemy import String, Integer, select, update, delete, ForeignKey, Column, Float
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from asyncio import run
+import bd
 
 url_do_branco = 'sqlite+aiosqlite:///myframecg.db'
-
 engine = create_async_engine(url_do_branco)
 
 session = sessionmaker(
@@ -113,37 +113,33 @@ async def deletar_pessoa(nome):
         )
         await s.commit()
 
-estoque_2023= [
-    'BRANDÃO MOLDURAS,20X25,5,78,23/11/2022',
-    'BRANDÃO MOLDURAS, 15X21,3, 48.46, 23/11/2022',
-    'OLIVEIRA MOLDURAS S/A, 29.7 x 42  (A3), 1,65, 31/08/2023',
-    'OLIVEIRA MOLDURAS S/A,20X25,20,500,08/08/2023',
-    'OLIVEIRA MOLDURAS S/A,15X21,10,200,08/08/2023',
-    'OLIVEIRA MOLDURAS S/A,20X25,2,50,23/01/2023',
-    'OLIVEIRA MOLDURAS S/A,20X25,2,50,31/01/2023',
-    'BRANDÃO MOLDURAS,20X25,5,190.37,21/02/2023',
-    'BRANDÃO MOLDURAS,15X21,10,149.57,22/02/2023',
-    'OLIVEIRA MOLDURAS S/A,20X25,1,25,05/04/2023',
-    'OLIVEIRA MOLDURAS S/A,20X25,1,25,20/04/2023',
-    'OLIVEIRA MOLDURAS S/A,20X25,5,125,09/05/2023',
-    'OLIVEIRA MOLDURAS S/A,20X25,1,25,09/05/2023',
-    'MOLDURAS PEREIRA,20X25,10,146.1,04/05/2023',
-    'PMG PRINT,SACOLA PAPEL G,20,65.01,25/05/2023',
-    'PMG PRINT,SACOLA PAPEL M,10,27.4,25/05/2023',
-    'RIZE SHOPE,FIO DE FADA,10,51.17,25/05/2023',
-    'BRANDÃO MOLDURAS,20X25,12,237.17,29/05/2023',
-    'OLIVEIRA MOLDURAS S/A,20X25,1,25,16/05/2023',
-    'OLIVEIRA MOLDURAS S/A,20X25,4,100,20/07/2023',
-    'PD MOLDURAS,PENDURADOR,20,17.75,22/08/2023'
-]
-
 run(create_database())
 #run(venda_realizada('klayton','arqkdias@gmail.com', '67991799956','campo grande','20x25', 1, '65.00','09/10/2023'))
 
-for i in estoque_2023:
+for i in bd.estoque_2023:
     linha = i.split(",")
     lol = linha[3].replace(".",",")
     run(estoque(linha[0],linha[1],linha[2],lol,linha[4]))
 
 #run(venda_realizada('nome','email', 'telefone','localidade','quadro descrição', 'quantidade', 'valor','data venda','uber flash','impressão','outros'))
-run(venda_realizada('klayton','arqkdias@gmail.com', '67991799956','campo grande','20x25', 1, '65,00','09/10/2023','5,85','1,85','0'))
+
+for linha in bd.venda_2023:
+    linha = linha.split(",")
+    valor = linha[6].replace(".",",")
+    nome = linha[0]
+    email = linha[1]
+    telefone = linha[2]
+    localidade = linha[3]
+    quadro_descricao = linha[4]
+    quantidade = linha[5]
+    data_venda = linha[7].replace("yyyy","2023")
+    if float(linha[8]) > 0:
+        uber_flash = linha[8].replace(".",",")
+    else:
+        uber_flash = '0'
+    try:
+        impressao = linha[9]
+    except:
+        impressao = '0'
+    
+    run(venda_realizada(linha[0], linha[1], linha[2], linha[3], linha[4], linha[5], valor, data_venda, uber_flash, impressao,'0'))
