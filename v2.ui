@@ -372,8 +372,6 @@ box-shadow: none;</string>
          <property name="styleSheet">
           <string notr="true">QFrame {
 	border-radius: 10px;
-	
-	background-color: rgb(255, 255, 0);
 }</string>
          </property>
          <property name="frameShape">
@@ -386,7 +384,7 @@ box-shadow: none;</string>
           <item>
            <widget class="QStackedWidget" name="stackedWidget">
             <property name="styleSheet">
-             <string notr="true">background-color: rgb(255, 255, 0);</string>
+             <string notr="true"/>
             </property>
             <property name="currentIndex">
              <number>0</number>
@@ -401,13 +399,16 @@ box-shadow: none;</string>
                   <height>45</height>
                  </size>
                 </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(255, 255, 0);</string>
+                </property>
                 <property name="frameShape">
                  <enum>QFrame::StyledPanel</enum>
                 </property>
                 <property name="frameShadow">
                  <enum>QFrame::Raised</enum>
                 </property>
-                <layout class="QVBoxLayout" name="verticalLayout_16">
+                <layout class="QHBoxLayout" name="horizontalLayout_6">
                  <item>
                   <widget class="QLabel" name="label_8">
                    <property name="font">
@@ -423,11 +424,51 @@ box-shadow: none;</string>
                    </property>
                   </widget>
                  </item>
+                 <item>
+                  <spacer name="horizontalSpacer">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButton_8">
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton {
+	background-color: rgb(50, 50, 50);
+	border: 2px solid rgb(60, 60, 60);
+	border-radius: 5px;
+	color: rgb(255, 255, 255);
+}
+QPushButton:hover {
+	background-color: rgb(60, 60, 60);
+	border: 2px solid rgb(70,70, 70);
+}
+QPushButton:pressed {
+	background-color: rgb(250, 230, 0);
+	border: 2px solid rgb(161, 0, 0);
+	color: rgb(35, 35, 35);
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>  Criar DB  </string>
+                   </property>
+                  </widget>
+                 </item>
                 </layout>
                </widget>
               </item>
               <item>
                <widget class="QFrame" name="frame_15">
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(255, 255, 0);</string>
+                </property>
                 <property name="frameShape">
                  <enum>QFrame::StyledPanel</enum>
                 </property>
@@ -446,7 +487,7 @@ box-shadow: none;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Cliente</string>
+                    <string>Clientes</string>
                    </property>
                   </widget>
                  </item>
@@ -468,7 +509,20 @@ box-shadow: none;</string>
                     <bool>false</bool>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">background-color: rgb(200, 200, 200);</string>
+                    <string notr="true">QLineEdit {
+	border: 2px solid rgb(45,45,45);
+	border-radius: 5px;
+	padding: 1px;
+	background-color: rgb(30,30, 30);
+	color: rgb(255, 255, 255);
+}
+QLineEdit:hover {
+	border: 2px solid rgb(55,55,55);
+}
+QLineEdit:focus {
+	border: 2px solid rgb(161, 0, 0);
+	color: rgb(200, 200, 200);
+}</string>
                    </property>
                    <property name="maxLength">
                     <number>50</number>
@@ -496,7 +550,20 @@ box-shadow: none;</string>
                     <bool>false</bool>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">background-color: rgb(200, 200, 200);</string>
+                    <string notr="true">QLineEdit {
+	border: 2px solid rgb(45,45,45);
+	border-radius: 5px;
+	padding: 1px;
+	background-color: rgb(30,30, 30);
+	color: rgb(255, 255, 255);
+}
+QLineEdit:hover {
+	border: 2px solid rgb(55,55,55);
+}
+QLineEdit:focus {
+	border: 2px solid rgb(161, 0, 0);
+	color: rgb(200, 200, 200);
+}</string>
                    </property>
                    <property name="maxLength">
                     <number>50</number>
@@ -524,7 +591,20 @@ box-shadow: none;</string>
                     <bool>false</bool>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">background-color: rgb(200, 200, 200);</string>
+                    <string notr="true">QLineEdit {
+	border: 2px solid rgb(45,45,45);
+	border-radius: 5px;
+	padding: 1px;
+	background-color: rgb(30,30, 30);
+	color: rgb(255, 255, 255);
+}
+QLineEdit:hover {
+	border: 2px solid rgb(55,55,55);
+}
+QLineEdit:focus {
+	border: 2px solid rgb(161, 0, 0);
+	color: rgb(200, 200, 200);
+}</string>
                    </property>
                    <property name="maxLength">
                     <number>50</number>
@@ -552,7 +632,20 @@ box-shadow: none;</string>
                     <bool>false</bool>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">background-color: rgb(200, 200, 200);</string>
+                    <string notr="true">QLineEdit {
+	border: 2px solid rgb(45,45,45);
+	border-radius: 5px;
+	padding: 1px;
+	background-color: rgb(30,30, 30);
+	color: rgb(255, 255, 255);
+}
+QLineEdit:hover {
+	border: 2px solid rgb(55,55,55);
+}
+QLineEdit:focus {
+	border: 2px solid rgb(161, 0, 0);
+	color: rgb(200, 200, 200);
+}</string>
                    </property>
                    <property name="maxLength">
                     <number>50</number>
@@ -567,6 +660,9 @@ box-shadow: none;</string>
               </item>
               <item>
                <widget class="QFrame" name="frame_16">
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(255, 255, 0);</string>
+                </property>
                 <property name="frameShape">
                  <enum>QFrame::StyledPanel</enum>
                 </property>
@@ -592,13 +688,26 @@ box-shadow: none;</string>
                     <bool>false</bool>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">background-color: rgb(200, 200, 200);</string>
+                    <string notr="true">QLineEdit {
+	border: 2px solid rgb(45,45,45);
+	border-radius: 5px;
+	padding: 1px;
+	background-color: rgb(30,30, 30);
+	color: rgb(255, 255, 255);
+}
+QLineEdit:hover {
+	border: 2px solid rgb(55,55,55);
+}
+QLineEdit:focus {
+	border: 2px solid rgb(161, 0, 0);
+	color: rgb(200, 200, 200);
+}</string>
                    </property>
                    <property name="maxLength">
                     <number>50</number>
                    </property>
                    <property name="placeholderText">
-                    <string>Quadro descrição</string>
+                    <string>Descrição</string>
                    </property>
                   </widget>
                  </item>
@@ -620,13 +729,41 @@ box-shadow: none;</string>
                     <bool>false</bool>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">background-color: rgb(200, 200, 200);</string>
+                    <string notr="true">QLineEdit {
+	border: 2px solid rgb(45,45,45);
+	border-radius: 5px;
+	padding: 1px;
+	background-color: rgb(30,30, 30);
+	color: rgb(255, 255, 255);
+}
+QLineEdit:hover {
+	border: 2px solid rgb(55,55,55);
+}
+QLineEdit:focus {
+	border: 2px solid rgb(161, 0, 0);
+	color: rgb(200, 200, 200);
+}</string>
                    </property>
                    <property name="maxLength">
                     <number>50</number>
                    </property>
                    <property name="placeholderText">
                     <string>Valor</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="0">
+                  <widget class="QLabel" name="Pedido_label">
+                   <property name="font">
+                    <font>
+                     <family>Segoe UI Black</family>
+                     <pointsize>12</pointsize>
+                     <weight>75</weight>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Pedidos</string>
                    </property>
                   </widget>
                  </item>
@@ -648,7 +785,20 @@ box-shadow: none;</string>
                     <bool>false</bool>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">background-color: rgb(200, 200, 200);</string>
+                    <string notr="true">QLineEdit {
+	border: 2px solid rgb(45,45,45);
+	border-radius: 5px;
+	padding: 1px;
+	background-color: rgb(30,30, 30);
+	color: rgb(255, 255, 255);
+}
+QLineEdit:hover {
+	border: 2px solid rgb(55,55,55);
+}
+QLineEdit:focus {
+	border: 2px solid rgb(161, 0, 0);
+	color: rgb(200, 200, 200);
+}</string>
                    </property>
                    <property name="maxLength">
                     <number>50</number>
@@ -676,7 +826,20 @@ box-shadow: none;</string>
                     <bool>false</bool>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">background-color: rgb(200, 200, 200);</string>
+                    <string notr="true">QLineEdit {
+	border: 2px solid rgb(45,45,45);
+	border-radius: 5px;
+	padding: 1px;
+	background-color: rgb(30,30, 30);
+	color: rgb(255, 255, 255);
+}
+QLineEdit:hover {
+	border: 2px solid rgb(55,55,55);
+}
+QLineEdit:focus {
+	border: 2px solid rgb(161, 0, 0);
+	color: rgb(200, 200, 200);
+}</string>
                    </property>
                    <property name="maxLength">
                     <number>50</number>
@@ -686,26 +849,14 @@ box-shadow: none;</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="0" column="0">
-                  <widget class="QLabel" name="Pedido_label">
-                   <property name="font">
-                    <font>
-                     <family>Segoe UI Black</family>
-                     <pointsize>12</pointsize>
-                     <weight>75</weight>
-                     <bold>true</bold>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>Pedido</string>
-                   </property>
-                  </widget>
-                 </item>
                 </layout>
                </widget>
               </item>
               <item>
                <widget class="QFrame" name="frame_18">
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(255, 255, 0);</string>
+                </property>
                 <property name="frameShape">
                  <enum>QFrame::StyledPanel</enum>
                 </property>
@@ -731,7 +882,20 @@ box-shadow: none;</string>
                     <bool>false</bool>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">background-color: rgb(200, 200, 200);</string>
+                    <string notr="true">QLineEdit {
+	border: 2px solid rgb(45,45,45);
+	border-radius: 5px;
+	padding: 1px;
+	background-color: rgb(30,30, 30);
+	color: rgb(255, 255, 255);
+}
+QLineEdit:hover {
+	border: 2px solid rgb(55,55,55);
+}
+QLineEdit:focus {
+	border: 2px solid rgb(161, 0, 0);
+	color: rgb(200, 200, 200);
+}</string>
                    </property>
                    <property name="maxLength">
                     <number>50</number>
@@ -759,7 +923,20 @@ box-shadow: none;</string>
                     <bool>false</bool>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">background-color: rgb(200, 200, 200);</string>
+                    <string notr="true">QLineEdit {
+	border: 2px solid rgb(45,45,45);
+	border-radius: 5px;
+	padding: 1px;
+	background-color: rgb(30,30, 30);
+	color: rgb(255, 255, 255);
+}
+QLineEdit:hover {
+	border: 2px solid rgb(55,55,55);
+}
+QLineEdit:focus {
+	border: 2px solid rgb(161, 0, 0);
+	color: rgb(200, 200, 200);
+}</string>
                    </property>
                    <property name="maxLength">
                     <number>50</number>
@@ -802,7 +979,20 @@ box-shadow: none;</string>
                     <bool>false</bool>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">background-color: rgb(200, 200, 200);</string>
+                    <string notr="true">QLineEdit {
+	border: 2px solid rgb(45,45,45);
+	border-radius: 5px;
+	padding: 1px;
+	background-color: rgb(30,30, 30);
+	color: rgb(255, 255, 255);
+}
+QLineEdit:hover {
+	border: 2px solid rgb(55,55,55);
+}
+QLineEdit:focus {
+	border: 2px solid rgb(161, 0, 0);
+	color: rgb(200, 200, 200);
+}</string>
                    </property>
                    <property name="maxLength">
                     <number>50</number>
@@ -817,6 +1007,9 @@ box-shadow: none;</string>
               </item>
               <item>
                <widget class="QFrame" name="frame_17">
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(255, 255, 0);</string>
+                </property>
                 <property name="frameShape">
                  <enum>QFrame::StyledPanel</enum>
                 </property>
@@ -827,7 +1020,21 @@ box-shadow: none;</string>
                  <item>
                   <widget class="QPushButton" name="pushButton">
                    <property name="styleSheet">
-                    <string notr="true">background-color: rgb(200, 200, 200);</string>
+                    <string notr="true">QPushButton {
+	background-color: rgb(50, 50, 50);
+	border: 2px solid rgb(60, 60, 60);
+	border-radius: 5px;
+	color: rgb(255, 255, 255);
+}
+QPushButton:hover {
+	background-color: rgb(60, 60, 60);
+	border: 2px solid rgb(70,70, 70);
+}
+QPushButton:pressed {
+	background-color: rgb(250, 230, 0);
+	border: 2px solid rgb(161, 0, 0);
+	color: rgb(35, 35, 35);
+}</string>
                    </property>
                    <property name="text">
                     <string>inserir</string>
@@ -837,7 +1044,21 @@ box-shadow: none;</string>
                  <item>
                   <widget class="QPushButton" name="pushButton_2">
                    <property name="styleSheet">
-                    <string notr="true">background-color: rgb(200, 200, 200);</string>
+                    <string notr="true">QPushButton {
+	background-color: rgb(50, 50, 50);
+	border: 2px solid rgb(60, 60, 60);
+	border-radius: 5px;
+	color: rgb(255, 255, 255);
+}
+QPushButton:hover {
+	background-color: rgb(60, 60, 60);
+	border: 2px solid rgb(70,70, 70);
+}
+QPushButton:pressed {
+	background-color: rgb(250, 230, 0);
+	border: 2px solid rgb(161, 0, 0);
+	color: rgb(35, 35, 35);
+}</string>
                    </property>
                    <property name="text">
                     <string>Atualizar</string>
@@ -847,7 +1068,21 @@ box-shadow: none;</string>
                  <item>
                   <widget class="QPushButton" name="pushButton_3">
                    <property name="styleSheet">
-                    <string notr="true">background-color: rgb(200, 200, 200);</string>
+                    <string notr="true">QPushButton {
+	background-color: rgb(50, 50, 50);
+	border: 2px solid rgb(60, 60, 60);
+	border-radius: 5px;
+	color: rgb(255, 255, 255);
+}
+QPushButton:hover {
+	background-color: rgb(60, 60, 60);
+	border: 2px solid rgb(70,70, 70);
+}
+QPushButton:pressed {
+	background-color: rgb(250, 230, 0);
+	border: 2px solid rgb(161, 0, 0);
+	color: rgb(35, 35, 35);
+}</string>
                    </property>
                    <property name="text">
                     <string>Deletar</string>
@@ -899,6 +1134,9 @@ box-shadow: none;</string>
                   <height>45</height>
                  </size>
                 </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(255, 255, 0);</string>
+                </property>
                 <property name="frameShape">
                  <enum>QFrame::StyledPanel</enum>
                 </property>
@@ -948,12 +1186,47 @@ box-shadow: none;</string>
               </item>
               <item>
                <widget class="QFrame" name="frame_31">
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(255, 255, 0);</string>
+                </property>
                 <property name="frameShape">
                  <enum>QFrame::StyledPanel</enum>
                 </property>
                 <property name="frameShadow">
                  <enum>QFrame::Raised</enum>
                 </property>
+                <layout class="QVBoxLayout" name="verticalLayout_18">
+                 <item>
+                  <widget class="QTabWidget" name="tabWidget">
+                   <property name="currentIndex">
+                    <number>0</number>
+                   </property>
+                   <widget class="QWidget" name="tab_dre">
+                    <attribute name="title">
+                     <string>DRE</string>
+                    </attribute>
+                   </widget>
+                   <widget class="QWidget" name="tab_vendas">
+                    <attribute name="title">
+                     <string>Vendas</string>
+                    </attribute>
+                   </widget>
+                   <widget class="QWidget" name="tab_despesas">
+                    <attribute name="title">
+                     <string>Despesas</string>
+                    </attribute>
+                   </widget>
+                   <widget class="QWidget" name="tab_estoque">
+                    <property name="cursor">
+                     <cursorShape>WaitCursor</cursorShape>
+                    </property>
+                    <attribute name="title">
+                     <string>Estoque</string>
+                    </attribute>
+                   </widget>
+                  </widget>
+                 </item>
+                </layout>
                </widget>
               </item>
              </layout>
@@ -973,6 +1246,9 @@ box-shadow: none;</string>
                   <width>16777215</width>
                   <height>45</height>
                  </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(255, 255, 0);</string>
                 </property>
                 <property name="frameShape">
                  <enum>QFrame::StyledPanel</enum>
@@ -1001,6 +1277,9 @@ box-shadow: none;</string>
               </item>
               <item>
                <widget class="QFrame" name="frame_3">
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(255, 255, 0);</string>
+                </property>
                 <property name="frameShape">
                  <enum>QFrame::StyledPanel</enum>
                 </property>
@@ -1042,6 +1321,9 @@ box-shadow: none;</string>
               </item>
               <item>
                <widget class="QFrame" name="frame_20">
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(255, 255, 0);</string>
+                </property>
                 <property name="frameShape">
                  <enum>QFrame::StyledPanel</enum>
                 </property>
@@ -1183,7 +1465,7 @@ box-shadow: none;</string>
       <property name="maximumSize">
        <size>
         <width>16777215</width>
-        <height>25</height>
+        <height>35</height>
        </size>
       </property>
       <property name="styleSheet">
