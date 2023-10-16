@@ -3,7 +3,9 @@ from sqlalchemy import String, Integer, select, update, delete, ForeignKey, Colu
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from asyncio import run
 
+#conectar/criar banco de dados
 url_do_branco = 'sqlite+aiosqlite:///myframecg.db'
+#criando conecção asincrona com bando de dados
 engine = create_async_engine(url_do_branco)
 
 session = sessionmaker(
@@ -14,23 +16,23 @@ session = sessionmaker(
 )
 
 Base = declarative_base()
-
+#tabela de clientes 
 class Cliente(Base):
     __tablename__ = 'cliente'
-
+    #coluna da tabela
     id =  Column(Integer, primary_key=True)
     nome = Column(String(80), nullable=True)
     e_mail = Column(String(50), nullable=True)
     whats_app = Column(String(15), nullable=True)
     localidade = Column(String(30), nullable=True) 
     posts = relationship('Venda', backref='cliente')
-
+    #modo grafico de representação
     def __repr__(self):
         return f'None: {self.nome} Email: {self.email}'
-    
+#tabela de venda    
 class Venda(Base):
     __tablename__ = 'venda'
-
+    #coluna da tabela
     id =  Column(Integer, primary_key=True)
     produto = Column(String(50), nullable=True)
     qtde = Column(Integer, nullable=True)
@@ -38,36 +40,36 @@ class Venda(Base):
     data_pedido = Column(String(10), nullable=True)
     cliente_id = Column(Integer, ForeignKey('cliente.id'))
     autor = relationship('Cliente', backref='venda')
-
+    #modo grafico de representação
     def __repr__(self):
         return f'Produto: {self.produto} Quantidade: {self.qtde} Valor: {self.valor} Data pedido: {self.data_pedido}'
-    
+#tabela de despesas vendas    
 class Despesavenda(Base):
     __tablename__ = 'despesas_vendas'
-
+    #coluna da tabela
     id =  Column(Integer, primary_key=True)
     uber_flash = Column(String(5), nullable=False)
     impressao = Column(String(5), nullable=False)
     outros = Column(String(5), nullable=False)
     venda_id = Column(Integer, ForeignKey('venda.id'))
     venda = relationship('Venda', backref='despesas_vendas')
-
+    #modo grafico de representação
     def __repr__(self):
         return f'Uber flash: {self.uber_flash} Impressão: {self.impressao} Outros: {self.outros}'
-    
+#tabela estoque    
 class Estoque(Base):
     __tablename__ = 'estoque'
-
+    #coluna da tabela
     id =  Column(Integer, primary_key=True)
     fornecedor = Column(String(50), nullable=True)
     produto = Column(String(50), nullable=True)
     qtde = Column(Integer, nullable=True)
     valor = Column(String(10), nullable=True)
     data_pedido = Column(String, nullable=True)
-
+    #modo grafico de representação
     def __repr__(self):
         return f'Fornecedor: {self.fornecedor} Produto: {self.produto} Quantidade: {self.qtde} Valor: {self.valor} Data pedido: {self.data_pedido}'
-    
+#função para criar as tabelas    
 async def create_database():
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.drop_all)
