@@ -21,10 +21,10 @@ class Cliente(Base):
     __tablename__ = 'cliente'
     #coluna da tabela
     id =  Column(Integer, primary_key=True)
-    nome = Column(String(80), nullable=True)
-    e_mail = Column(String(50), nullable=True)
-    whats_app = Column(String(15), nullable=True)
-    localidade = Column(String(30), nullable=True) 
+    nome = Column(String(80), nullable=False)
+    e_mail = Column(String(50))
+    whats_app = Column(String(15), nullable=False)
+    localidade = Column(String(30), nullable=False) 
     posts = relationship('Venda', backref='cliente')
     #modo grafico de representação
     def __repr__(self):
@@ -34,10 +34,10 @@ class Venda(Base):
     __tablename__ = 'venda'
     #coluna da tabela
     id =  Column(Integer, primary_key=True)
-    produto = Column(String(50), nullable=True)
-    qtde = Column(Integer, nullable=True)
-    valor = Column(String(5), nullable=True)
-    data_pedido = Column(String(10), nullable=True)
+    produto = Column(String(50), nullable=False)
+    qtde = Column(Integer, nullable=False)
+    valor = Column(String(5), nullable=False)
+    data_pedido = Column(String(10), nullable=False)
     cliente_id = Column(Integer, ForeignKey('cliente.id'))
     autor = relationship('Cliente', backref='venda')
     #modo grafico de representação
@@ -48,9 +48,9 @@ class Despesavenda(Base):
     __tablename__ = 'despesas_vendas'
     #coluna da tabela
     id =  Column(Integer, primary_key=True)
-    uber_flash = Column(String(5), nullable=False)
+    uber_flash = Column(String(5))
     impressao = Column(String(5), nullable=False)
-    outros = Column(String(5), nullable=False)
+    outros = Column(String(5))
     venda_id = Column(Integer, ForeignKey('venda.id'))
     venda = relationship('Venda', backref='despesas_vendas')
     #modo grafico de representação
@@ -96,7 +96,7 @@ async def buscar_pessoa(nome='klayton'):
         query = await s.execute(
             select(Cliente).where(Cliente.nome == nome)
         )
-        result = query.scalars().all()
+        result = await query.scalars().all()
         #result = query.all()
         return result
 
