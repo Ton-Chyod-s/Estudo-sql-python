@@ -12,7 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(832, 592)
+        MainWindow.resize(810, 592)
         MainWindow.setMinimumSize(QtCore.QSize(810, 430))
         MainWindow.setStyleSheet("background-color: rgb(10, 10, 10);")
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
@@ -45,6 +45,22 @@ class Ui_MainWindow(object):
         self.frame_erro.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_erro.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_erro.setObjectName("frame_erro")
+        self.horizontalLayout_7 = QtWidgets.QHBoxLayout(self.frame_erro)
+        self.horizontalLayout_7.setObjectName("horizontalLayout_7")
+        self.label_erro = QtWidgets.QLabel(parent=self.frame_erro)
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(11)
+        self.label_erro.setFont(font)
+        self.label_erro.setObjectName("label_erro")
+        self.horizontalLayout_7.addWidget(self.label_erro)
+        self.pushButton_erro = QtWidgets.QPushButton(parent=self.frame_erro)
+        self.pushButton_erro.setMaximumSize(QtCore.QSize(15, 16777215))
+        self.pushButton_erro.setStyleSheet("border: none;\n"
+"box-shadow: none;\n"
+"background-color: rgb(150, 150, 150);")
+        self.pushButton_erro.setObjectName("pushButton_erro")
+        self.horizontalLayout_7.addWidget(self.pushButton_erro)
         self.horizontalLayout_2.addWidget(self.frame_erro)
         self.verticalLayout.addWidget(self.frame_top)
         self.frame_principal = QtWidgets.QFrame(parent=self.centralwidget)
@@ -126,16 +142,16 @@ class Ui_MainWindow(object):
         self.verticalLayout_7.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_7.setSpacing(0)
         self.verticalLayout_7.setObjectName("verticalLayout_7")
-        self.pushButton_planilha = QtWidgets.QPushButton(parent=self.frame_8)
-        self.pushButton_planilha.setMaximumSize(QtCore.QSize(16777215, 60))
+        self.pushButton_estoque = QtWidgets.QPushButton(parent=self.frame_8)
+        self.pushButton_estoque.setMaximumSize(QtCore.QSize(16777215, 60))
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(11)
-        self.pushButton_planilha.setFont(font)
-        self.pushButton_planilha.setStyleSheet("border: none;\n"
+        self.pushButton_estoque.setFont(font)
+        self.pushButton_estoque.setStyleSheet("border: none;\n"
 "box-shadow: none;")
-        self.pushButton_planilha.setObjectName("pushButton_planilha")
-        self.verticalLayout_7.addWidget(self.pushButton_planilha)
+        self.pushButton_estoque.setObjectName("pushButton_estoque")
+        self.verticalLayout_7.addWidget(self.pushButton_estoque)
         self.verticalLayout_4.addWidget(self.frame_8)
         self.frame_9 = QtWidgets.QFrame(parent=self.frame_10)
         self.frame_9.setStyleSheet("background-color: rgb(255, 255, 0);")
@@ -146,16 +162,16 @@ class Ui_MainWindow(object):
         self.verticalLayout_6.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_6.setSpacing(0)
         self.verticalLayout_6.setObjectName("verticalLayout_6")
-        self.pushButton_dashboard = QtWidgets.QPushButton(parent=self.frame_9)
-        self.pushButton_dashboard.setMaximumSize(QtCore.QSize(16777215, 60))
+        self.pushButton_planilha = QtWidgets.QPushButton(parent=self.frame_9)
+        self.pushButton_planilha.setMaximumSize(QtCore.QSize(16777215, 60))
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(11)
-        self.pushButton_dashboard.setFont(font)
-        self.pushButton_dashboard.setStyleSheet("border: none;\n"
+        self.pushButton_planilha.setFont(font)
+        self.pushButton_planilha.setStyleSheet("border: none;\n"
 "box-shadow: none;")
-        self.pushButton_dashboard.setObjectName("pushButton_dashboard")
-        self.verticalLayout_6.addWidget(self.pushButton_dashboard)
+        self.pushButton_planilha.setObjectName("pushButton_planilha")
+        self.verticalLayout_6.addWidget(self.pushButton_planilha)
         self.verticalLayout_4.addWidget(self.frame_9)
         self.verticalLayout_3.addWidget(self.frame_10)
         self.frame_11 = QtWidgets.QFrame(parent=self.frame_menu)
@@ -166,13 +182,38 @@ class Ui_MainWindow(object):
         self.verticalLayout_10.setContentsMargins(-1, 0, -1, -1)
         self.verticalLayout_10.setObjectName("verticalLayout_10")
         self.frame_5 = QtWidgets.QFrame(parent=self.frame_11)
-        self.frame_5.setStyleSheet("")
+        self.frame_5.setStyleSheet("background-color: rgb(255, 255, 0);")
         self.frame_5.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_5.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_5.setObjectName("frame_5")
         self.verticalLayout_11 = QtWidgets.QVBoxLayout(self.frame_5)
         self.verticalLayout_11.setObjectName("verticalLayout_11")
+        self.pushButton_dashboard = QtWidgets.QPushButton(parent=self.frame_5)
+        self.pushButton_dashboard.setMaximumSize(QtCore.QSize(16777215, 60))
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(11)
+        self.pushButton_dashboard.setFont(font)
+        self.pushButton_dashboard.setStyleSheet("border: none;\n"
+"box-shadow: none;")
+        self.pushButton_dashboard.setObjectName("pushButton_dashboard")
+        self.verticalLayout_11.addWidget(self.pushButton_dashboard)
         self.verticalLayout_10.addWidget(self.frame_5)
+        self.frame_12 = QtWidgets.QFrame(parent=self.frame_11)
+        self.frame_12.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame_12.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_12.setObjectName("frame_12")
+        self.verticalLayout_10.addWidget(self.frame_12)
+        self.frame_13 = QtWidgets.QFrame(parent=self.frame_11)
+        self.frame_13.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame_13.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_13.setObjectName("frame_13")
+        self.verticalLayout_10.addWidget(self.frame_13)
+        self.frame_14 = QtWidgets.QFrame(parent=self.frame_11)
+        self.frame_14.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame_14.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_14.setObjectName("frame_14")
+        self.verticalLayout_10.addWidget(self.frame_14)
         self.verticalLayout_3.addWidget(self.frame_11)
         self.horizontalLayout.addWidget(self.frame_menu)
         self.frame_corpo = QtWidgets.QFrame(parent=self.frame_principal)
@@ -189,6 +230,35 @@ class Ui_MainWindow(object):
         self.stackedWidget = QtWidgets.QStackedWidget(parent=self.frame_corpo)
         self.stackedWidget.setStyleSheet("")
         self.stackedWidget.setObjectName("stackedWidget")
+        self.estoque_page = QtWidgets.QWidget()
+        self.estoque_page.setObjectName("estoque_page")
+        self.verticalLayout_16 = QtWidgets.QVBoxLayout(self.estoque_page)
+        self.verticalLayout_16.setObjectName("verticalLayout_16")
+        self.frame_19 = QtWidgets.QFrame(parent=self.estoque_page)
+        self.frame_19.setStyleSheet("background-color: rgb(255, 255, 0);")
+        self.frame_19.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame_19.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_19.setObjectName("frame_19")
+        self.verticalLayout_16.addWidget(self.frame_19)
+        self.frame_33 = QtWidgets.QFrame(parent=self.estoque_page)
+        self.frame_33.setStyleSheet("background-color: rgb(255, 255, 0);")
+        self.frame_33.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame_33.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_33.setObjectName("frame_33")
+        self.verticalLayout_16.addWidget(self.frame_33)
+        self.frame_32 = QtWidgets.QFrame(parent=self.estoque_page)
+        self.frame_32.setStyleSheet("background-color: rgb(255, 255, 0);")
+        self.frame_32.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame_32.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_32.setObjectName("frame_32")
+        self.verticalLayout_16.addWidget(self.frame_32)
+        self.frame_34 = QtWidgets.QFrame(parent=self.estoque_page)
+        self.frame_34.setStyleSheet("background-color: rgb(255, 255, 0);")
+        self.frame_34.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame_34.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_34.setObjectName("frame_34")
+        self.verticalLayout_16.addWidget(self.frame_34)
+        self.stackedWidget.addWidget(self.estoque_page)
         self.formulario_page = QtWidgets.QWidget()
         self.formulario_page.setObjectName("formulario_page")
         self.verticalLayout_9 = QtWidgets.QVBoxLayout(self.formulario_page)
@@ -351,6 +421,30 @@ class Ui_MainWindow(object):
         self.frame_16.setObjectName("frame_16")
         self.gridLayout_2 = QtWidgets.QGridLayout(self.frame_16)
         self.gridLayout_2.setObjectName("gridLayout_2")
+        self.lineEdit_quantidade = QtWidgets.QLineEdit(parent=self.frame_16)
+        self.lineEdit_quantidade.setMinimumSize(QtCore.QSize(0, 0))
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(10)
+        self.lineEdit_quantidade.setFont(font)
+        self.lineEdit_quantidade.setAutoFillBackground(False)
+        self.lineEdit_quantidade.setStyleSheet("QLineEdit {\n"
+"    border: 2px solid rgb(45,45,45);\n"
+"    border-radius: 5px;\n"
+"    padding: 1px;\n"
+"    background-color: rgb(30,30, 30);\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"QLineEdit:hover {\n"
+"    border: 2px solid rgb(55,55,55);\n"
+"}\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid rgb(161, 0, 0);\n"
+"    color: rgb(200, 200, 200);\n"
+"}")
+        self.lineEdit_quantidade.setMaxLength(50)
+        self.lineEdit_quantidade.setObjectName("lineEdit_quantidade")
+        self.gridLayout_2.addWidget(self.lineEdit_quantidade, 1, 1, 1, 1)
         self.lineEdit_descricao = QtWidgets.QLineEdit(parent=self.frame_16)
         self.lineEdit_descricao.setMinimumSize(QtCore.QSize(0, 0))
         font = QtGui.QFont()
@@ -432,30 +526,6 @@ class Ui_MainWindow(object):
         self.lineEdit_data.setMaxLength(50)
         self.lineEdit_data.setObjectName("lineEdit_data")
         self.gridLayout_2.addWidget(self.lineEdit_data, 1, 4, 1, 1)
-        self.lineEdit_quantidade = QtWidgets.QLineEdit(parent=self.frame_16)
-        self.lineEdit_quantidade.setMinimumSize(QtCore.QSize(0, 0))
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI")
-        font.setPointSize(10)
-        self.lineEdit_quantidade.setFont(font)
-        self.lineEdit_quantidade.setAutoFillBackground(False)
-        self.lineEdit_quantidade.setStyleSheet("QLineEdit {\n"
-"    border: 2px solid rgb(45,45,45);\n"
-"    border-radius: 5px;\n"
-"    padding: 1px;\n"
-"    background-color: rgb(30,30, 30);\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"QLineEdit:hover {\n"
-"    border: 2px solid rgb(55,55,55);\n"
-"}\n"
-"QLineEdit:focus {\n"
-"    border: 2px solid rgb(161, 0, 0);\n"
-"    color: rgb(200, 200, 200);\n"
-"}")
-        self.lineEdit_quantidade.setMaxLength(50)
-        self.lineEdit_quantidade.setObjectName("lineEdit_quantidade")
-        self.gridLayout_2.addWidget(self.lineEdit_quantidade, 1, 1, 1, 1)
         self.verticalLayout_9.addWidget(self.frame_16)
         self.frame_18 = QtWidgets.QFrame(parent=self.formulario_page)
         self.frame_18.setStyleSheet("background-color: rgb(255, 255, 0);")
@@ -803,15 +873,18 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(1)
         self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Myframecg"))
+        self.label_erro.setText(_translate("MainWindow", "TextLabel"))
+        self.pushButton_erro.setText(_translate("MainWindow", "X"))
         self.label_4.setText(_translate("MainWindow", "Menu"))
         self.pushButton_formulario.setText(_translate("MainWindow", "Formulario"))
+        self.pushButton_estoque.setText(_translate("MainWindow", "Estoque"))
         self.pushButton_planilha.setText(_translate("MainWindow", "Planilha"))
         self.pushButton_dashboard.setText(_translate("MainWindow", "Dash Board"))
         self.label_8.setText(_translate("MainWindow", "Formulario"))
@@ -821,11 +894,11 @@ class Ui_MainWindow(object):
         self.lineEdit_email.setPlaceholderText(_translate("MainWindow", "E-mail"))
         self.lineEdit_nome.setPlaceholderText(_translate("MainWindow", "Nome"))
         self.lineEdit_localidade.setPlaceholderText(_translate("MainWindow", "Localidade"))
+        self.lineEdit_quantidade.setPlaceholderText(_translate("MainWindow", "Quantidade"))
         self.lineEdit_descricao.setPlaceholderText(_translate("MainWindow", "Descrição"))
         self.lineEdit_valor.setPlaceholderText(_translate("MainWindow", "Valor"))
         self.Pedido_label.setText(_translate("MainWindow", "Pedidos"))
         self.lineEdit_data.setPlaceholderText(_translate("MainWindow", "Data "))
-        self.lineEdit_quantidade.setPlaceholderText(_translate("MainWindow", "Quantidade"))
         self.lineEdit_uberflash.setPlaceholderText(_translate("MainWindow", "Uber flash"))
         self.lineEdit_outros.setPlaceholderText(_translate("MainWindow", "Outros"))
         self.despesas_label.setText(_translate("MainWindow", "Despesas"))
