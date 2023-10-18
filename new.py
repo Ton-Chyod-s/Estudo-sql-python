@@ -4,8 +4,9 @@ from sqlalchemy import Column, String, Integer, Numeric
 from sqlalchemy.orm import sessionmaker
 
 # Config
-connection_url = "postgresql://postgres:123@localhost:5432/loja"
+connection_url = "postgresql://postgres:123@localhost:5432/myframe"
 engine = create_engine(connection_url, echo=True)
+
 conn = engine.connect()
 Session = sessionmaker(bind=engine)
 session = Session()

@@ -618,7 +618,7 @@ box-shadow: none;</string>
                   </widget>
                  </item>
                  <item row="1" column="1">
-                  <widget class="QLineEdit" name="lineEdit_2">
+                  <widget class="QLineEdit" name="lineEdit_form_produto">
                    <property name="styleSheet">
                     <string notr="true">QLineEdit {
 	border: 2px solid rgb(45,45,45);
@@ -641,7 +641,7 @@ QLineEdit:focus {
                   </widget>
                  </item>
                  <item row="1" column="2">
-                  <widget class="QLineEdit" name="lineEdit_3">
+                  <widget class="QLineEdit" name="lineEdit_form_ecomerce">
                    <property name="styleSheet">
                     <string notr="true">QLineEdit {
 	border: 2px solid rgb(45,45,45);
@@ -664,7 +664,7 @@ QLineEdit:focus {
                   </widget>
                  </item>
                  <item row="1" column="0">
-                  <widget class="QLineEdit" name="lineEdit">
+                  <widget class="QLineEdit" name="lineEdit_form_nome">
                    <property name="styleSheet">
                     <string notr="true">QLineEdit {
 	border: 2px solid rgb(45,45,45);
@@ -730,7 +730,7 @@ QLineEdit:focus {
                   </widget>
                  </item>
                  <item row="1" column="0">
-                  <widget class="QLineEdit" name="lineEdit_4">
+                  <widget class="QLineEdit" name="lineEdit_form_quantidade">
                    <property name="styleSheet">
                     <string notr="true">QLineEdit {
 	border: 2px solid rgb(45,45,45);
@@ -753,7 +753,7 @@ QLineEdit:focus {
                   </widget>
                  </item>
                  <item row="1" column="1">
-                  <widget class="QLineEdit" name="lineEdit_6">
+                  <widget class="QLineEdit" name="lineEdit_form_valor">
                    <property name="styleSheet">
                     <string notr="true">QLineEdit {
 	border: 2px solid rgb(45,45,45);
@@ -776,7 +776,7 @@ QLineEdit:focus {
                   </widget>
                  </item>
                  <item row="1" column="2">
-                  <widget class="QLineEdit" name="lineEdit_5">
+                  <widget class="QLineEdit" name="lineEdit_form_data">
                    <property name="styleSheet">
                     <string notr="true">QLineEdit {
 	border: 2px solid rgb(45,45,45);
@@ -827,7 +827,7 @@ QLineEdit:focus {
                 </property>
                 <layout class="QHBoxLayout" name="horizontalLayout_10">
                  <item>
-                  <widget class="QPushButton" name="pushButton">
+                  <widget class="QPushButton" name="pushButton_form_inserir">
                    <property name="font">
                     <font>
                      <family>Segoe UI</family>
@@ -856,7 +856,7 @@ QPushButton:pressed {
                   </widget>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="pushButton_2">
+                  <widget class="QPushButton" name="pushButton_form_atualizar">
                    <property name="font">
                     <font>
                      <family>Segoe UI</family>
@@ -885,7 +885,7 @@ QPushButton:pressed {
                   </widget>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="pushButton_3">
+                  <widget class="QPushButton" name="pushButton_form_deletar">
                    <property name="font">
                     <font>
                      <family>Segoe UI</family>

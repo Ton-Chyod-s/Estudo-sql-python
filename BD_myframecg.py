@@ -66,6 +66,7 @@ class Estoque(Base):
     qtde = Column(Integer, nullable=True)
     valor = Column(String(10), nullable=True)
     data_pedido = Column(String, nullable=True)
+    ecomerce = Column(String, nullable=True)
     #modo grafico de representação
     def __repr__(self):
         return f'Fornecedor: {self.fornecedor} Produto: {self.produto} Quantidade: {self.qtde} Valor: {self.valor} Data pedido: {self.data_pedido}'
@@ -85,9 +86,9 @@ async def venda_realizada(nome, email, whats_app, localidade, produto, quantidad
         s.add(despesas_venda)
         await s.commit()
     
-async def estoque(fornecedor, produto, qtde, valor, data_pedido):
+async def estoque(fornecedor, produto, qtde, valor, data_pedido, ecomerce):
     async with session() as s:
-        estoque = (Estoque(fornecedor=fornecedor, produto=produto, qtde = qtde, valor = valor,data_pedido=data_pedido))
+        estoque = (Estoque(fornecedor=fornecedor, produto=produto, qtde = qtde, valor = valor,data_pedido=data_pedido, ecomerce = ecomerce))
         s.add(estoque)
         await s.commit()
     

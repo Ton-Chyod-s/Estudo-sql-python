@@ -1,11 +1,6 @@
-import pandas as pd  
-from sqlalchemy import create_engine 
+import sqlite3
 
+conn = sqlite3.connect("myframecg.db")
+cursor = conn.cursor()
 
-cnx = create_engine('sqlite:///myframecg.db').connect() 
-df = pd.read_sql_table('cliente', cnx) 
-print(df)
-df = pd.read_sql_table('venda', cnx) 
-print(df)
-df = pd.read_sql_table('despesas_vendas', cnx) 
-print(df)
+print(cursor)

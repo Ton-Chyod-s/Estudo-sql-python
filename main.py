@@ -270,8 +270,8 @@ class Ui_MainWindow(object):
         self.label_7.setFont(font)
         self.label_7.setObjectName("label_7")
         self.gridLayout_6.addWidget(self.label_7, 0, 0, 1, 1)
-        self.lineEdit_2 = QtWidgets.QLineEdit(parent=self.frame_19)
-        self.lineEdit_2.setStyleSheet("QLineEdit {\n"
+        self.lineEdit_form_produto = QtWidgets.QLineEdit(parent=self.frame_19)
+        self.lineEdit_form_produto.setStyleSheet("QLineEdit {\n"
 "    border: 2px solid rgb(45,45,45);\n"
 "    border-radius: 5px;\n"
 "    padding: 1px;\n"
@@ -285,10 +285,10 @@ class Ui_MainWindow(object):
 "    border: 2px solid rgb(161, 0, 0);\n"
 "    color: rgb(200, 200, 200);\n"
 "}")
-        self.lineEdit_2.setObjectName("lineEdit_2")
-        self.gridLayout_6.addWidget(self.lineEdit_2, 1, 1, 1, 1)
-        self.lineEdit_3 = QtWidgets.QLineEdit(parent=self.frame_19)
-        self.lineEdit_3.setStyleSheet("QLineEdit {\n"
+        self.lineEdit_form_produto.setObjectName("lineEdit_form_produto")
+        self.gridLayout_6.addWidget(self.lineEdit_form_produto, 1, 1, 1, 1)
+        self.lineEdit_form_ecomerce = QtWidgets.QLineEdit(parent=self.frame_19)
+        self.lineEdit_form_ecomerce.setStyleSheet("QLineEdit {\n"
 "    border: 2px solid rgb(45,45,45);\n"
 "    border-radius: 5px;\n"
 "    padding: 1px;\n"
@@ -302,10 +302,10 @@ class Ui_MainWindow(object):
 "    border: 2px solid rgb(161, 0, 0);\n"
 "    color: rgb(200, 200, 200);\n"
 "}")
-        self.lineEdit_3.setObjectName("lineEdit_3")
-        self.gridLayout_6.addWidget(self.lineEdit_3, 1, 2, 1, 1)
-        self.lineEdit = QtWidgets.QLineEdit(parent=self.frame_19)
-        self.lineEdit.setStyleSheet("QLineEdit {\n"
+        self.lineEdit_form_ecomerce.setObjectName("lineEdit_form_ecomerce")
+        self.gridLayout_6.addWidget(self.lineEdit_form_ecomerce, 1, 2, 1, 1)
+        self.lineEdit_form_nome = QtWidgets.QLineEdit(parent=self.frame_19)
+        self.lineEdit_form_nome.setStyleSheet("QLineEdit {\n"
 "    border: 2px solid rgb(45,45,45);\n"
 "    border-radius: 5px;\n"
 "    padding: 1px;\n"
@@ -319,8 +319,8 @@ class Ui_MainWindow(object):
 "    border: 2px solid rgb(161, 0, 0);\n"
 "    color: rgb(200, 200, 200);\n"
 "}")
-        self.lineEdit.setObjectName("lineEdit")
-        self.gridLayout_6.addWidget(self.lineEdit, 1, 0, 1, 1)
+        self.lineEdit_form_nome.setObjectName("lineEdit_form_nome")
+        self.gridLayout_6.addWidget(self.lineEdit_form_nome, 1, 0, 1, 1)
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.gridLayout_6.addItem(spacerItem1, 1, 3, 1, 1)
         self.verticalLayout_16.addWidget(self.frame_19)
@@ -340,8 +340,8 @@ class Ui_MainWindow(object):
         self.label_10.setFont(font)
         self.label_10.setObjectName("label_10")
         self.gridLayout_7.addWidget(self.label_10, 0, 0, 1, 1)
-        self.lineEdit_4 = QtWidgets.QLineEdit(parent=self.frame_33)
-        self.lineEdit_4.setStyleSheet("QLineEdit {\n"
+        self.lineEdit_form_quantidade = QtWidgets.QLineEdit(parent=self.frame_33)
+        self.lineEdit_form_quantidade.setStyleSheet("QLineEdit {\n"
 "    border: 2px solid rgb(45,45,45);\n"
 "    border-radius: 5px;\n"
 "    padding: 1px;\n"
@@ -355,10 +355,10 @@ class Ui_MainWindow(object):
 "    border: 2px solid rgb(161, 0, 0);\n"
 "    color: rgb(200, 200, 200);\n"
 "}")
-        self.lineEdit_4.setObjectName("lineEdit_4")
-        self.gridLayout_7.addWidget(self.lineEdit_4, 1, 0, 1, 1)
-        self.lineEdit_6 = QtWidgets.QLineEdit(parent=self.frame_33)
-        self.lineEdit_6.setStyleSheet("QLineEdit {\n"
+        self.lineEdit_form_quantidade.setObjectName("lineEdit_form_quantidade")
+        self.gridLayout_7.addWidget(self.lineEdit_form_quantidade, 1, 0, 1, 1)
+        self.lineEdit_form_valor = QtWidgets.QLineEdit(parent=self.frame_33)
+        self.lineEdit_form_valor.setStyleSheet("QLineEdit {\n"
 "    border: 2px solid rgb(45,45,45);\n"
 "    border-radius: 5px;\n"
 "    padding: 1px;\n"
@@ -372,10 +372,10 @@ class Ui_MainWindow(object):
 "    border: 2px solid rgb(161, 0, 0);\n"
 "    color: rgb(200, 200, 200);\n"
 "}")
-        self.lineEdit_6.setObjectName("lineEdit_6")
-        self.gridLayout_7.addWidget(self.lineEdit_6, 1, 1, 1, 1)
-        self.lineEdit_5 = QtWidgets.QLineEdit(parent=self.frame_33)
-        self.lineEdit_5.setStyleSheet("QLineEdit {\n"
+        self.lineEdit_form_valor.setObjectName("lineEdit_form_valor")
+        self.gridLayout_7.addWidget(self.lineEdit_form_valor, 1, 1, 1, 1)
+        self.lineEdit_form_data = QtWidgets.QLineEdit(parent=self.frame_33)
+        self.lineEdit_form_data.setStyleSheet("QLineEdit {\n"
 "    border: 2px solid rgb(45,45,45);\n"
 "    border-radius: 5px;\n"
 "    padding: 1px;\n"
@@ -389,8 +389,8 @@ class Ui_MainWindow(object):
 "    border: 2px solid rgb(161, 0, 0);\n"
 "    color: rgb(200, 200, 200);\n"
 "}")
-        self.lineEdit_5.setObjectName("lineEdit_5")
-        self.gridLayout_7.addWidget(self.lineEdit_5, 1, 2, 1, 1)
+        self.lineEdit_form_data.setObjectName("lineEdit_form_data")
+        self.gridLayout_7.addWidget(self.lineEdit_form_data, 1, 2, 1, 1)
         spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.gridLayout_7.addItem(spacerItem2, 1, 3, 1, 1)
         self.verticalLayout_16.addWidget(self.frame_33)
@@ -401,11 +401,11 @@ class Ui_MainWindow(object):
         self.frame_32.setObjectName("frame_32")
         self.horizontalLayout_10 = QtWidgets.QHBoxLayout(self.frame_32)
         self.horizontalLayout_10.setObjectName("horizontalLayout_10")
-        self.pushButton = QtWidgets.QPushButton(parent=self.frame_32)
+        self.pushButton_form_inserir = QtWidgets.QPushButton(parent=self.frame_32)
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
-        self.pushButton.setFont(font)
-        self.pushButton.setStyleSheet("QPushButton {\n"
+        self.pushButton_form_inserir.setFont(font)
+        self.pushButton_form_inserir.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(50, 50, 50);\n"
 "    border: 2px solid rgb(60, 60, 60);\n"
 "    border-radius: 5px;\n"
@@ -420,13 +420,13 @@ class Ui_MainWindow(object):
 "    border: 2px solid rgb(161, 0, 0);\n"
 "    color: rgb(35, 35, 35);\n"
 "}")
-        self.pushButton.setObjectName("pushButton")
-        self.horizontalLayout_10.addWidget(self.pushButton)
-        self.pushButton_2 = QtWidgets.QPushButton(parent=self.frame_32)
+        self.pushButton_form_inserir.setObjectName("pushButton_form_inserir")
+        self.horizontalLayout_10.addWidget(self.pushButton_form_inserir)
+        self.pushButton_form_atualizar = QtWidgets.QPushButton(parent=self.frame_32)
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
-        self.pushButton_2.setFont(font)
-        self.pushButton_2.setStyleSheet("QPushButton {\n"
+        self.pushButton_form_atualizar.setFont(font)
+        self.pushButton_form_atualizar.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(50, 50, 50);\n"
 "    border: 2px solid rgb(60, 60, 60);\n"
 "    border-radius: 5px;\n"
@@ -441,13 +441,13 @@ class Ui_MainWindow(object):
 "    border: 2px solid rgb(161, 0, 0);\n"
 "    color: rgb(35, 35, 35);\n"
 "}")
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.horizontalLayout_10.addWidget(self.pushButton_2)
-        self.pushButton_3 = QtWidgets.QPushButton(parent=self.frame_32)
+        self.pushButton_form_atualizar.setObjectName("pushButton_form_atualizar")
+        self.horizontalLayout_10.addWidget(self.pushButton_form_atualizar)
+        self.pushButton_form_deletar = QtWidgets.QPushButton(parent=self.frame_32)
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
-        self.pushButton_3.setFont(font)
-        self.pushButton_3.setStyleSheet("QPushButton {\n"
+        self.pushButton_form_deletar.setFont(font)
+        self.pushButton_form_deletar.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(50, 50, 50);\n"
 "    border: 2px solid rgb(60, 60, 60);\n"
 "    border-radius: 5px;\n"
@@ -462,8 +462,8 @@ class Ui_MainWindow(object):
 "    border: 2px solid rgb(161, 0, 0);\n"
 "    color: rgb(35, 35, 35);\n"
 "}")
-        self.pushButton_3.setObjectName("pushButton_3")
-        self.horizontalLayout_10.addWidget(self.pushButton_3)
+        self.pushButton_form_deletar.setObjectName("pushButton_form_deletar")
+        self.horizontalLayout_10.addWidget(self.pushButton_form_deletar)
         self.frame_36 = QtWidgets.QFrame(parent=self.frame_32)
         self.frame_36.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_36.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
@@ -1183,16 +1183,16 @@ class Ui_MainWindow(object):
         self.pushButton_dashboard.setText(_translate("MainWindow", "Dash Board"))
         self.label_6.setText(_translate("MainWindow", "Estoque"))
         self.label_7.setText(_translate("MainWindow", "Formecedor"))
-        self.lineEdit_2.setPlaceholderText(_translate("MainWindow", "Produto"))
-        self.lineEdit_3.setPlaceholderText(_translate("MainWindow", "E-commerce"))
-        self.lineEdit.setPlaceholderText(_translate("MainWindow", "Nome "))
+        self.lineEdit_form_produto.setPlaceholderText(_translate("MainWindow", "Produto"))
+        self.lineEdit_form_ecomerce.setPlaceholderText(_translate("MainWindow", "E-commerce"))
+        self.lineEdit_form_nome.setPlaceholderText(_translate("MainWindow", "Nome "))
         self.label_10.setText(_translate("MainWindow", "TextLabel"))
-        self.lineEdit_4.setPlaceholderText(_translate("MainWindow", "Quantidade"))
-        self.lineEdit_6.setPlaceholderText(_translate("MainWindow", "Valor"))
-        self.lineEdit_5.setPlaceholderText(_translate("MainWindow", "Data"))
-        self.pushButton.setText(_translate("MainWindow", "Inserir"))
-        self.pushButton_2.setText(_translate("MainWindow", "Atualizar"))
-        self.pushButton_3.setText(_translate("MainWindow", "Deletar"))
+        self.lineEdit_form_quantidade.setPlaceholderText(_translate("MainWindow", "Quantidade"))
+        self.lineEdit_form_valor.setPlaceholderText(_translate("MainWindow", "Valor"))
+        self.lineEdit_form_data.setPlaceholderText(_translate("MainWindow", "Data"))
+        self.pushButton_form_inserir.setText(_translate("MainWindow", "Inserir"))
+        self.pushButton_form_atualizar.setText(_translate("MainWindow", "Atualizar"))
+        self.pushButton_form_deletar.setText(_translate("MainWindow", "Deletar"))
         self.label_8.setText(_translate("MainWindow", "Formulario"))
         self.pushButton_criarBD.setText(_translate("MainWindow", "  Criar BD  "))
         self.Cliente_label.setText(_translate("MainWindow", "Clientes"))
@@ -1224,3 +1224,13 @@ class Ui_MainWindow(object):
         self.label_2.setText(_translate("MainWindow", "Vendas x mês"))
         self.label_3.setText(_translate("MainWindow", "Dados"))
         self.label_9.setText(_translate("MainWindow", "Localidade vendas"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec())

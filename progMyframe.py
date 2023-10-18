@@ -4,6 +4,7 @@ import sys
 import BD_myframecg as bd
 from asyncio import run
 import os
+from PyQt6.QtCore import QTimer
 
 class Principal(Ui_MainWindow, QMainWindow):
     def __init__(self,parent = None) -> None:
@@ -17,7 +18,12 @@ class Principal(Ui_MainWindow, QMainWindow):
         self.pushButton_planilha.clicked.connect(self.planilha)
         self.pushButton_dashboard.clicked.connect(self.dashboard)
         self.pushButton_estoque.clicked.connect(self.estoque)
+        self.pushButton_form_inserir.clicked.connect(self.inserir_estoque)
         self.pushButton_erro.clicked.connect(self.fechar_popup)
+
+    def hide_message(self):
+        self.frame_erro.hide()
+        self.timer.stop()
 
     def inserir_cliente(self):
         def isEmpty(txt):
@@ -53,9 +59,50 @@ class Principal(Ui_MainWindow, QMainWindow):
             self.lineEdit_impressao.setText('')
             self.lineEdit_outros.setText('')
 
+            self.label_erro.setText('Dados inserido com sucesso!')
+            self.frame_erro.setStyleSheet("background-color: green;")
+            self.frame_erro.show()
+            # Configurar um timer para ocultar o rótulo após 1 segundo
+            self.timer = QTimer(self)
+            self.timer.timeout.connect(self.hide_message)
+            self.timer.start(1500)  # 1000 ms = 1 segundo
+
         else:
             self.label_erro.setText('Não tem banco de dados')
             self.frame_erro.show() 
+ 
+    def inserir_estoque(self):
+        def isEmpty(txt):
+            if txt == '':
+                txt = 'vazio'
+            else:
+                return txt
+            
+        nome = isEmpty(self.lineEdit_form_nome.text())
+        produto = isEmpty(self.lineEdit_form_produto.text())
+        ecomerce = isEmpty(self.lineEdit_form_ecomerce.text())
+        quantidade = isEmpty(self.lineEdit_form_quantidade.text())
+        valor = isEmpty(self.lineEdit_form_valor.text())
+        data = isEmpty(self.lineEdit_form_data.text())
+
+        run(bd.estoque(nome,produto,quantidade,valor,data,ecomerce))
+
+        self.lineEdit_form_nome.setText('')
+        self.lineEdit_form_produto.setText('')
+        self.lineEdit_form_ecomerce.setText('')
+        self.lineEdit_form_quantidade.setText('')
+        self.lineEdit_form_valor.setText('')
+        self.lineEdit_form_data.setText('')
+
+        self.label_erro.setText('Dados inserido com sucesso!')
+        self.frame_erro.setStyleSheet("background-color: green;")
+        self.frame_erro.show()
+        # Configurar um timer para ocultar o rótulo após 1 segundo
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.hide_message)
+        self.timer.start(1500)  # 1000 ms = 1 segundo
+
+    
 
     def procurar_pessoa(self):
         procurar_nome = self.lineEdit_procurar.text()
