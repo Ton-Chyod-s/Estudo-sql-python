@@ -115,6 +115,15 @@ async def deletar_pessoa(nome):
         )
         await s.commit()
 
+def grafico():
+    import matplotlib.pyplot as plt
+
+    produtos = ["mamão","açucar","feijão"]
+    preco = [7.50,9.99,3.50]
+
+    plt.plot(produtos,preco)
+
+    plt.show()
 
 
 if __name__ == '__main__':
@@ -126,7 +135,7 @@ if __name__ == '__main__':
     for i in bd.estoque_2023:
         linha = i.split(",")
         lol = linha[3].replace(".",",")
-        run(estoque(linha[0],linha[1],linha[2],lol,linha[4]))
+        run(estoque(linha[0],linha[1],linha[2],lol,linha[4],0))
 
     #run(venda_realizada('nome','email', 'telefone','localidade','quadro descrição', 'quantidade', 'valor','data venda','uber flash','impressão','outros'))
 

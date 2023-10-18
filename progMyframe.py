@@ -6,6 +6,7 @@ from asyncio import run
 import os
 from PyQt6.QtCore import QTimer
 
+
 class Principal(Ui_MainWindow, QMainWindow):
     def __init__(self,parent = None) -> None:
         super().__init__(parent)
@@ -20,6 +21,7 @@ class Principal(Ui_MainWindow, QMainWindow):
         self.pushButton_estoque.clicked.connect(self.estoque)
         self.pushButton_form_inserir.clicked.connect(self.inserir_estoque)
         self.pushButton_erro.clicked.connect(self.fechar_popup)
+        self.pushButton_atualizar.clicked.connect(self.grafico)
 
     def hide_message(self):
         self.frame_erro.hide()
@@ -103,7 +105,6 @@ class Principal(Ui_MainWindow, QMainWindow):
         self.timer.start(1500)  # 1000 ms = 1 segundo
 
     
-
     def procurar_pessoa(self):
         procurar_nome = self.lineEdit_procurar.text()
         bd.buscar_pessoa(procurar_nome)
@@ -134,6 +135,8 @@ class Principal(Ui_MainWindow, QMainWindow):
         self.stackedWidget.setCurrentWidget(self.estoque_page)
     def fechar_popup(self):
         self.frame_erro.hide()
+    def grafico(self):
+        bd.grafico()
 
 if __name__ == '__main__':
     qt = QApplication(sys.argv)
