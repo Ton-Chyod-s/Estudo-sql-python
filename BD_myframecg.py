@@ -12,6 +12,7 @@ session = sessionmaker(
     engine,
     expire_on_commit = False,
     future = True,
+    #se não declara a sessão é sincrona
     class_ = AsyncSession,
 )
 
@@ -28,7 +29,7 @@ class Cliente(Base):
     posts = relationship('Venda', backref='cliente')
     #modo grafico de representação
     def __repr__(self):
-        return f'None: {self.nome} Email: {self.email}'
+        return f'None: {self.nome} Email: {self.e_mail} Whats app: {self.whats_app} Localidade: {self.localidade}'
 #tabela de venda    
 class Venda(Base):
     __tablename__ = 'venda'
@@ -42,7 +43,7 @@ class Venda(Base):
     autor = relationship('Cliente', backref='venda')
     #modo grafico de representação
     def __repr__(self):
-        return f'Produto: {self.produto} Quantidade: {self.qtde} Valor: {self.valor} Data pedido: {self.data_pedido}'
+        return f'Produto, {self.produto}, Quantidade, {self.qtde}, Valor, {self.valor}, Data pedido, {self.data_pedido}, Cliente id, {self.cliente_id}'
 #tabela de despesas vendas    
 class Despesavenda(Base):
     __tablename__ = 'despesas_vendas'
@@ -55,7 +56,7 @@ class Despesavenda(Base):
     venda = relationship('Venda', backref='despesas_vendas')
     #modo grafico de representação
     def __repr__(self):
-        return f'Uber flash: {self.uber_flash} Impressão: {self.impressao} Outros: {self.outros}'
+        return f'Uber flash: {self.uber_flash} Impressão: {self.impressao} Outros: {self.outros} Venda ID: {self.venda_id}'
 #tabela estoque    
 class Estoque(Base):
     __tablename__ = 'estoque'
@@ -69,8 +70,9 @@ class Estoque(Base):
     ecomerce = Column(String, nullable=True)
     #modo grafico de representação
     def __repr__(self):
-        return f'Fornecedor: {self.fornecedor} Produto: {self.produto} Quantidade: {self.qtde} Valor: {self.valor} Data pedido: {self.data_pedido}'
-#função para criar as tabelas    
+        return f'Fornecedor: {self.fornecedor} Produto: {self.produto} Quantidade: {self.qtde} Valor: {self.valor} Data pedido: {self.data_pedido} E-commerce: {self.ecomerce}'
+
+#função para criar banco de dadps 
 async def create_database():
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.drop_all)
@@ -115,15 +117,26 @@ async def deletar_pessoa(nome):
         )
         await s.commit()
 
-def grafico():
-    import matplotlib.pyplot as plt
+async def ler_planilha(txt):
+    async with session() as s:
+        query = await s.execute(
+            select(txt)
+        )
+        result = query.scalars().all()
+        #result = query.all()
+        return result
 
-    produtos = ["mamão","açucar","feijão"]
-    preco = [7.50,9.99,3.50]
+def despesa_venda():
+    return run(ler_planilha(Despesavenda))
 
-    plt.plot(produtos,preco)
+def venda ():
+    return run(ler_planilha(Venda))
 
-    plt.show()
+def clientes():
+    return run(ler_planilha(Cliente))
+
+def estoque():
+    return run(ler_planilha(Estoque))
 
 
 if __name__ == '__main__':

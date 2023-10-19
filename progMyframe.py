@@ -1,11 +1,13 @@
 from main import Ui_MainWindow
-from PyQt6.QtWidgets import QMainWindow, QApplication
+from PyQt6.QtWidgets import QMainWindow, QApplication, QWidget, QVBoxLayout, QWidget, QFrame
 import sys
 import BD_myframecg as bd
 from asyncio import run
 import os
 from PyQt6.QtCore import QTimer
-
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+import numpy as np
 
 class Principal(Ui_MainWindow, QMainWindow):
     def __init__(self,parent = None) -> None:
@@ -21,7 +23,60 @@ class Principal(Ui_MainWindow, QMainWindow):
         self.pushButton_estoque.clicked.connect(self.estoque)
         self.pushButton_form_inserir.clicked.connect(self.inserir_estoque)
         self.pushButton_erro.clicked.connect(self.fechar_popup)
-        self.pushButton_atualizar.clicked.connect(self.grafico)
+
+        #acessando a aba DRE
+        tab_dre = self.tabWidget.findChild(QWidget,'tab_dre')
+        layout = QVBoxLayout(self.tab_dre)
+        plt.figure(figsize=(6, 4))
+        canvas = FigureCanvas(plt.gcf())
+
+        # Adicione o canvas ao layout da aba
+        layout.addWidget(canvas)
+
+        ####----adicionando grafico no frame----####
+        frame_vendas_mes = self.stackedWidget.findChild(QFrame,'frame_vendas_mes')
+        layout = QVBoxLayout(self.frame_vendas_mes)
+        plt.figure(figsize=(3, 2))
+        canvas = FigureCanvas(plt.gcf())
+        
+        produtos = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"]
+        preco = [7.50,9.99,3.50,1,5,7,8,9,6,4,2,3]
+
+        plt.bar(produtos,preco)
+
+        
+        # Adicione o canvas ao layout da aba
+        layout.addWidget(canvas)
+
+        ####----adicionando grafico no frame----####
+        frame_dados = self.stackedWidget.findChild(QFrame,'frame_dados')
+        layout = QVBoxLayout(self.frame_dados)
+        plt.figure(figsize=(1, 1))
+        canvas = FigureCanvas(plt.gcf())
+        
+
+        # Adicione o canvas ao layout da aba
+        layout.addWidget(canvas)
+
+        ####----adicionando grafico no frame----####
+        frame_localidade_vendas = self.stackedWidget.findChild(QFrame,'frame_localidade_vendas')
+        layout = QVBoxLayout(self.frame_localidade_vendas)
+        plt.figure(figsize=(1, 1))
+        canvas = FigureCanvas(plt.gcf())
+        
+
+        # Adicione o canvas ao layout da aba
+        layout.addWidget(canvas)
+
+        ####----adicionando grafico no frame----####
+        frame_localidades_vendas_2 = self.stackedWidget.findChild(QFrame,'frame_localidades_vendas_2')
+        layout = QVBoxLayout(self.frame_localidades_vendas_2)
+        plt.figure(figsize=(1, 1))
+        canvas = FigureCanvas(plt.gcf())
+        
+
+        # Adicione o canvas ao layout da aba
+        layout.addWidget(canvas)
 
     def hide_message(self):
         self.frame_erro.hide()
@@ -135,7 +190,7 @@ class Principal(Ui_MainWindow, QMainWindow):
         self.stackedWidget.setCurrentWidget(self.estoque_page)
     def fechar_popup(self):
         self.frame_erro.hide()
-    def grafico(self):
+    def grafico (self):
         bd.grafico()
 
 if __name__ == '__main__':

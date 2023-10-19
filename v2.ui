@@ -537,7 +537,7 @@ box-shadow: none;</string>
              <string notr="true"/>
             </property>
             <property name="currentIndex">
-             <number>0</number>
+             <number>1</number>
             </property>
             <widget class="QWidget" name="estoque_page">
              <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -1982,7 +1982,7 @@ QPushButton:pressed {
                   </widget>
                  </item>
                  <item row="1" column="0">
-                  <widget class="QFrame" name="frame_22">
+                  <widget class="QFrame" name="frame_vendas_mes">
                    <property name="frameShape">
                     <enum>QFrame::StyledPanel</enum>
                    </property>
@@ -2081,7 +2081,7 @@ QPushButton:pressed {
                   </widget>
                  </item>
                  <item row="1" column="0">
-                  <widget class="QFrame" name="frame_25">
+                  <widget class="QFrame" name="frame_dados">
                    <property name="frameShape">
                     <enum>QFrame::StyledPanel</enum>
                    </property>
@@ -2100,7 +2100,7 @@ QPushButton:pressed {
                    </property>
                    <layout class="QHBoxLayout" name="horizontalLayout_4">
                     <item>
-                     <widget class="QFrame" name="frame_28">
+                     <widget class="QFrame" name="frame_localidade_vendas">
                       <property name="frameShape">
                        <enum>QFrame::StyledPanel</enum>
                       </property>
@@ -2110,7 +2110,7 @@ QPushButton:pressed {
                      </widget>
                     </item>
                     <item>
-                     <widget class="QFrame" name="frame_29">
+                     <widget class="QFrame" name="frame_localidades_vendas_2">
                       <property name="frameShape">
                        <enum>QFrame::StyledPanel</enum>
                       </property>
