@@ -43,7 +43,7 @@ class Venda(Base):
     autor = relationship('Cliente', backref='venda')
     #modo grafico de representação
     def __repr__(self):
-        return f'Produto, {self.produto}, Quantidade, {self.qtde}, Valor, {self.valor}, Data pedido, {self.data_pedido}, Cliente id, {self.cliente_id}'
+        return f'Produto.{self.produto}.Quantidade.{self.qtde}.Valor.{self.valor}.Data pedido.{self.data_pedido}.Cliente id.{self.cliente_id}'
 #tabela de despesas vendas    
 class Despesavenda(Base):
     __tablename__ = 'despesas_vendas'
