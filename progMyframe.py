@@ -8,9 +8,11 @@ from PyQt6.QtCore import QTimer
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 import numpy as np
+import tratamento_db_v2 as tr
 
 class Principal(Ui_MainWindow, QMainWindow):
     def __init__(self,parent = None) -> None:
+        tratamento = tr.tratamento_db()
         super().__init__(parent)
         super().setupUi(self)
         self.frame_erro.hide()
@@ -30,6 +32,8 @@ class Principal(Ui_MainWindow, QMainWindow):
         plt.figure(figsize=(6, 4))
         canvas = FigureCanvas(plt.gcf())
 
+        tratamento.data_frame()
+
         # Adicione o canvas ao layout da aba
         layout.addWidget(canvas)
 
@@ -39,11 +43,7 @@ class Principal(Ui_MainWindow, QMainWindow):
         plt.figure(figsize=(3, 2))
         canvas = FigureCanvas(plt.gcf())
         
-        produtos = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"]
-        preco = [7.50,9.99,3.50,1,5,7,8,9,6,4,2,3]
-
-        plt.bar(produtos,preco)
-
+        tratamento.grafico_barra()
         
         # Adicione o canvas ao layout da aba
         layout.addWidget(canvas)

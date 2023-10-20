@@ -4,6 +4,8 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 import BD_myframecg as bd
 import pandas as pd
 
+
+
 valor_janeiro = {}
 valor_fevereiro = {}
 valor_marco = {}
@@ -107,8 +109,9 @@ soma(valor_outubro,"outubro")
 soma(valor_novembro,"novembro")
 soma(valor_dezembro,"dezembro")
 
-#salvando em excel 
-df.to_excel('vendas.xlsx', index=False)   
+def salvar():
+    #salvando em excel 
+    df.to_excel('vendas.xlsx', index=False)   
 
 def grafico_barra():
     #configuração do grafico
@@ -127,5 +130,7 @@ def grafico_barra():
     plt.legend()
     plt.show()
 
-grafico_barra()
+if __name__ == '__main__':
+    grafico_barra()
+    salvar()
 
