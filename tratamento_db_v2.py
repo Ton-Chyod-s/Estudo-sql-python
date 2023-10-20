@@ -129,9 +129,9 @@ class tratamento_db:
         plt.bar(x,y,label='dados',color="r")
         plt.title('Venda x mês')
         plt.legend()
-        #plt.show()
+        plt.show()
 
 if __name__ == '__main__':
     tr = tratamento_db()
-    tr.data_frame()
+    tr.grafico_barra()
     
