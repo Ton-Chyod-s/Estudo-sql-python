@@ -1,66 +1,28 @@
-from sqlalchemy.orm import declarative_base, sessionmaker, Mapped, mapped_column
-from sqlalchemy import String, select, update, delete
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
-from asyncio import run
+import plotly.graph_objects as go
+import plotly.offline as pyo
+from PyQt5.QtWebEngineWidgets import QWebEngineView
+from PyQt5.QtWidgets import QMainWindow, QApplication
 
-url_do_branco = 'sqlite+aiosqlite:///db.db'
+import tratamento_db_v2 as tr
+tratamento = tr.tratamento_db()
 
-engine = create_async_engine(url_do_branco)
+class Principal(QMainWindow):
+    def __init__(self):
+        super().__init()
+        self.web_view = QWebEngineView()
+        self.setCentralWidget(self.web_view)
+        
+        layout = go.Layout(title="Exemplo de Gráfico Plotly em PyQt5")
+        fig = go.Figure(data=tratamento.grafico_barra(), layout=layout)
+        
+        # Save the Plotly graph to an HTML file
+        pyo.plot(fig, filename='plotly_graph.html', auto_open=False)
+        
+        # Set the URL for the QWebEngineView
+        self.web_view.setUrl(QtCore.QUrl.fromLocalFile('plotly_graph.html'))
 
-session = sessionmaker(
-    engine,
-    expire_on_commit = False,
-    future = True,
-    class_ = AsyncSession,
-)
-
-Base = declarative_base()
-
-class Pessoa(Base):
-    __tablename__ = 'pessoa'
-
-    id: Mapped[int] = mapped_column(primary_key=True)
-    nome: Mapped[str] = mapped_column(String(30))
-    email: Mapped[str] = mapped_column(String(30))
-
-    def __repr__(self):
-        return f'None: {self.nome} Email: {self.email}'
-    
-async def create_database():
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.drop_all)
-        await conn.run_sync(Base.metadata.create_all)
-
-async def criar_pessoa(nome, email):
-    async with session() as s:
-        s.add(Pessoa(nome=nome, email=email))
-        await s.commit()
-
-async def buscar_pessoa(nome='klayton'):
-    async with session() as s:
-        query = await s.execute(
-            select(Pessoa).where(Pessoa.nome == nome)
-        )
-        result = query.scalars().all()
-        #result = query.all()
-        return result
-
-async def atualizar_nome(nome_antigo, none_novo):
-    async with session() as s:
-        query = await s.execute(
-            update(Pessoa).where(Pessoa.nome == nome_antigo).values(nome=none_novo)
-        )
-        await s.commit()
-
-async def deletar_pessoa(nome):
-    async with session() as s:
-        query = await s.execute(
-            delete(Pessoa).where(Pessoa.nome == nome)
-        )
-        await s.commit()
-
-#run(create_database())
-#run(criar_pessoa('joão','joão_santos@gmail.com'))
-#print(run(buscar_pessoa()))
-#run(atualizar_nome('joão','gabriel'))
-run(deletar_pessoa('gabriel'))
+if __name__ == "__main__":
+    app = QApplication([])
+    principal = Principal()
+    principal.show()
+    app.exec()

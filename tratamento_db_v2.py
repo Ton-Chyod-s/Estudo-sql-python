@@ -1,6 +1,10 @@
 import matplotlib.pyplot as plt
+import numpy as np
+import plotly.express as px
 import BD_myframecg as bd
 import pandas as pd
+import plotly.offline as py
+import plotly.graph_objs as go
 
 class tratamento_db:
     def __init__(self):
@@ -123,15 +127,21 @@ class tratamento_db:
             valor_total = self.data_soma[valor]
             valor_tot.append(valor_total)
 
-        x = meses
-        y = valor_tot
+        self.x = meses
+        self.y = valor_tot
 
-        plt.bar(x,y,label='dados',color="r")
-        plt.title('Venda x mês')
-        plt.legend()
-        plt.show()
+        fig = px.bar(self.df,x=self.x, y=self.y,height = 450,width=700 , labels={'x': '','y': ''},template='none',color_discrete_sequence=px.colors.qualitative.Prism)
+        fig.update_traces(textposition='outside',texttemplate='%{y:.4s}')
+        fig.update_yaxes(showticklabels=False)
+        fig.update_layout(title={
+        'text' : 'Venda x Mês',
+    })
+        fig.show()
 
 if __name__ == '__main__':
     tr = tratamento_db()
     tr.grafico_barra()
+
+    
+
     

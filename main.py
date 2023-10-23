@@ -1132,6 +1132,20 @@ class Ui_MainWindow(object):
         self.frame_dados.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_dados.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_dados.setObjectName("frame_dados")
+        self.formLayout = QtWidgets.QFormLayout(self.frame_dados)
+        self.formLayout.setObjectName("formLayout")
+        self.label_11 = QtWidgets.QLabel(parent=self.frame_dados)
+        self.label_11.setObjectName("label_11")
+        self.formLayout.setWidget(0, QtWidgets.QFormLayout.ItemRole.LabelRole, self.label_11)
+        self.venda_label = QtWidgets.QLabel(parent=self.frame_dados)
+        self.venda_label.setObjectName("venda_label")
+        self.formLayout.setWidget(0, QtWidgets.QFormLayout.ItemRole.FieldRole, self.venda_label)
+        self.label_12 = QtWidgets.QLabel(parent=self.frame_dados)
+        self.label_12.setObjectName("label_12")
+        self.formLayout.setWidget(1, QtWidgets.QFormLayout.ItemRole.LabelRole, self.label_12)
+        self.compra_label = QtWidgets.QLabel(parent=self.frame_dados)
+        self.compra_label.setObjectName("compra_label")
+        self.formLayout.setWidget(1, QtWidgets.QFormLayout.ItemRole.FieldRole, self.compra_label)
         self.gridLayout_5.addWidget(self.frame_dados, 1, 0, 1, 1)
         self.frame_26 = QtWidgets.QFrame(parent=self.frame_20)
         self.frame_26.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
@@ -1167,7 +1181,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(3)
         self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -1224,6 +1238,10 @@ class Ui_MainWindow(object):
         self.label_2.setText(_translate("MainWindow", "Vendas x mês"))
         self.label_3.setText(_translate("MainWindow", "Dados"))
         self.label_9.setText(_translate("MainWindow", "Localidade vendas"))
+        self.label_11.setText(_translate("MainWindow", "Venda total:"))
+        self.venda_label.setText(_translate("MainWindow", "TextLabel"))
+        self.label_12.setText(_translate("MainWindow", "Compra total:"))
+        self.compra_label.setText(_translate("MainWindow", "TextLabel"))
 
 
 if __name__ == "__main__":

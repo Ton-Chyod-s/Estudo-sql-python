@@ -1,5 +1,5 @@
 from main import Ui_MainWindow
-from PyQt6.QtWidgets import QMainWindow, QApplication, QWidget, QVBoxLayout, QWidget, QFrame
+from PyQt6.QtWidgets import QMainWindow, QApplication, QWidget, QVBoxLayout, QWidget, QFrame, QLabel
 import sys
 import BD_myframecg as bd
 from asyncio import run
@@ -9,6 +9,10 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 import numpy as np
 import tratamento_db_v2 as tr
+import plotly.graph_objs as go
+import plotly.offline as pyo
+from PyQt5.QtWebEngineWidgets import QWebEngineView
+from PyQt6.QtWidgets import QMainWindow, QApplication
 
 class Principal(Ui_MainWindow, QMainWindow):
     def __init__(self,parent = None) -> None:
@@ -38,26 +42,23 @@ class Principal(Ui_MainWindow, QMainWindow):
         layout.addWidget(canvas)
 
         ####----adicionando grafico no frame----####
-        frame_vendas_mes = self.stackedWidget.findChild(QFrame,'frame_vendas_mes')
+        self.frame_vendas_mes = self.stackedWidget.findChild(QFrame,'frame_vendas_mes')
         layout = QVBoxLayout(self.frame_vendas_mes)
+        
         plt.figure(figsize=(3, 2))
         canvas = FigureCanvas(plt.gcf())
         
         tratamento.grafico_barra()
+
         
         # Adicione o canvas ao layout da aba
         layout.addWidget(canvas)
 
-        ####----adicionando grafico no frame----####
-        frame_dados = self.stackedWidget.findChild(QFrame,'frame_dados')
-        layout = QVBoxLayout(self.frame_dados)
-        plt.figure(figsize=(1, 1))
-        canvas = FigureCanvas(plt.gcf())
+        ####----adicionando dados no frame----####
         
-
-        # Adicione o canvas ao layout da aba
-        layout.addWidget(canvas)
-
+        self.venda_label('lol')
+        
+        
         ####----adicionando grafico no frame----####
         frame_localidade_vendas = self.stackedWidget.findChild(QFrame,'frame_localidade_vendas')
         layout = QVBoxLayout(self.frame_localidade_vendas)
