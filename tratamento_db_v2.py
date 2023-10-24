@@ -1,13 +1,11 @@
-import matplotlib.pyplot as plt
-import numpy as np
 import plotly.express as px
 import BD_myframecg as bd
 import pandas as pd
-import plotly.offline as py
-import plotly.graph_objs as go
 
 class tratamento_db:
     def __init__(self):
+        pass
+    def vendas(self):
         valor_janeiro = {}
         valor_fevereiro = {}
         valor_marco = {}
@@ -110,13 +108,108 @@ class tratamento_db:
         soma(valor_outubro,"outubro")
         soma(valor_novembro,"novembro")
         soma(valor_dezembro,"dezembro")
+
+        return self.df
     
+    def cliente_s(self):
+        index = [
+            'id',
+            'nome',
+            'e-mail',
+            'whats-app',
+            'localidade',
+            'contato'
+        ]
+        self.df = pd.DataFrame(index)
+        #invertendo linha para coluna
+        self.df = self.df.T
+        #transformando primeira linha em indice
+        self.df.columns = self.df.loc[0]
+        #deletando primeira linha
+        self.df = self.df.drop(range(1))
+        #resete index linha
+        self.df = self.df.reset_index(drop=True)
+        #laço de repetição usando numero e elemento da lista
+        for num, i in enumerate(bd.clientes()):
+                #transformando primeira linha da lista em str
+                linha = str(i)
+                #separando em outra lista a str obtida
+                linha_str = linha.split(",")
+                for linha_index in index:
+                    #pegando primeiro valor da lista
+                    try:
+                        indice = linha_index
+                    except:
+                        break
+                    for ince_linha_str in linha_str:
+                        try:    
+                            nome_linha = ince_linha_str
+                            linha_list = nome_linha.split(':')
+                            indice_linha = linha_list[0]
+                            valor_linha = linha_list[1]
+                        except:
+                            break
+                        #fazendo uma comparação se o indice encontrado ex "Produto" é igual ao valor que esta na lista ex "valor"
+                        if linha_index == indice_linha:
+                            descricao_list = valor_linha.split('-')
+                            #adicionando valor no data frame
+                            self.df.at[num,indice] = valor_linha
+                            if '-' in valor_linha:
+                                #teste para ver se existe complemento no nome ex ELO7
+                                contato = descricao_list[1]
+                                self.df.at[num,'contato'] = contato
+                            celula = celula = self.df.at[num,'contato']
+                            if pd.isna(celula):
+                                self.df.at[num,'contato'] = 'Whats-app'
+                            break
+        return self.df
+
+    def planilha_completa(self):
+        index = [
+            'id',
+            'nome',
+            'e-mail',
+            'whats-app',
+            'localidade',
+            'contato',
+            'Produto',
+            'Quantidade',
+            'Valor',
+            'Data pedido'
+        ]
+        self.df = pd.DataFrame(index)
+        #invertendo linha para coluna
+        self.df = self.df.T
+        #transformando primeira linha em indice
+        self.df.columns = self.df.loc[0]
+        #deletando primeira linha
+        self.df = self.df.drop(range(1))
+        #resete index linha
+        self.df = self.df.reset_index(drop=True)
+
+        frame_vendas = self.vendas()
+        frame_clientes = self.cliente_s()
+
+        id_clientes = str(frame_clientes['id'][0]).replace(" ","")
+        id_vendas = frame_vendas['Cliente id'][0]
+
+        frame_clientes.merge(id_vendas, on=['cliente_id','id'],how='outer')
+
+        if id_clientes == id_vendas:
+            #sem a coluna id clientes
+            #frame = frame_vendas.drop('Cliente id',axis='columns')
+        
+            
+
+            """for linha in range(len(bd.clientes())):
+                pass"""
+
     def data_frame(self):
         return self.df
 
-    def salvar(self):
+    def salvar(self,nome):
         #salvando em excel 
-        self.df.to_excel('vendas.xlsx', index=False)   
+        self.df.to_excel(nome, index=False)   
 
     def grafico_barra(self):
         #configuração do grafico
@@ -138,9 +231,15 @@ class tratamento_db:
     })
         fig.show()
 
+
+
 if __name__ == '__main__':
     tr = tratamento_db()
-    tr.grafico_barra()
+    #tr.vendas()
+    #tr.grafico_barra()
+    #tr.cliente_s()
+    tr.planilha_completa()
+    tr.salvar('planilha completa.xlsx')
 
     
 

@@ -29,7 +29,7 @@ class Cliente(Base):
     posts = relationship('Venda', backref='cliente')
     #modo grafico de representação
     def __repr__(self):
-        return f'None: {self.nome} Email: {self.e_mail} Whats app: {self.whats_app} Localidade: {self.localidade}'
+        return f'id: {self.id},nome: {self.nome},e-mail: {self.e_mail},whats-app: {self.whats_app},localidade: {self.localidade}'
 #tabela de venda    
 class Venda(Base):
     __tablename__ = 'venda'
@@ -135,7 +135,7 @@ def venda ():
 def clientes():
     return run(ler_planilha(Cliente))
 
-def estoque():
+def estoque_():
     return run(ler_planilha(Estoque))
 
 
@@ -149,6 +149,7 @@ if __name__ == '__main__':
         linha = i.split(",")
         lol = linha[3].replace(".",",")
         run(estoque(linha[0],linha[1],linha[2],lol,linha[4],0))
+        
 
     #run(venda_realizada('nome','email', 'telefone','localidade','quadro descrição', 'quantidade', 'valor','data venda','uber flash','impressão','outros'))
 
