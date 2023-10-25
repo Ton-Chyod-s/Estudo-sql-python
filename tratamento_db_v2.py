@@ -1,6 +1,8 @@
 import plotly.express as px
 import BD_myframecg as bd
 import pandas as pd
+from datetime import datetime
+from calendar import monthrange
 
 class tratamento_db:
     def __init__(self):
@@ -25,7 +27,8 @@ class tratamento_db:
             'Quantidade',
             'Valor',
             'Data pedido',
-            'Cliente id',
+            'Data prazo',
+            'id',
         ]
 
         self.df = pd.DataFrame(index)
@@ -165,41 +168,59 @@ class tratamento_db:
         return self.df
 
     def planilha_completa(self):
-        index = [
-            'id',
-            'nome',
-            'e-mail',
-            'whats-app',
-            'localidade',
-            'contato',
-            'Produto',
-            'Quantidade',
-            'Valor',
-            'Data pedido'
-        ]
-        self.df = pd.DataFrame(index)
-        #invertendo linha para coluna
-        self.df = self.df.T
-        #transformando primeira linha em indice
-        self.df.columns = self.df.loc[0]
-        #deletando primeira linha
-        self.df = self.df.drop(range(1))
-        #resete index linha
-        self.df = self.df.reset_index(drop=True)
-
         #data frame
-        frame_vendas = self.vendas()
+        frame_vendas = self.data_prazo()
         frame_clientes = self.cliente_s()
-        #localizando uma celula
-        id_clientes = str(frame_clientes['id'][0]).replace(" ","")
-        id_vendas = frame_vendas['Cliente id'][0]
 
         #juntando os dois data frame pelo id
-        frame_clientes.merge(id_vendas, on=['cliente_id','id'],how='outer')
-
-        #deletando uma coluna
-        #frame = frame_vendas.drop('Cliente id',axis='columns')
+        tabela = pd.merge(frame_clientes, frame_vendas, on="id")
+        
+        self.df = pd.DataFrame(tabela)
+        return self.df
     
+    def data_prazo(self):
+        data_atual = datetime.today()
+        tabela = self.vendas()
+        for index_linha, i in enumerate(tabela['Data pedido']):
+            
+            data_lis = i.split("-")
+            mes = int(data_lis[0])
+            dia = int(data_lis[1])
+            ano = int(data_lis[2])
+            data = datetime(ano,mes,dia)
+            prazo_dia = dia + 4
+            ultimo_dia = (data_atual.replace(day=monthrange(data.year, data.month)[1])).day
+            
+            if prazo_dia > ultimo_dia:
+                prazo_dia = prazo_dia - ultimo_dia
+                mes = mes + 1
+
+            elif mes == 2:
+                if prazo_dia > ultimo_dia:
+                    prazo_dia = prazo_dia - ultimo_dia 
+                    mes = mes + 1
+
+            status = 'Concluido'
+            data_prazo = datetime(ano,mes,prazo_dia)
+            #formatar data
+            data_em_texto = '{}/{}/{}'.format(data_prazo.day,data_prazo.month,data_prazo.year)
+            #formatar data
+            data_texto = '{}/{}/{}'.format(data.day,data.month,data.year)
+
+            #adicionar no dataframe o prazo
+            self.df.at[index_linha,'Data prazo'] = data_em_texto
+            #adicionar no dataframe Data
+            self.df.at[index_linha,'Data pedido'] = data_texto
+            
+            if data_prazo.date() < data_atual.date() and status != 'Concluido':
+                calculo = (data_atual.date() - data_prazo.date()).days
+                print(f'Fora do prazo, {calculo} dias')
+            else:
+                print('Dentro do prazo')
+                print(data.date(), '\t', data_prazo.date(),'\t',index_linha,'\t',data_atual.date())
+
+        return self.df
+
     def data_frame(self):
         return self.df
 
@@ -227,15 +248,15 @@ class tratamento_db:
     })
         fig.show()
 
-
-
 if __name__ == '__main__':
     tr = tratamento_db()
     #tr.vendas()
     #tr.grafico_barra()
     #tr.cliente_s()
     tr.planilha_completa()
-    tr.salvar('planilha completa.xlsx')
+    #tr.data_prazo()
+    tr.salvar('vendas.xlsx',)
+    
 
     
 

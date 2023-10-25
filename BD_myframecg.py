@@ -29,7 +29,7 @@ class Cliente(Base):
     posts = relationship('Venda', backref='cliente')
     #modo grafico de representação
     def __repr__(self):
-        return f'id: {self.id},nome: {self.nome},e-mail: {self.e_mail},whats-app: {self.whats_app},localidade: {self.localidade}'
+        return f'id:{self.id},nome:{self.nome},e-mail:{self.e_mail},whats-app:{self.whats_app},localidade:{self.localidade}'
 #tabela de venda    
 class Venda(Base):
     __tablename__ = 'venda'
@@ -43,7 +43,7 @@ class Venda(Base):
     autor = relationship('Cliente', backref='venda')
     #modo grafico de representação
     def __repr__(self):
-        return f'Produto.{self.produto}.Quantidade.{self.qtde}.Valor.{self.valor}.Data pedido.{self.data_pedido}.Cliente id.{self.cliente_id}'
+        return f'Produto.{self.produto}.Quantidade.{self.qtde}.Valor.{self.valor}.Data pedido.{self.data_pedido}.id.{self.cliente_id}'
 #tabela de despesas vendas    
 class Despesavenda(Base):
     __tablename__ = 'despesas_vendas'
