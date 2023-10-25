@@ -29,6 +29,9 @@ class Principal(Ui_MainWindow, QMainWindow):
         self.pushButton_estoque.clicked.connect(self.estoque)
         self.pushButton_form_inserir.clicked.connect(self.inserir_estoque)
         self.pushButton_erro.clicked.connect(self.fechar_popup)
+        self.pushButton_baixar.clicked.connect(self.baixar_excel)
+        self.pushButton_atualizar.clicked.connect(self.atualizar_bd)
+
 
         #acessando a aba DRE
         tab_dre = self.tabWidget.findChild(QWidget,'tab_dre')
@@ -36,8 +39,7 @@ class Principal(Ui_MainWindow, QMainWindow):
         plt.figure(figsize=(6, 4))
         canvas = FigureCanvas(plt.gcf())
 
-        tratamento.data_frame()
-
+     
         # Adicione o canvas ao layout da aba
         layout.addWidget(canvas)
 
@@ -48,7 +50,8 @@ class Principal(Ui_MainWindow, QMainWindow):
         plt.figure(figsize=(3, 2))
         canvas = FigureCanvas(plt.gcf())
         
-        tratamento.grafico_barra()
+        #tratamento.vendas()
+        #tratamento.grafico_barra()
 
         
         # Adicione o canvas ao layout da aba
@@ -56,7 +59,6 @@ class Principal(Ui_MainWindow, QMainWindow):
 
         ####----adicionando dados no frame----####
         
-        self.venda_label('lol')
         
         
         ####----adicionando grafico no frame----####
@@ -103,8 +105,10 @@ class Principal(Ui_MainWindow, QMainWindow):
             uberflash = isEmpty(self.lineEdit_uberflash.text())
             impressao = isEmpty(self.lineEdit_impressao.text())
             outros = isEmpty(self.lineEdit_outros.text())
+            status = isEmpty(self.lineEdit_status.text())
+
             #inserindo informações no banco de dados
-            run(bd.venda_realizada(nome,email,telefone,localidade,descricao,quantidade,valor,data,uberflash,impressao,outros))
+            run(bd.venda_realizada(nome,email,telefone,localidade,descricao,quantidade,valor,data,uberflash,impressao,outros,status))
             self.lineEdit_nome.setText('')
             self.lineEdit_telefone.setText('')
             self.lineEdit_email.setText('')
@@ -116,6 +120,7 @@ class Principal(Ui_MainWindow, QMainWindow):
             self.lineEdit_uberflash.setText('')
             self.lineEdit_impressao.setText('')
             self.lineEdit_outros.setText('')
+            self.lineEdit_status.setText('')
 
             self.label_erro.setText('Dados inserido com sucesso!')
             self.frame_erro.setStyleSheet("background-color: green;")
@@ -160,13 +165,30 @@ class Principal(Ui_MainWindow, QMainWindow):
         self.timer.timeout.connect(self.hide_message)
         self.timer.start(1500)  # 1000 ms = 1 segundo
 
-    
     def procurar_pessoa(self):
         procurar_nome = self.lineEdit_procurar.text()
-        bd.buscar_pessoa(procurar_nome)
-        self.label_erro.setText('None encontrado')
-        self.frame_erro.show()
+        pessoa = str(run(bd.buscar_pessoa(procurar_nome))).replace("[","").replace("]","").replace(",",":")
+        self.pessoa_registro = pessoa.split(':')
+        
+        venda = str(run(bd.buscar_id_venda(self.pessoa_registro[1]))).replace("[","").replace("]","")
+        self.venda_registro = venda.split('.')
 
+        despesas_venda = str(run(bd.buscar_id_despesas(self.venda_registro[1]))).replace("[","").replace("]","")
+        self.despesas_venda_registro = despesas_venda.split(':')
+
+        self.lineEdit_nome.setText(self.pessoa_registro[3])
+        self.lineEdit_telefone.setText(self.pessoa_registro[7])
+        self.lineEdit_email.setText(self.pessoa_registro[5])
+        self.lineEdit_localidade.setText(self.pessoa_registro[9])
+        self.lineEdit_descricao.setText(self.venda_registro[3])
+        self.lineEdit_quantidade.setText(self.venda_registro[5])
+        self.lineEdit_valor.setText(self.venda_registro[7])
+        self.lineEdit_data.setText(self.venda_registro[9])
+        self.lineEdit_uberflash.setText(self.despesas_venda_registro[1])
+        self.lineEdit_impressao.setText(self.despesas_venda_registro[3])
+        self.lineEdit_outros.setText(self.despesas_venda_registro[5])
+        self.lineEdit_status.setText(self.venda_registro[13])
+        
     def criar_bd(self):
         caminho_bd = os.path.abspath('myframecg.db')
 
@@ -180,19 +202,64 @@ class Principal(Ui_MainWindow, QMainWindow):
 
     def formulario(self):
         self.stackedWidget.setCurrentWidget(self.formulario_page)
+    
     def planilha(self):
         self.frame_erro.hide()
         self.stackedWidget.setCurrentWidget(self.planilha_page)
+    
     def dashboard(self):
         self.frame_erro.hide()
         self.stackedWidget.setCurrentWidget(self.resumo_page)
+    
     def estoque(self):
         self.frame_erro.hide()
         self.stackedWidget.setCurrentWidget(self.estoque_page)
+    
     def fechar_popup(self):
         self.frame_erro.hide()
+    
     def grafico (self):
         bd.grafico()
+
+    def baixar_excel(self):
+        tratamento = tr.tratamento_db()
+        tratamento.planilha_completa()
+        tratamento.salvar('Planilha BD.xlsx',)
+
+        self.label_erro.setText('Planilha gerada com sucesso!')
+        self.frame_erro.setStyleSheet("background-color: green;")
+        self.frame_erro.show()
+        # Configurar um timer para ocultar o rótulo após 1 segundo
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.hide_message)
+        self.timer.start(1500)  # 1000 ms = 1 segundo
+        
+    def atualizar_bd(self):
+        nome_novo = self.lineEdit_nome.text()
+        telefone_novo = self.lineEdit_telefone.text()
+        email_novo = self.lineEdit_email.text()
+        localidade_novo = self.lineEdit_localidade.text()
+        descricao_novo = self.lineEdit_descricao.text()
+        quantidade_novo = self.lineEdit_quantidade.text()
+        valor_novo = self.lineEdit_valor.text()
+        data_novo = self.lineEdit_data.text()
+        uber_novo = self.lineEdit_uberflash.text()
+        impressao_novo = self.lineEdit_impressao.text()
+        outros_novo = self.lineEdit_outros.text()
+        status_novo = self.lineEdit_status.text()
+
+        run(bd.atualizar_dado(bd.Cliente,self.pessoa_registro[3],nome_novo))
+        run(bd.atualizar_dado(bd.Cliente,self.pessoa_registro[7],telefone_novo))
+        run(bd.atualizar_dado(bd.Cliente,self.pessoa_registro[5],email_novo))
+        run(bd.atualizar_dado(bd.Cliente,self.pessoa_registro[9],localidade_novo))
+        run(bd.atualizar_dado(bd.Venda,self.venda_registro[3],descricao_novo))
+        run(bd.atualizar_dado(bd.Venda,self.venda_registro[5],quantidade_novo))
+        run(bd.atualizar_dado(bd.Venda,self.venda_registro[7],valor_novo))
+        run(bd.atualizar_dado(bd.Venda,self.venda_registro[9],data_novo))
+        run(bd.atualizar_dado(bd.Despesavenda,self.despesas_venda_registro[1],uber_novo))
+        run(bd.atualizar_dado(bd.Despesavenda,self.despesas_venda_registro[3],impressao_novo))
+        run(bd.atualizar_dado(bd.Despesavenda,self.despesas_venda_registro[5],outros_novo))
+        run(bd.atualizar_dado(bd.Venda,self.venda_registro[13],status_novo))
 
 if __name__ == '__main__':
     qt = QApplication(sys.argv)

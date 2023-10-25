@@ -28,6 +28,8 @@ class tratamento_db:
             'Valor',
             'Data pedido',
             'Data prazo',
+            'status',
+            'Situação',
             'id',
         ]
 
@@ -66,12 +68,12 @@ class tratamento_db:
                             self.df.at[cliente,indice] = descricao
                         #preencher dicionario para futuros calculo
                         try:
-                            data = linha_str[7]
+                            data = linha_str[9]
                             data_split = data.split("-")
 
                             def condicao(mes_num,mes_nome):
                                 if data_split[0] == mes_num:
-                                    valor_ = linha_str[5]
+                                    valor_ = linha_str[7]
                                     mes_nome[cliente] = valor_
                             condicao("01",valor_janeiro)
                             condicao("02",valor_fevereiro)
@@ -167,18 +169,7 @@ class tratamento_db:
                             break
         return self.df
 
-    def planilha_completa(self):
-        #data frame
-        frame_vendas = self.data_prazo()
-        frame_clientes = self.cliente_s()
-
-        #juntando os dois data frame pelo id
-        tabela = pd.merge(frame_clientes, frame_vendas, on="id")
-        
-        self.df = pd.DataFrame(tabela)
-        return self.df
-    
-    def data_prazo(self):
+    def vendas_adicionais(self):
         data_atual = datetime.today()
         tabela = self.vendas()
         for index_linha, i in enumerate(tabela['Data pedido']):
@@ -200,7 +191,9 @@ class tratamento_db:
                     prazo_dia = prazo_dia - ultimo_dia 
                     mes = mes + 1
 
-            status = 'Concluido'
+            #pegando informação no data frame
+            status = self.df.at[index_linha,'status']
+    
             data_prazo = datetime(ano,mes,prazo_dia)
             #formatar data
             data_em_texto = '{}/{}/{}'.format(data_prazo.day,data_prazo.month,data_prazo.year)
@@ -214,14 +207,23 @@ class tratamento_db:
             
             if data_prazo.date() < data_atual.date() and status != 'Concluido':
                 calculo = (data_atual.date() - data_prazo.date()).days
-                print(f'Fora do prazo, {calculo} dias')
+                self.df.at[index_linha,'Situação'] = f'Fora do prazo, {calculo} dias'
             else:
-                print('Dentro do prazo')
-                print(data.date(), '\t', data_prazo.date(),'\t',index_linha,'\t',data_atual.date())
-
+                if status == 'Concluido':
+                    self.df.at[index_linha,'Situação'] = 'Produto enviado'
+                else:
+                    self.df.at[index_linha,'Situação'] = 'Dentro do prazo'
+                
         return self.df
 
-    def data_frame(self):
+    def planilha_completa(self):
+        #data frame
+        frame_vendas = self.vendas_adicionais()
+        frame_clientes = self.cliente_s()
+        #juntando os dois data frame pelo id
+        tabela = pd.merge(frame_clientes, frame_vendas, on="id")
+        
+        self.df = pd.DataFrame(tabela)
         return self.df
 
     def salvar(self,nome):
@@ -250,12 +252,12 @@ class tratamento_db:
 
 if __name__ == '__main__':
     tr = tratamento_db()
-    #tr.vendas()
-    #tr.grafico_barra()
+    tr.vendas()
+    tr.grafico_barra()
     #tr.cliente_s()
-    tr.planilha_completa()
+    #tr.planilha_completa()
     #tr.data_prazo()
-    tr.salvar('vendas.xlsx',)
+    #tr.salvar('vendas.xlsx',)
     
 
     

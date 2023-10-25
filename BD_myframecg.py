@@ -39,11 +39,12 @@ class Venda(Base):
     qtde = Column(Integer, nullable=False)
     valor = Column(String(5), nullable=False)
     data_pedido = Column(String(10), nullable=False)
+    status = Column(String(50))
     cliente_id = Column(Integer, ForeignKey('cliente.id'))
     autor = relationship('Cliente', backref='venda')
     #modo grafico de representação
     def __repr__(self):
-        return f'Produto.{self.produto}.Quantidade.{self.qtde}.Valor.{self.valor}.Data pedido.{self.data_pedido}.id.{self.cliente_id}'
+        return f'ID vendas.{self.id}.Produto.{self.produto}.Quantidade.{self.qtde}.Valor.{self.valor}.Data pedido.{self.data_pedido}.id.{self.cliente_id}.status.{self.status}'
 #tabela de despesas vendas    
 class Despesavenda(Base):
     __tablename__ = 'despesas_vendas'
@@ -56,7 +57,7 @@ class Despesavenda(Base):
     venda = relationship('Venda', backref='despesas_vendas')
     #modo grafico de representação
     def __repr__(self):
-        return f'Uber flash: {self.uber_flash} Impressão: {self.impressao} Outros: {self.outros} Venda ID: {self.venda_id}'
+        return f'Uber flash:{self.uber_flash}:Impressão:{self.impressao}:Outros:{self.outros}:Venda ID:{self.venda_id}'
 #tabela estoque    
 class Estoque(Base):
     __tablename__ = 'estoque'
@@ -78,11 +79,11 @@ async def create_database():
         await conn.run_sync(Base.metadata.drop_all)
         await conn.run_sync(Base.metadata.create_all)
    
-async def venda_realizada(nome, email, whats_app, localidade, produto, quantidade, valor, data_pedido, uber_flash, impressao, outros):
+async def venda_realizada(nome, email, whats_app, localidade, produto, quantidade, valor, data_pedido, uber_flash, impressao, outros,status):
     async with session() as s:
         pessoa = (Cliente(nome=nome, e_mail=email, whats_app = whats_app, localidade = localidade))
         s.add(pessoa)
-        venda = Venda(produto=produto, qtde=quantidade, valor=valor, data_pedido=data_pedido, cliente=pessoa)
+        venda = Venda(produto=produto, qtde=quantidade, valor=valor, data_pedido=data_pedido,status=status, cliente=pessoa)
         s.add(venda)
         despesas_venda = Despesavenda(uber_flash=uber_flash, impressao=impressao, outros=outros, venda=venda)
         s.add(despesas_venda)
@@ -94,19 +95,37 @@ async def estoque(fornecedor, produto, qtde, valor, data_pedido, ecomerce):
         s.add(estoque)
         await s.commit()
     
-async def buscar_pessoa(nome='klayton'):
+async def buscar_pessoa(nome):
     async with session() as s:
         query = await s.execute(
             select(Cliente).where(Cliente.nome == nome)
         )
-        result = await query.scalars().all()
+        result = query.scalars().all()
         #result = query.all()
         return result
 
-async def atualizar_nome(nome_antigo, none_novo):
+async def buscar_id_venda(id):
     async with session() as s:
         query = await s.execute(
-            update(Cliente).where(Cliente.nome == nome_antigo).values(nome=none_novo)
+            select(Venda).where(Venda.cliente_id == id)
+        )
+        result = query.scalars().all()
+        #result = query.all()
+        return result
+
+async def buscar_id_despesas(id):
+    async with session() as s:
+        query = await s.execute(
+            select(Despesavenda).where(Despesavenda.venda_id == id)
+        )
+        result = query.scalars().all()
+        #result = query.all()
+        return result
+
+async def atualizar_dado(info_bd,dado_antigo, dado_novo):
+    async with session() as s:
+        query = await s.execute(
+            update(info_bd).where(info_bd.nome == dado_antigo).values(nome=dado_novo)
         )
         await s.commit()
 
@@ -140,7 +159,7 @@ def estoque_():
 
 
 if __name__ == '__main__':
-    import bd
+    """import bd
     
     run(create_database())
     #run(venda_realizada('klayton','arqkdias@gmail.com', '67991799956','campo grande','20x25', 1, '65.00','09/10/2023'))
@@ -150,7 +169,7 @@ if __name__ == '__main__':
         lol = linha[3].replace(".",",")
         run(estoque(linha[0],linha[1],linha[2],lol,linha[4],0))
         
-
+    
     #run(venda_realizada('nome','email', 'telefone','localidade','quadro descrição', 'quantidade', 'valor','data venda','uber flash','impressão','outros'))
 
     for linha in bd.venda_2023:
@@ -171,5 +190,9 @@ if __name__ == '__main__':
             impressao = linha[9]
         except:
             impressao = '0'
+
+        status = linha[11]
         
-        run(venda_realizada(linha[0], linha[1], linha[2], linha[3], linha[4], linha[5], valor, data_venda, uber_flash, impressao,'0'))
+        run(venda_realizada(linha[0], linha[1], linha[2], linha[3], linha[4], linha[5], valor, data_venda, uber_flash, impressao,'0',status))
+"""
+    print(run(buscar_pessoa()))
