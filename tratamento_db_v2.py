@@ -187,23 +187,19 @@ class tratamento_db:
         #resete index linha
         self.df = self.df.reset_index(drop=True)
 
+        #data frame
         frame_vendas = self.vendas()
         frame_clientes = self.cliente_s()
-
+        #localizando uma celula
         id_clientes = str(frame_clientes['id'][0]).replace(" ","")
         id_vendas = frame_vendas['Cliente id'][0]
 
+        #juntando os dois data frame pelo id
         frame_clientes.merge(id_vendas, on=['cliente_id','id'],how='outer')
 
-        if id_clientes == id_vendas:
-            #sem a coluna id clientes
-            #frame = frame_vendas.drop('Cliente id',axis='columns')
-        
-            
-
-            """for linha in range(len(bd.clientes())):
-                pass"""
-
+        #deletando uma coluna
+        #frame = frame_vendas.drop('Cliente id',axis='columns')
+    
     def data_frame(self):
         return self.df
 
