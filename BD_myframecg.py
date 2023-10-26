@@ -122,10 +122,66 @@ async def buscar_id_despesas(id):
         #result = query.all()
         return result
 
-async def atualizar_dado(info_bd,dado_antigo, dado_novo):
+async def atualizar_cliente_nome(dado_antigo, dado_novo):
     async with session() as s:
         query = await s.execute(
-            update(info_bd).where(info_bd.nome == dado_antigo).values(nome=dado_novo)
+            update(Cliente).where(Cliente.nome == dado_antigo).values(nome=dado_novo)
+        )
+        await s.commit()
+
+async def atualizar_cliente_e_mail(dado_antigo, dado_novo):
+    async with session() as s:
+        query = await s.execute(
+            update(Cliente).where(Cliente.e_mail == dado_antigo).values(e_mail=dado_novo)
+        )
+        await s.commit()
+
+async def atualizar_cliente_whats_app(dado_antigo, dado_novo):
+    async with session() as s:
+        query = await s.execute(
+            update(Cliente).where(Cliente.whats_app == dado_antigo).values(whats_app=dado_novo)
+        )
+        await s.commit()
+
+async def atualizar_cliente_localidade(dado_antigo, dado_novo):
+    async with session() as s:
+        query = await s.execute(
+            update(Cliente).where(Cliente.localidade == dado_antigo).values(localidade=dado_novo)
+        )
+        await s.commit()
+
+async def atualizar_venda_produto(dado_antigo, dado_novo):
+    async with session() as s:
+        query = await s.execute(
+            update(Venda).where(Venda.produto == dado_antigo).values(produto=dado_novo)
+        )
+        await s.commit()
+
+async def atualizar_venda_qtde(dado_antigo, dado_novo):
+    async with session() as s:
+        query = await s.execute(
+            update(Venda).where(Venda.qtde == dado_antigo).values(qtde=dado_novo)
+        )
+        await s.commit()
+
+async def atualizar_venda_valor(dado_antigo, dado_novo):
+    async with session() as s:
+        query = await s.execute(
+            update(Venda).where(Venda.valor == dado_antigo).values(valor=dado_novo)
+        )
+        await s.commit()
+
+async def atualizar_venda_data_pedido(dado_antigo, dado_novo):
+    async with session() as s:
+        query = await s.execute(
+            update(Venda).where(Venda.data_pedido == dado_antigo).values(data_pedido=dado_novo)
+        )
+        await s.commit()
+
+async def atualizar_venda_status(dado_antigo, dado_novo):
+    async with session() as s:
+        query = await s.execute(
+            update(Venda).where(Venda.status == dado_antigo).values(status=dado_novo)
         )
         await s.commit()
 
