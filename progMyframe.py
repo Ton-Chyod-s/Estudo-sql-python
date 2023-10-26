@@ -387,25 +387,31 @@ class Principal(Ui_MainWindow, QMainWindow):
             self.frame_erro.show()
 
     def deletar_linha_estoque(self):
+       
         nome_estoque = self.lineEdit_form_procurar_nome.text()
+        nome_ = nome_estoque.replace("",'0')
+        if nome_ == '0':
+            self.label_erro.setText('Campo em branco')
+            self.frame_erro.setStyleSheet("background-color: red;")
+            self.frame_erro.show()
+        else:
+            run(bd.deletar_linha_estoque(nome_estoque))
 
-        run(bd.deletar_linha_estoque(nome_estoque))
-
-        self.lineEdit_form_nome.setText('')
-        self.lineEdit_form_produto.setText('')
-        self.lineEdit_form_ecomerce.setText('')
-        self.lineEdit_form_quantidade.setText('')
-        self.lineEdit_form_valor.setText('')
-        self.lineEdit_form_data.setText('')
-    
-        self.label_erro.setText('Dados Atualizado com sucesso!')
-        self.frame_erro.setStyleSheet("background-color: green;")
-        self.frame_erro.show()
-        # Configurar um timer para ocultar o rótulo após 1 segundo
-        self.timer = QTimer(self)
-        self.timer.timeout.connect(self.hide_message)
-        self.timer.start(1500)  # 1000 ms = 1 segundo
-    
+            self.lineEdit_form_nome.setText('')
+            self.lineEdit_form_produto.setText('')
+            self.lineEdit_form_ecomerce.setText('')
+            self.lineEdit_form_quantidade.setText('')
+            self.lineEdit_form_valor.setText('')
+            self.lineEdit_form_data.setText('')
+        
+            self.label_erro.setText('Dados Deletado com sucesso!')
+            self.frame_erro.setStyleSheet("background-color: green;")
+            self.frame_erro.show()
+            # Configurar um timer para ocultar o rótulo após 1 segundo
+            self.timer = QTimer(self)
+            self.timer.timeout.connect(self.hide_message)
+            self.timer.start(1500)  # 1000 ms = 1 segundo
+        
 
 if __name__ == '__main__':
     qt = QApplication(sys.argv)
