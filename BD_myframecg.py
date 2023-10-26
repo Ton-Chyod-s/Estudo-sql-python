@@ -71,7 +71,7 @@ class Estoque(Base):
     ecomerce = Column(String, nullable=True)
     #modo grafico de representação
     def __repr__(self):
-        return f'Fornecedor: {self.fornecedor} Produto: {self.produto} Quantidade: {self.qtde} Valor: {self.valor} Data pedido: {self.data_pedido} E-commerce: {self.ecomerce}'
+        return f'id.{self.id}.Fornecedor.{self.fornecedor}.Produto.{self.produto}.Quantidade.{self.qtde}.Valor.{self.valor}.Data pedido.{self.data_pedido}.E-commerce.{self.ecomerce}'
 
 #função para criar banco de dadps 
 async def create_database():
@@ -122,6 +122,15 @@ async def buscar_id_despesas(id):
         #result = query.all()
         return result
 
+async def buscar_fornecedor(nome):
+    async with session() as s:
+        query = await s.execute(
+            select(Estoque).where(Estoque.fornecedor == nome)
+        )
+        result = query.scalars().all()
+        #result = query.all()
+        return result
+
 async def atualizar_cliente_nome(dado_antigo, dado_novo):
     async with session() as s:
         query = await s.execute(
@@ -146,7 +155,7 @@ async def atualizar_cliente_whats_app(dado_antigo, dado_novo):
 async def atualizar_cliente_localidade(dado_antigo, dado_novo):
     async with session() as s:
         query = await s.execute(
-            update(Cliente).where(Cliente.localidade == dado_antigo).values(localidade=dado_novo)
+            update(Cliente).where(Cliente.id == dado_antigo).values(localidade=dado_novo)
         )
         await s.commit()
 
@@ -188,7 +197,7 @@ async def atualizar_venda_status(dado_antigo, dado_novo):
 async def atualizar_despesasvenda_uber_flash(dado_antigo, dado_novo):
     async with session() as s:
         query = await s.execute(
-            update(Despesavenda).where(Despesavenda.uber_flash == dado_antigo).values(uber_flash=dado_novo)
+            update(Despesavenda).where(Despesavenda.venda_id == dado_antigo).values(uber_flash=dado_novo)
         )
         await s.commit()
 
@@ -202,7 +211,49 @@ async def atualizar_despesasvenda_impressao(dado_antigo, dado_novo):
 async def atualizar_despesasvenda_outros(dado_antigo, dado_novo):
     async with session() as s:
         query = await s.execute(
-            update(Despesavenda).where(Despesavenda.outros == dado_antigo).values(outros=dado_novo)
+            update(Despesavenda).where(Despesavenda.venda_id == dado_antigo).values(outros=dado_novo)
+        )
+        await s.commit()
+
+async def atualizar_estoque_produto(dado_antigo, dado_novo):
+    async with session() as s:
+        query = await s.execute(
+            update(Estoque).where(Estoque.produto == dado_antigo).values(produto=dado_novo)
+        )
+        await s.commit()
+
+async def atualizar_estoque_qtde(dado_antigo, dado_novo):
+    async with session() as s:
+        query = await s.execute(
+            update(Estoque).where(Estoque.id == dado_antigo).values(qtde=dado_novo)
+        )
+        await s.commit()
+
+async def atualizar_estoque_valor(dado_antigo, dado_novo):
+    async with session() as s:
+        query = await s.execute(
+            update(Estoque).where(Estoque.valor == dado_antigo).values(valor=dado_novo)
+        )
+        await s.commit()
+
+async def atualizar_estoque_data_pedido(dado_antigo, dado_novo):
+    async with session() as s:
+        query = await s.execute(
+            update(Estoque).where(Estoque.data_pedido == dado_antigo).values(data_pedido=dado_novo)
+        )
+        await s.commit()
+
+async def atualizar_estoque_ecomerce(dado_antigo, dado_novo):
+    async with session() as s:
+        query = await s.execute(
+            update(Estoque).where(Estoque.ecomerce == dado_antigo).values(ecomerce=dado_novo)
+        )
+        await s.commit()
+
+async def atualizar_estoque_fornecedor(dado_antigo, dado_novo):
+    async with session() as s:
+        query = await s.execute(
+            update(Estoque).where(Estoque.fornecedor == dado_antigo).values(fornecedor=dado_novo)
         )
         await s.commit()
 
@@ -210,6 +261,27 @@ async def deletar_pessoa(nome):
     async with session() as s:
         query = await s.execute(
             delete(Cliente).where(Cliente.nome == nome)
+        )
+        await s.commit()
+
+async def deletar_venda(nome):
+    async with session() as s:
+        query = await s.execute(
+            delete(Venda).where(Venda.cliente_id == nome)
+        )
+        await s.commit()
+
+async def deletar_despesasvenda(nome):
+    async with session() as s:
+        query = await s.execute(
+            delete(Despesavenda).where(Despesavenda.venda_id == nome)
+        )
+        await s.commit()
+
+async def deletar_linha_estoque(nome):
+    async with session() as s:
+        query = await s.execute(
+            delete(Estoque).where(Estoque.nome == nome)
         )
         await s.commit()
 

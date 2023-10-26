@@ -46,6 +46,8 @@ class Ui_MainWindow(object):
         self.frame_erro.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_erro.setObjectName("frame_erro")
         self.horizontalLayout_7 = QtWidgets.QHBoxLayout(self.frame_erro)
+        self.horizontalLayout_7.setContentsMargins(5, 0, 0, 0)
+        self.horizontalLayout_7.setSpacing(0)
         self.horizontalLayout_7.setObjectName("horizontalLayout_7")
         self.label_erro = QtWidgets.QLabel(parent=self.frame_erro)
         font = QtGui.QFont()
@@ -253,6 +255,28 @@ class Ui_MainWindow(object):
         self.horizontalLayout_8.addWidget(self.label_6)
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_8.addItem(spacerItem)
+        self.pushButton_form_salvar = QtWidgets.QPushButton(parent=self.frame_35)
+        self.pushButton_form_salvar.setMinimumSize(QtCore.QSize(80, 0))
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        self.pushButton_form_salvar.setFont(font)
+        self.pushButton_form_salvar.setStyleSheet("QPushButton {\n"
+"    background-color: rgb(50, 50, 50);\n"
+"    border: 2px solid rgb(60, 60, 60);\n"
+"    border-radius: 5px;\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(60, 60, 60);\n"
+"    border: 2px solid rgb(70,70, 70);\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(250, 230, 0);\n"
+"    border: 2px solid rgb(161, 0, 0);\n"
+"    color: rgb(35, 35, 35);\n"
+"}")
+        self.pushButton_form_salvar.setObjectName("pushButton_form_salvar")
+        self.horizontalLayout_8.addWidget(self.pushButton_form_salvar)
         self.verticalLayout_16.addWidget(self.frame_35)
         self.frame_19 = QtWidgets.QFrame(parent=self.estoque_page)
         self.frame_19.setStyleSheet("background-color: rgb(255, 255, 0);")
@@ -271,6 +295,10 @@ class Ui_MainWindow(object):
         self.label_7.setObjectName("label_7")
         self.gridLayout_6.addWidget(self.label_7, 0, 0, 1, 1)
         self.lineEdit_form_produto = QtWidgets.QLineEdit(parent=self.frame_19)
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(10)
+        self.lineEdit_form_produto.setFont(font)
         self.lineEdit_form_produto.setStyleSheet("QLineEdit {\n"
 "    border: 2px solid rgb(45,45,45);\n"
 "    border-radius: 5px;\n"
@@ -288,6 +316,10 @@ class Ui_MainWindow(object):
         self.lineEdit_form_produto.setObjectName("lineEdit_form_produto")
         self.gridLayout_6.addWidget(self.lineEdit_form_produto, 1, 1, 1, 1)
         self.lineEdit_form_ecomerce = QtWidgets.QLineEdit(parent=self.frame_19)
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(10)
+        self.lineEdit_form_ecomerce.setFont(font)
         self.lineEdit_form_ecomerce.setStyleSheet("QLineEdit {\n"
 "    border: 2px solid rgb(45,45,45);\n"
 "    border-radius: 5px;\n"
@@ -305,6 +337,10 @@ class Ui_MainWindow(object):
         self.lineEdit_form_ecomerce.setObjectName("lineEdit_form_ecomerce")
         self.gridLayout_6.addWidget(self.lineEdit_form_ecomerce, 1, 2, 1, 1)
         self.lineEdit_form_nome = QtWidgets.QLineEdit(parent=self.frame_19)
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(10)
+        self.lineEdit_form_nome.setFont(font)
         self.lineEdit_form_nome.setStyleSheet("QLineEdit {\n"
 "    border: 2px solid rgb(45,45,45);\n"
 "    border-radius: 5px;\n"
@@ -341,6 +377,10 @@ class Ui_MainWindow(object):
         self.label_10.setObjectName("label_10")
         self.gridLayout_7.addWidget(self.label_10, 0, 0, 1, 1)
         self.lineEdit_form_quantidade = QtWidgets.QLineEdit(parent=self.frame_33)
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(10)
+        self.lineEdit_form_quantidade.setFont(font)
         self.lineEdit_form_quantidade.setStyleSheet("QLineEdit {\n"
 "    border: 2px solid rgb(45,45,45);\n"
 "    border-radius: 5px;\n"
@@ -358,6 +398,10 @@ class Ui_MainWindow(object):
         self.lineEdit_form_quantidade.setObjectName("lineEdit_form_quantidade")
         self.gridLayout_7.addWidget(self.lineEdit_form_quantidade, 1, 0, 1, 1)
         self.lineEdit_form_valor = QtWidgets.QLineEdit(parent=self.frame_33)
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(10)
+        self.lineEdit_form_valor.setFont(font)
         self.lineEdit_form_valor.setStyleSheet("QLineEdit {\n"
 "    border: 2px solid rgb(45,45,45);\n"
 "    border-radius: 5px;\n"
@@ -375,6 +419,10 @@ class Ui_MainWindow(object):
         self.lineEdit_form_valor.setObjectName("lineEdit_form_valor")
         self.gridLayout_7.addWidget(self.lineEdit_form_valor, 1, 1, 1, 1)
         self.lineEdit_form_data = QtWidgets.QLineEdit(parent=self.frame_33)
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(10)
+        self.lineEdit_form_data.setFont(font)
         self.lineEdit_form_data.setStyleSheet("QLineEdit {\n"
 "    border: 2px solid rgb(45,45,45);\n"
 "    border-radius: 5px;\n"
@@ -399,9 +447,10 @@ class Ui_MainWindow(object):
         self.frame_32.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_32.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_32.setObjectName("frame_32")
-        self.horizontalLayout_10 = QtWidgets.QHBoxLayout(self.frame_32)
-        self.horizontalLayout_10.setObjectName("horizontalLayout_10")
+        self.gridLayout_9 = QtWidgets.QGridLayout(self.frame_32)
+        self.gridLayout_9.setObjectName("gridLayout_9")
         self.pushButton_form_inserir = QtWidgets.QPushButton(parent=self.frame_32)
+        self.pushButton_form_inserir.setMinimumSize(QtCore.QSize(80, 0))
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         self.pushButton_form_inserir.setFont(font)
@@ -421,8 +470,9 @@ class Ui_MainWindow(object):
 "    color: rgb(35, 35, 35);\n"
 "}")
         self.pushButton_form_inserir.setObjectName("pushButton_form_inserir")
-        self.horizontalLayout_10.addWidget(self.pushButton_form_inserir)
+        self.gridLayout_9.addWidget(self.pushButton_form_inserir, 1, 0, 1, 1)
         self.pushButton_form_atualizar = QtWidgets.QPushButton(parent=self.frame_32)
+        self.pushButton_form_atualizar.setMinimumSize(QtCore.QSize(80, 0))
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         self.pushButton_form_atualizar.setFont(font)
@@ -442,8 +492,9 @@ class Ui_MainWindow(object):
 "    color: rgb(35, 35, 35);\n"
 "}")
         self.pushButton_form_atualizar.setObjectName("pushButton_form_atualizar")
-        self.horizontalLayout_10.addWidget(self.pushButton_form_atualizar)
+        self.gridLayout_9.addWidget(self.pushButton_form_atualizar, 1, 1, 1, 1)
         self.pushButton_form_deletar = QtWidgets.QPushButton(parent=self.frame_32)
+        self.pushButton_form_deletar.setMinimumSize(QtCore.QSize(80, 0))
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         self.pushButton_form_deletar.setFont(font)
@@ -463,23 +514,61 @@ class Ui_MainWindow(object):
 "    color: rgb(35, 35, 35);\n"
 "}")
         self.pushButton_form_deletar.setObjectName("pushButton_form_deletar")
-        self.horizontalLayout_10.addWidget(self.pushButton_form_deletar)
-        self.frame_36 = QtWidgets.QFrame(parent=self.frame_32)
-        self.frame_36.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame_36.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_36.setObjectName("frame_36")
-        self.horizontalLayout_10.addWidget(self.frame_36)
-        self.frame_37 = QtWidgets.QFrame(parent=self.frame_32)
-        self.frame_37.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame_37.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_37.setObjectName("frame_37")
-        self.horizontalLayout_10.addWidget(self.frame_37)
-        self.frame_38 = QtWidgets.QFrame(parent=self.frame_32)
-        self.frame_38.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame_38.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_38.setObjectName("frame_38")
-        self.horizontalLayout_10.addWidget(self.frame_38)
+        self.gridLayout_9.addWidget(self.pushButton_form_deletar, 1, 2, 1, 1)
+        self.lineEdit_form_procurar_nome = QtWidgets.QLineEdit(parent=self.frame_32)
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(10)
+        self.lineEdit_form_procurar_nome.setFont(font)
+        self.lineEdit_form_procurar_nome.setStyleSheet("QLineEdit {\n"
+"    border: 2px solid rgb(45,45,45);\n"
+"    border-radius: 5px;\n"
+"    padding: 1px;\n"
+"    background-color: rgb(30,30, 30);\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"QLineEdit:hover {\n"
+"    border: 2px solid rgb(55,55,55);\n"
+"}\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid rgb(161, 0, 0);\n"
+"    color: rgb(200, 200, 200);\n"
+"}")
+        self.lineEdit_form_procurar_nome.setObjectName("lineEdit_form_procurar_nome")
+        self.gridLayout_9.addWidget(self.lineEdit_form_procurar_nome, 1, 4, 1, 1)
+        self.pushButton_form_procurar = QtWidgets.QPushButton(parent=self.frame_32)
+        self.pushButton_form_procurar.setMinimumSize(QtCore.QSize(80, 0))
+        self.pushButton_form_procurar.setSizeIncrement(QtCore.QSize(0, 0))
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(9)
+        self.pushButton_form_procurar.setFont(font)
+        self.pushButton_form_procurar.setStyleSheet("QPushButton {\n"
+"    background-color: rgb(50, 50, 50);\n"
+"    border: 2px solid rgb(60, 60, 60);\n"
+"    border-radius: 5px;\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(60, 60, 60);\n"
+"    border: 2px solid rgb(70,70, 70);\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(250, 230, 0);\n"
+"    border: 2px solid rgb(161, 0, 0);\n"
+"    color: rgb(35, 35, 35);\n"
+"}")
+        self.pushButton_form_procurar.setObjectName("pushButton_form_procurar")
+        self.gridLayout_9.addWidget(self.pushButton_form_procurar, 1, 5, 1, 1)
+        spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.gridLayout_9.addItem(spacerItem3, 1, 3, 1, 1)
         self.verticalLayout_16.addWidget(self.frame_32)
+        self.frame_2 = QtWidgets.QFrame(parent=self.estoque_page)
+        self.frame_2.setStyleSheet("background-color: rgb(255, 255, 0);")
+        self.frame_2.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame_2.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_2.setObjectName("frame_2")
+        self.verticalLayout_16.addWidget(self.frame_2)
         self.frame_34 = QtWidgets.QFrame(parent=self.estoque_page)
         self.frame_34.setStyleSheet("background-color: rgb(255, 255, 0);")
         self.frame_34.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
@@ -508,8 +597,8 @@ class Ui_MainWindow(object):
         self.label_8.setFont(font)
         self.label_8.setObjectName("label_8")
         self.horizontalLayout_6.addWidget(self.label_8)
-        spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_6.addItem(spacerItem3)
+        spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_6.addItem(spacerItem4)
         self.pushButton_criarBD = QtWidgets.QPushButton(parent=self.frame_27)
         self.pushButton_criarBD.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(50, 50, 50);\n"
@@ -851,8 +940,8 @@ class Ui_MainWindow(object):
         self.frame.setObjectName("frame")
         self.gridLayout_8 = QtWidgets.QGridLayout(self.frame)
         self.gridLayout_8.setObjectName("gridLayout_8")
-        spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.gridLayout_8.addItem(spacerItem4, 1, 1, 1, 1)
+        spacerItem5 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.gridLayout_8.addItem(spacerItem5, 1, 1, 1, 1)
         self.label_13 = QtWidgets.QLabel(parent=self.frame)
         font = QtGui.QFont()
         font.setFamily("Segoe UI Black")
@@ -995,8 +1084,8 @@ class Ui_MainWindow(object):
 "}")
         self.pushButton_deletar.setObjectName("pushButton_deletar")
         self.horizontalLayout_3.addWidget(self.pushButton_deletar)
-        spacerItem5 = QtWidgets.QSpacerItem(80, 10, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_3.addItem(spacerItem5)
+        spacerItem6 = QtWidgets.QSpacerItem(80, 10, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_3.addItem(spacerItem6)
         self.pushButton_baixar = QtWidgets.QPushButton(parent=self.frame_17)
         self.pushButton_baixar.setMinimumSize(QtCore.QSize(80, 0))
         self.pushButton_baixar.setStyleSheet("QPushButton {\n"
@@ -1044,8 +1133,8 @@ class Ui_MainWindow(object):
         self.label_5.setFont(font)
         self.label_5.setObjectName("label_5")
         self.horizontalLayout_5.addWidget(self.label_5)
-        spacerItem6 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_5.addItem(spacerItem6)
+        spacerItem7 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_5.addItem(spacerItem7)
         self.pushButton_7 = QtWidgets.QPushButton(parent=self.frame_30)
         self.pushButton_7.setMaximumSize(QtCore.QSize(100, 16777215))
         self.pushButton_7.setStyleSheet("QPushButton {\n"
@@ -1227,7 +1316,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(0)
         self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -1242,17 +1331,20 @@ class Ui_MainWindow(object):
         self.pushButton_planilha.setText(_translate("MainWindow", "Planilha"))
         self.pushButton_dashboard.setText(_translate("MainWindow", "Dash Board"))
         self.label_6.setText(_translate("MainWindow", "Estoque"))
+        self.pushButton_form_salvar.setText(_translate("MainWindow", "Salvar excel"))
         self.label_7.setText(_translate("MainWindow", "Formecedor"))
         self.lineEdit_form_produto.setPlaceholderText(_translate("MainWindow", "Produto"))
         self.lineEdit_form_ecomerce.setPlaceholderText(_translate("MainWindow", "E-commerce"))
         self.lineEdit_form_nome.setPlaceholderText(_translate("MainWindow", "Nome "))
-        self.label_10.setText(_translate("MainWindow", "TextLabel"))
+        self.label_10.setText(_translate("MainWindow", "Item"))
         self.lineEdit_form_quantidade.setPlaceholderText(_translate("MainWindow", "Quantidade"))
         self.lineEdit_form_valor.setPlaceholderText(_translate("MainWindow", "Valor"))
         self.lineEdit_form_data.setPlaceholderText(_translate("MainWindow", "Data"))
         self.pushButton_form_inserir.setText(_translate("MainWindow", "Inserir"))
         self.pushButton_form_atualizar.setText(_translate("MainWindow", "Atualizar"))
         self.pushButton_form_deletar.setText(_translate("MainWindow", "Deletar"))
+        self.lineEdit_form_procurar_nome.setPlaceholderText(_translate("MainWindow", "Nome"))
+        self.pushButton_form_procurar.setText(_translate("MainWindow", "Procurar"))
         self.label_8.setText(_translate("MainWindow", "Formulario"))
         self.pushButton_criarBD.setText(_translate("MainWindow", "  Criar BD  "))
         self.Cliente_label.setText(_translate("MainWindow", "Cliente"))

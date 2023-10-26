@@ -31,7 +31,10 @@ class Principal(Ui_MainWindow, QMainWindow):
         self.pushButton_erro.clicked.connect(self.fechar_popup)
         self.pushButton_baixar.clicked.connect(self.baixar_excel)
         self.pushButton_atualizar.clicked.connect(self.atualizar_bd)
-
+        self.pushButton_deletar.clicked.connect(self.deletar_linha_bd)
+        self.pushButton_form_atualizar.clicked.connect(self.atualiza_estoque)
+        self.pushButton_form_deletar.clicked.connect(self.deletar_linha_estoque)
+        self.pushButton_form_procurar.clicked.connect(self.procurar_estoque)
 
         #acessando a aba DRE
         tab_dre = self.tabWidget.findChild(QWidget,'tab_dre')
@@ -92,35 +95,79 @@ class Principal(Ui_MainWindow, QMainWindow):
             else:
                 return txt
         caminho_bd = os.path.abspath('myframecg.db')  
+        try:
+            if os.path.exists(caminho_bd):    
+                nome = isEmpty(self.lineEdit_nome.text())
+                telefone = isEmpty(self.lineEdit_telefone.text())
+                email = isEmpty(self.lineEdit_email.text())
+                localidade = isEmpty(self.lineEdit_localidade.text())
+                descricao = isEmpty(self.lineEdit_descricao.text())
+                quantidade = isEmpty(self.lineEdit_quantidade.text())
+                valor = isEmpty(self.lineEdit_valor.text())
+                data = isEmpty(self.lineEdit_data.text())
+                uberflash = isEmpty(self.lineEdit_uberflash.text())
+                impressao = isEmpty(self.lineEdit_impressao.text())
+                outros = isEmpty(self.lineEdit_outros.text())
+                status = isEmpty(self.lineEdit_status.text())
 
-        if os.path.exists(caminho_bd):    
-            nome = isEmpty(self.lineEdit_nome.text())
-            telefone = isEmpty(self.lineEdit_telefone.text())
-            email = isEmpty(self.lineEdit_email.text())
-            localidade = isEmpty(self.lineEdit_localidade.text())
-            descricao = isEmpty(self.lineEdit_descricao.text())
-            quantidade = isEmpty(self.lineEdit_quantidade.text())
-            valor = isEmpty(self.lineEdit_valor.text())
-            data = isEmpty(self.lineEdit_data.text())
-            uberflash = isEmpty(self.lineEdit_uberflash.text())
-            impressao = isEmpty(self.lineEdit_impressao.text())
-            outros = isEmpty(self.lineEdit_outros.text())
-            status = isEmpty(self.lineEdit_status.text())
+                #inserindo informações no banco de dados
+                run(bd.venda_realizada(nome,email,telefone,localidade,descricao,quantidade,valor,data,uberflash,impressao,outros,status))
+                self.lineEdit_nome.setText('')
+                self.lineEdit_telefone.setText('')
+                self.lineEdit_email.setText('')
+                self.lineEdit_localidade.setText('')
+                self.lineEdit_descricao.setText('')
+                self.lineEdit_quantidade.setText('')
+                self.lineEdit_valor.setText('')
+                self.lineEdit_data.setText('')
+                self.lineEdit_uberflash.setText('')
+                self.lineEdit_impressao.setText('')
+                self.lineEdit_outros.setText('')
+                self.lineEdit_status.setText('')
 
-            #inserindo informações no banco de dados
-            run(bd.venda_realizada(nome,email,telefone,localidade,descricao,quantidade,valor,data,uberflash,impressao,outros,status))
-            self.lineEdit_nome.setText('')
-            self.lineEdit_telefone.setText('')
-            self.lineEdit_email.setText('')
-            self.lineEdit_localidade.setText('')
-            self.lineEdit_descricao.setText('')
-            self.lineEdit_quantidade.setText('')
-            self.lineEdit_valor.setText('')
-            self.lineEdit_data.setText('')
-            self.lineEdit_uberflash.setText('')
-            self.lineEdit_impressao.setText('')
-            self.lineEdit_outros.setText('')
-            self.lineEdit_status.setText('')
+                self.label_erro.setText('Dados inserido com sucesso!')
+                self.frame_erro.setStyleSheet("background-color: green;")
+                self.frame_erro.show()
+                # Configurar um timer para ocultar o rótulo após 1 segundo
+                self.timer = QTimer(self)
+                self.timer.timeout.connect(self.hide_message)
+                self.timer.start(1500)  # 1000 ms = 1 segundo
+
+            else:
+                self.label_erro.setText('Não tem banco de dados')
+                self.frame_erro.show()
+        except:
+            self.label_erro.setText('Existe varios campos em branco, Revise!')
+            self.frame_erro.setStyleSheet("background-color: red;")
+            self.frame_erro.show()
+    
+    def inserir_estoque(self):
+        def isEmpty(txt):
+            if txt == '':
+                txt = 'vazio'
+            else:
+                return txt
+            
+        nome = isEmpty(self.lineEdit_form_nome.text())
+        if nome == None:
+            self.label_erro.setText('Campo em branco')
+            self.frame_erro.setStyleSheet("background-color: red;")
+            self.frame_erro.show()
+        else:    
+            produto = isEmpty(self.lineEdit_form_produto.text())
+            ecomerce = isEmpty(self.lineEdit_form_ecomerce.text())
+            quantidade = isEmpty(self.lineEdit_form_quantidade.text())
+            valor = isEmpty(self.lineEdit_form_valor.text())
+            data = isEmpty(self.lineEdit_form_data.text())
+
+            run(bd.estoque(nome,produto,quantidade,valor,data,ecomerce))
+
+            self.lineEdit_form_nome.setText('')
+            self.lineEdit_form_produto.setText('')
+            self.lineEdit_form_ecomerce.setText('')
+            self.lineEdit_form_quantidade.setText('')
+            self.lineEdit_form_valor.setText('')
+            self.lineEdit_form_data.setText('')
 
             self.label_erro.setText('Dados inserido com sucesso!')
             self.frame_erro.setStyleSheet("background-color: green;")
@@ -130,64 +177,35 @@ class Principal(Ui_MainWindow, QMainWindow):
             self.timer.timeout.connect(self.hide_message)
             self.timer.start(1500)  # 1000 ms = 1 segundo
 
-        else:
-            self.label_erro.setText('Não tem banco de dados')
-            self.frame_erro.show() 
- 
-    def inserir_estoque(self):
-        def isEmpty(txt):
-            if txt == '':
-                txt = 'vazio'
-            else:
-                return txt
-            
-        nome = isEmpty(self.lineEdit_form_nome.text())
-        produto = isEmpty(self.lineEdit_form_produto.text())
-        ecomerce = isEmpty(self.lineEdit_form_ecomerce.text())
-        quantidade = isEmpty(self.lineEdit_form_quantidade.text())
-        valor = isEmpty(self.lineEdit_form_valor.text())
-        data = isEmpty(self.lineEdit_form_data.text())
-
-        run(bd.estoque(nome,produto,quantidade,valor,data,ecomerce))
-
-        self.lineEdit_form_nome.setText('')
-        self.lineEdit_form_produto.setText('')
-        self.lineEdit_form_ecomerce.setText('')
-        self.lineEdit_form_quantidade.setText('')
-        self.lineEdit_form_valor.setText('')
-        self.lineEdit_form_data.setText('')
-
-        self.label_erro.setText('Dados inserido com sucesso!')
-        self.frame_erro.setStyleSheet("background-color: green;")
-        self.frame_erro.show()
-        # Configurar um timer para ocultar o rótulo após 1 segundo
-        self.timer = QTimer(self)
-        self.timer.timeout.connect(self.hide_message)
-        self.timer.start(1500)  # 1000 ms = 1 segundo
-
     def procurar_pessoa(self):
         procurar_nome = self.lineEdit_procurar.text()
-        pessoa = str(run(bd.buscar_pessoa(procurar_nome))).replace("[","").replace("]","").replace(",",":")
-        self.pessoa_registro = pessoa.split(':')
+        try:
+            pessoa = str(run(bd.buscar_pessoa(procurar_nome))).replace("[","").replace("]","").replace(",",":")
+            self.pessoa_registro = pessoa.split(':')
         
-        venda = str(run(bd.buscar_id_venda(self.pessoa_registro[1]))).replace("[","").replace("]","")
-        self.venda_registro = venda.split('.')
+            venda = str(run(bd.buscar_id_venda(self.pessoa_registro[1]))).replace("[","").replace("]","")
+            self.venda_registro = venda.split('.')
 
-        despesas_venda = str(run(bd.buscar_id_despesas(self.venda_registro[1]))).replace("[","").replace("]","")
-        self.despesas_venda_registro = despesas_venda.split(':')
+            despesas_venda = str(run(bd.buscar_id_despesas(self.venda_registro[1]))).replace("[","").replace("]","")
+            self.despesas_venda_registro = despesas_venda.split(':')
 
-        self.lineEdit_nome.setText(self.pessoa_registro[3])
-        self.lineEdit_telefone.setText(self.pessoa_registro[7])
-        self.lineEdit_email.setText(self.pessoa_registro[5])
-        self.lineEdit_localidade.setText(self.pessoa_registro[9])
-        self.lineEdit_descricao.setText(self.venda_registro[3])
-        self.lineEdit_quantidade.setText(self.venda_registro[5])
-        self.lineEdit_valor.setText(self.venda_registro[7])
-        self.lineEdit_data.setText(self.venda_registro[9])
-        self.lineEdit_uberflash.setText(self.despesas_venda_registro[1])
-        self.lineEdit_impressao.setText(self.despesas_venda_registro[3])
-        self.lineEdit_outros.setText(self.despesas_venda_registro[5])
-        self.lineEdit_status.setText(self.venda_registro[13])
+            self.lineEdit_nome.setText(self.pessoa_registro[3])
+            self.lineEdit_telefone.setText(self.pessoa_registro[7])
+            self.lineEdit_email.setText(self.pessoa_registro[5])
+            self.lineEdit_localidade.setText(self.pessoa_registro[9])
+            self.lineEdit_descricao.setText(self.venda_registro[3])
+            self.lineEdit_quantidade.setText(self.venda_registro[5])
+            self.lineEdit_valor.setText(self.venda_registro[7])
+            self.lineEdit_data.setText(self.venda_registro[9])
+            self.lineEdit_uberflash.setText(self.despesas_venda_registro[1])
+            self.lineEdit_impressao.setText(self.despesas_venda_registro[3])
+            self.lineEdit_outros.setText(self.despesas_venda_registro[5])
+            self.lineEdit_status.setText(self.venda_registro[13])
+
+        except:
+            self.label_erro.setText('Cliente não encontrado no banco de dados!')
+            self.frame_erro.setStyleSheet("background-color: red;")
+            self.frame_erro.show()
         
     def criar_bd(self):
         caminho_bd = os.path.abspath('myframecg.db')
@@ -235,31 +253,159 @@ class Principal(Ui_MainWindow, QMainWindow):
         self.timer.start(1500)  # 1000 ms = 1 segundo
         
     def atualizar_bd(self):
-        nome_novo = self.lineEdit_nome.text()
-        telefone_novo = self.lineEdit_telefone.text()
-        email_novo = self.lineEdit_email.text()
-        localidade_novo = self.lineEdit_localidade.text()
-        descricao_novo = self.lineEdit_descricao.text()
-        quantidade_novo = self.lineEdit_quantidade.text()
-        valor_novo = self.lineEdit_valor.text()
-        data_novo = self.lineEdit_data.text()
-        uber_novo = self.lineEdit_uberflash.text()
-        impressao_novo = self.lineEdit_impressao.text()
-        outros_novo = self.lineEdit_outros.text()
-        status_novo = self.lineEdit_status.text()
+        try:
+            nome_novo = self.lineEdit_nome.text()
+            telefone_novo = self.lineEdit_telefone.text()
+            email_novo = self.lineEdit_email.text()
+            localidade_novo = self.lineEdit_localidade.text()
+            descricao_novo = self.lineEdit_descricao.text()
+            quantidade_novo = self.lineEdit_quantidade.text()
+            valor_novo = self.lineEdit_valor.text()
+            data_novo = self.lineEdit_data.text()
+            uber_novo = self.lineEdit_uberflash.text()
+            impressao_novo = self.lineEdit_impressao.text()
+            outros_novo = self.lineEdit_outros.text()
+            status_novo = self.lineEdit_status.text()
 
-        run(bd.atualizar_cliente_nome(self.pessoa_registro[3],nome_novo))
-        run(bd.atualizar_cliente_whats_app(self.pessoa_registro[7],telefone_novo))
-        run(bd.atualizar_cliente_e_mail(self.pessoa_registro[5],email_novo))
-        run(bd.atualizar_cliente_localidade(self.pessoa_registro[9],localidade_novo))
-        run(bd.atualizar_venda_produto(self.venda_registro[3],descricao_novo))
-        run(bd.atualizar_venda_qtde(self.venda_registro[5],quantidade_novo))
-        run(bd.atualizar_venda_valor(self.venda_registro[7],valor_novo))
-        run(bd.atualizar_venda_data_pedido(self.venda_registro[9],data_novo))
-        run(bd.atualizar_despesasvenda_uber_flash(self.despesas_venda_registro[1],uber_novo))
-        run(bd.atualizar_despesasvenda_impressao(self.despesas_venda_registro[3],impressao_novo))
-        run(bd.atualizar_despesasvenda_outros(self.despesas_venda_registro[5],outros_novo))
-        run(bd.atualizar_venda_status(self.venda_registro[13],status_novo))
+            run(bd.atualizar_cliente_nome(self.pessoa_registro[3],nome_novo))
+            run(bd.atualizar_cliente_whats_app(self.pessoa_registro[7],telefone_novo))
+            run(bd.atualizar_cliente_e_mail(self.pessoa_registro[5],email_novo))
+            run(bd.atualizar_cliente_localidade(self.pessoa_registro[1],localidade_novo))
+            run(bd.atualizar_venda_produto(self.venda_registro[3],descricao_novo))
+            run(bd.atualizar_venda_qtde(self.venda_registro[5],quantidade_novo))
+            run(bd.atualizar_venda_valor(self.venda_registro[7],valor_novo))
+            run(bd.atualizar_venda_data_pedido(self.venda_registro[9],data_novo))
+            run(bd.atualizar_despesasvenda_uber_flash(self.venda_registro[1],uber_novo))
+            run(bd.atualizar_despesasvenda_impressao(self.despesas_venda_registro[3],impressao_novo))
+            run(bd.atualizar_despesasvenda_outros(self.venda_registro[1],outros_novo))
+            run(bd.atualizar_venda_status(self.venda_registro[13],status_novo))
+
+            self.lineEdit_nome.setText('')
+            self.lineEdit_telefone.setText('')
+            self.lineEdit_email.setText('')
+            self.lineEdit_localidade.setText('')
+            self.lineEdit_descricao.setText('')
+            self.lineEdit_quantidade.setText('')
+            self.lineEdit_valor.setText('')
+            self.lineEdit_data.setText('')
+            self.lineEdit_uberflash.setText('')
+            self.lineEdit_impressao.setText('')
+            self.lineEdit_outros.setText('')
+            self.lineEdit_status.setText('')
+
+            self.label_erro.setText('Dados Atualizado com sucesso!')
+            self.frame_erro.setStyleSheet("background-color: green;")
+            self.frame_erro.show()
+            # Configurar um timer para ocultar o rótulo após 1 segundo
+            self.timer = QTimer(self)
+            self.timer.timeout.connect(self.hide_message)
+            self.timer.start(1500)  # 1000 ms = 1 segundo
+        except:
+            self.label_erro.setText('Falha ao atualizar')
+            self.frame_erro.setStyleSheet("background-color: red;")
+            self.frame_erro.show()
+
+    def deletar_linha_bd(self):
+        procurar_nome = self.lineEdit_procurar.text()
+        try:
+            pessoa = str(run(bd.buscar_pessoa(procurar_nome))).replace("[","").replace("]","").replace(",",":")
+            self.pessoa_registro = pessoa.split(':')
+        
+            venda = str(run(bd.buscar_id_venda(self.pessoa_registro[1]))).replace("[","").replace("]","")
+            self.venda_registro = venda.split('.')
+
+            despesas_venda = str(run(bd.buscar_id_despesas(self.venda_registro[1]))).replace("[","").replace("]","")
+            self.despesas_venda_registro = despesas_venda.split(':')
+            
+
+            run(bd.deletar_pessoa(procurar_nome))
+            run(bd.deletar_venda(self.venda_registro[1]))
+            run(bd.deletar_despesasvenda(self.despesas_venda_registro[7]))
+
+            self.lineEdit_nome.setText('')
+            self.lineEdit_telefone.setText('')
+            self.lineEdit_email.setText('')
+            self.lineEdit_localidade.setText('')
+            self.lineEdit_descricao.setText('')
+            self.lineEdit_quantidade.setText('')
+            self.lineEdit_valor.setText('')
+            self.lineEdit_data.setText('')
+            self.lineEdit_uberflash.setText('')
+            self.lineEdit_impressao.setText('')
+            self.lineEdit_outros.setText('')
+            self.lineEdit_status.setText('')
+
+            self.label_erro.setText('Dados Atualizado com sucesso!')
+            self.frame_erro.setStyleSheet("background-color: green;")
+            self.frame_erro.show()
+            # Configurar um timer para ocultar o rótulo após 1 segundo
+            self.timer = QTimer(self)
+            self.timer.timeout.connect(self.hide_message)
+            self.timer.start(1500)  # 1000 ms = 1 segundo
+
+        except:
+            self.label_erro.setText('Falha ao deletar\nCliente não encontrado!')
+            self.frame_erro.setStyleSheet("background-color: red;")
+            self.frame_erro.show()
+
+    def procurar_estoque(self):
+        nome_estoque = self.lineEdit_form_procurar_nome.text()
+        try:
+            self.estoque_ = str(run(bd.buscar_fornecedor(nome_estoque))).replace("[","").replace("]","")
+            self.estoque_list = self.estoque_.split('.')
+
+            self.lineEdit_form_nome.setText(self.estoque_list[3])
+            self.lineEdit_form_produto.setText(self.estoque_list[5])
+            self.lineEdit_form_ecomerce.setText(self.estoque_list[13])
+            self.lineEdit_form_quantidade.setText(self.estoque_list[7])
+            self.lineEdit_form_valor.setText(self.estoque_list[9])
+            self.lineEdit_form_data.setText(self.estoque_list[11])
+        except:
+            self.label_erro.setText('Cliente não encontrado no banco de dados!')
+            self.frame_erro.setStyleSheet("background-color: red;")
+            self.frame_erro.show()
+
+    def atualiza_estoque(self):
+        try:
+            nome_estoque = self.lineEdit_form_nome.text()
+            produto_estoque = self.lineEdit_form_produto.text()
+            e_comerce_estoque  = self.lineEdit_form_ecomerce.text()
+            quantidade_estoque = self.lineEdit_form_quantidade.text()
+            valor_estoque = self.lineEdit_form_valor.text()
+            data_estoque = self.lineEdit_form_data.text()
+
+            run(bd.atualizar_estoque_fornecedor(self.estoque_list[3],nome_estoque))
+            run(bd.atualizar_estoque_produto(self.estoque_list[5],produto_estoque))
+            run(bd.atualizar_estoque_ecomerce(self.estoque_list[13],e_comerce_estoque))
+            run(bd.atualizar_estoque_qtde(self.estoque_list[1],quantidade_estoque))
+            run(bd.atualizar_estoque_valor(self.estoque_list[9],valor_estoque))
+            run(bd.atualizar_estoque_data_pedido(self.estoque_list[11],data_estoque))
+        
+        except:
+            self.label_erro.setText('Campo em branco')
+            self.frame_erro.setStyleSheet("background-color: red;")
+            self.frame_erro.show()
+
+    def deletar_linha_estoque(self):
+        nome_estoque = self.lineEdit_form_procurar_nome.text()
+
+        run(bd.deletar_linha_estoque(nome_estoque))
+
+        self.lineEdit_form_nome.setText('')
+        self.lineEdit_form_produto.setText('')
+        self.lineEdit_form_ecomerce.setText('')
+        self.lineEdit_form_quantidade.setText('')
+        self.lineEdit_form_valor.setText('')
+        self.lineEdit_form_data.setText('')
+    
+        self.label_erro.setText('Dados Atualizado com sucesso!')
+        self.frame_erro.setStyleSheet("background-color: green;")
+        self.frame_erro.show()
+        # Configurar um timer para ocultar o rótulo após 1 segundo
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.hide_message)
+        self.timer.start(1500)  # 1000 ms = 1 segundo
+    
 
 if __name__ == '__main__':
     qt = QApplication(sys.argv)
