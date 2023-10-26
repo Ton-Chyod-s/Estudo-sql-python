@@ -281,7 +281,7 @@ async def deletar_despesasvenda(nome):
 async def deletar_linha_estoque(nome):
     async with session() as s:
         query = await s.execute(
-            delete(Estoque).where(Estoque.nome == nome)
+            delete(Estoque).where(Estoque.fornecedor == nome)
         )
         await s.commit()
 
