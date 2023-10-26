@@ -185,6 +185,27 @@ async def atualizar_venda_status(dado_antigo, dado_novo):
         )
         await s.commit()
 
+async def atualizar_despesasvenda_uber_flash(dado_antigo, dado_novo):
+    async with session() as s:
+        query = await s.execute(
+            update(Despesavenda).where(Despesavenda.uber_flash == dado_antigo).values(uber_flash=dado_novo)
+        )
+        await s.commit()
+
+async def atualizar_despesasvenda_impressao(dado_antigo, dado_novo):
+    async with session() as s:
+        query = await s.execute(
+            update(Despesavenda).where(Despesavenda.impressao == dado_antigo).values(impressao=dado_novo)
+        )
+        await s.commit()
+
+async def atualizar_despesasvenda_outros(dado_antigo, dado_novo):
+    async with session() as s:
+        query = await s.execute(
+            update(Despesavenda).where(Despesavenda.outros == dado_antigo).values(outros=dado_novo)
+        )
+        await s.commit()
+
 async def deletar_pessoa(nome):
     async with session() as s:
         query = await s.execute(

@@ -256,9 +256,9 @@ class Principal(Ui_MainWindow, QMainWindow):
         run(bd.atualizar_venda_qtde(self.venda_registro[5],quantidade_novo))
         run(bd.atualizar_venda_valor(self.venda_registro[7],valor_novo))
         run(bd.atualizar_venda_data_pedido(self.venda_registro[9],data_novo))
-        run(bd.atualizar_dado(bd.Despesavenda,self.despesas_venda_registro[1],uber_novo))
-        run(bd.atualizar_dado(bd.Despesavenda,self.despesas_venda_registro[3],impressao_novo))
-        run(bd.atualizar_dado(bd.Despesavenda,self.despesas_venda_registro[5],outros_novo))
+        run(bd.atualizar_despesasvenda_uber_flash(self.despesas_venda_registro[1],uber_novo))
+        run(bd.atualizar_despesasvenda_impressao(self.despesas_venda_registro[3],impressao_novo))
+        run(bd.atualizar_despesasvenda_outros(self.despesas_venda_registro[5],outros_novo))
         run(bd.atualizar_venda_status(self.venda_registro[13],status_novo))
 
 if __name__ == '__main__':
