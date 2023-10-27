@@ -13,6 +13,7 @@ import plotly.graph_objs as go
 import plotly.offline as pyo
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWidgets import QMainWindow, QApplication
+from PyQt6 import QtWidgets
 
 class Principal(Ui_MainWindow, QMainWindow):
     def __init__(self,parent = None) -> None:
@@ -26,7 +27,7 @@ class Principal(Ui_MainWindow, QMainWindow):
         self.pushButton_formulario.clicked.connect(self.formulario)
         self.pushButton_planilha.clicked.connect(self.planilha)
         self.pushButton_dashboard.clicked.connect(self.dashboard)
-        self.pushButton_estoque.clicked.connect(self.estoque)
+        #self.pushButton_estoque.clicked.connect(self.estoque)
         self.pushButton_form_inserir.clicked.connect(self.inserir_estoque)
         self.pushButton_erro.clicked.connect(self.fechar_popup)
         self.pushButton_baixar.clicked.connect(self.baixar_excel)
@@ -35,14 +36,14 @@ class Principal(Ui_MainWindow, QMainWindow):
         self.pushButton_form_atualizar.clicked.connect(self.atualiza_estoque)
         self.pushButton_form_deletar.clicked.connect(self.deletar_linha_estoque)
         self.pushButton_form_procurar.clicked.connect(self.procurar_estoque)
+        
 
-        #acessando a aba DRE
+        """#acessando a aba DRE
         tab_dre = self.tabWidget.findChild(QWidget,'tab_dre')
         layout = QVBoxLayout(self.tab_dre)
         plt.figure(figsize=(6, 4))
         canvas = FigureCanvas(plt.gcf())
 
-     
         # Adicione o canvas ao layout da aba
         layout.addWidget(canvas)
 
@@ -63,7 +64,6 @@ class Principal(Ui_MainWindow, QMainWindow):
         ####----adicionando dados no frame----####
         
         
-        
         ####----adicionando grafico no frame----####
         frame_localidade_vendas = self.stackedWidget.findChild(QFrame,'frame_localidade_vendas')
         layout = QVBoxLayout(self.frame_localidade_vendas)
@@ -82,7 +82,7 @@ class Principal(Ui_MainWindow, QMainWindow):
         
 
         # Adicione o canvas ao layout da aba
-        layout.addWidget(canvas)
+        layout.addWidget(canvas)"""
 
     def hide_message(self):
         self.frame_erro.hide()
@@ -250,7 +250,7 @@ class Principal(Ui_MainWindow, QMainWindow):
         # Configurar um timer para ocultar o rótulo após 1 segundo
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.hide_message)
-        self.timer.start(1500)  # 1000 ms = 1 segundo
+        self.timer.start(2000)  # 2000 ms = 2 segundo
         
     def atualizar_bd(self):
         try:
@@ -411,7 +411,13 @@ class Principal(Ui_MainWindow, QMainWindow):
             self.timer = QTimer(self)
             self.timer.timeout.connect(self.hide_message)
             self.timer.start(1500)  # 1000 ms = 1 segundo
-        
+    
+    def tabela(self):
+        self.tableWidget_planilha_cliente.setRowCount(10)
+        tabela = tr.tratamento_db
+        for i,linha in enumerate(tabela.planilha_completa()):
+            self.tableWidget_planilha_cliente.setItem(i,0, QtWidgets.QTableWidgetItem(linha.nome))
+            
 
 if __name__ == '__main__':
     qt = QApplication(sys.argv)
