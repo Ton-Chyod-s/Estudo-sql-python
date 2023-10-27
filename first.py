@@ -14,7 +14,6 @@ Screen:
             right_action_items:[['dots-vertical', lambda x: x]]
         TelaLogin:
 
-        
 <senhacard>:
     TextField:
         text: 'senha antiga'
