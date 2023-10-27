@@ -1,14 +1,24 @@
-import kivy
-from kivy.app import App
+from kivymd.app import MDApp
+from kivy.lang import Builder
 
 
-layout = """Button:
-    text: 'Hello from test.kv'"""
+KV = """
+
+FloatLayout:
+    MDIconButton:
+        pos_hint: {'center_x': .5, 'center_y': .8}
+        
 
 
-class TestApp(App):
+    MDRaisedButton:
+       
+    
+    
+"""
+
+class MainApp(MDApp):
     def build(self):
-        return layout
+        self.theme_cls.theme_style = "Dark"
+        return Builder.load_string(KV)
 
-if __name__ == '__main__':
-    TestApp().run()
+MainApp().run()
