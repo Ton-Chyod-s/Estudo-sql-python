@@ -17,7 +17,7 @@ Screen:
 <senhacard>:
     TextField:
         text: 'senha antiga'
-        on_text: root.my_callback_function(args)
+        on_text: root.my_callback_function(self, self.text)
 
 <TelaLogin>:
     MDIconButton:
@@ -52,7 +52,8 @@ Screen:
         on_release: root.abrir_card()
 """
 class SenhaCard(MDCard):
-    ...
+    def my_callback_function(self, instance, value):
+        print('lol')
 
 class TelaLogin(FloatLayout):
     def abrir_card(self):
@@ -61,7 +62,7 @@ class TelaLogin(FloatLayout):
 
 class MainApp(MDApp):
     def build(self):
-        self.theme_cls.theme_style = "Dark"
+        #self.theme_cls.theme_style = "Dark"
         return Builder.load_string(KV)
 
 MainApp().run()
