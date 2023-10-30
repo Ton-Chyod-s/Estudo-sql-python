@@ -1,4 +1,21 @@
-MDLabel:
-    text: 'olar'
-    font_style: 'H1'
-    halign: 'center'
+MDBoxLayout:
+    orientation: "vertical"
+
+    MDTopAppBar:
+        title: "lol"
+        right_action_items: [['theme-light-dark']]
+
+    MDFloatLayout:
+        MDIconButton:
+            icon: 'timer'
+            icon_size: '100sp'
+            pos_hint: {'center_x': .5, 'center_y': .8}
+
+        MDLabel:
+            text: "25:00"
+            font_style: "H1"
+            halign: "center"
+        MDRaisedButton:
+            text: 'Iniciar!'
+            size_hint_x: 0.5
+            pos_hint: {'center_x': .5, 'center_y': .2}

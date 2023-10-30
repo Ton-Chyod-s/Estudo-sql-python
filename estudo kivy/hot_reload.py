@@ -6,11 +6,13 @@ from kivymd.uix.floatlayout import FloatLayout
 
 
 class HotReload(MDApp):
-    KV_FILES = ['app/pomodoro.kv']
+    #KV_FILES = ['app/pomodoro.kv']
     DEBUG = True
 
-    def build_app(self):
+    def build(self):
         #self.theme_cls.theme_style = "Dark"
         return Builder.load_file('app/pomodoro.kv')
-
+    
 HotReload().run()
+
+
