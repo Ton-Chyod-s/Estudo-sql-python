@@ -2182,6 +2182,32 @@ QPushButton:pressed {
                     <attribute name="title">
                      <string>Estoque</string>
                     </attribute>
+                    <layout class="QVBoxLayout" name="verticalLayout_22">
+                     <item>
+                      <widget class="QTableWidget" name="tableWidget">
+                       <column>
+                        <property name="text">
+                         <string>Fornecedor</string>
+                        </property>
+                       </column>
+                       <column>
+                        <property name="text">
+                         <string>Produto</string>
+                        </property>
+                       </column>
+                       <column>
+                        <property name="text">
+                         <string>Quantidade</string>
+                        </property>
+                       </column>
+                       <column>
+                        <property name="text">
+                         <string>E-comerce</string>
+                        </property>
+                       </column>
+                      </widget>
+                     </item>
+                    </layout>
                    </widget>
                   </widget>
                  </item>
