@@ -17,7 +17,8 @@ from PyQt6 import QtWidgets
 
 class Principal(Ui_MainWindow, QMainWindow):
     def __init__(self,parent = None) -> None:
-        tratamento = tr.tratamento_db()
+        self.tratamento = tr.tratamento_db()
+        self.banco_dados = bd.estoque_()
         super().__init__(parent)
         super().setupUi(self)
         self.frame_erro.hide()
@@ -35,12 +36,19 @@ class Principal(Ui_MainWindow, QMainWindow):
         self.pushButton_form_atualizar.clicked.connect(self.atualiza_estoque)
         self.pushButton_form_deletar.clicked.connect(self.deletar_linha_estoque)
         self.pushButton_form_procurar.clicked.connect(self.procurar_estoque)
+        self.pushButton_plan_atualizar.clicked.connect(self.planilha_venda)
         self.tableWidget_planilha_cliente.setRowCount(150)
+        self.tableWidget_planilha_estoque.setRowCount(50)
+        self.planilha_venda()
+        self.planilha_estoque()
 
+
+    def planilha_estoque(self):
+        
         # Limpar a tabela (caso necessário)
-        self.tableWidget_planilha_cliente.clearContents()
+        self.tableWidget_planilha_estoque.clearContents()
 
-        tabela = tratamento.planilha_completa()
+        tabela = self.tratamento.planilha_completa()
        
         def preencher_planilha(txt,coluna,linha):
                 try:
@@ -65,8 +73,36 @@ class Principal(Ui_MainWindow, QMainWindow):
 
             cont += 1
 
+    def planilha_venda(self):
+    
+        # Limpar a tabela (caso necessário)
+        self.tableWidget_planilha_cliente.clearContents()
 
-            
+        tabela = self.tratamento.planilha_completa()
+       
+        def preencher_planilha(txt,coluna,linha):
+                try:
+                    # Adicionar um novo item à tabela
+                    item = QtWidgets.QTableWidgetItem(txt)
+                    self.tableWidget_planilha_cliente.setItem(linha, coluna, item)
+                except Exception as e:
+                    print(f"Erro ao preencher a linha {linha}: {str(e)}")
+        cont = 0
+        for linha in range(len(tabela)):
+            nome = tabela['nome'][cont]
+            whats_app = tabela['whats-app'][cont]
+            localidade = tabela['localidade'][cont]
+            data_prazo = tabela['Data prazo'][cont]
+            situacao = tabela['Situação'][cont]
+
+            preencher_planilha(nome,0,cont)
+            preencher_planilha(whats_app,1,cont)
+            preencher_planilha(localidade,2,cont)
+            preencher_planilha(data_prazo,3,cont)
+            preencher_planilha(situacao,4,cont)
+
+            cont += 1
+    
     def hide_message(self):
         self.frame_erro.hide()
         self.timer.stop()

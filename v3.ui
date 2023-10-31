@@ -2044,6 +2044,12 @@ QPushButton:pressed {
                      <verstretch>0</verstretch>
                     </sizepolicy>
                    </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>150</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
                    <property name="font">
                     <font>
                      <family>Segoe UI Black</family>
@@ -2058,17 +2064,55 @@ QPushButton:pressed {
                   </widget>
                  </item>
                  <item>
-                  <spacer name="horizontalSpacer_3">
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
+                  <widget class="QLabel" name="label_plan_label">
+                   <property name="font">
+                    <font>
+                     <family>Segoe UI</family>
+                     <pointsize>9</pointsize>
+                     <weight>50</weight>
+                     <bold>false</bold>
+                    </font>
                    </property>
-                   <property name="sizeHint" stdset="0">
+                   <property name="text">
+                    <string>00 Quadros Pendente e 00 Quadros Concluidos</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButton_plan_atualizar">
+                   <property name="minimumSize">
                     <size>
-                     <width>40</width>
-                     <height>20</height>
+                     <width>80</width>
+                     <height>0</height>
                     </size>
                    </property>
-                  </spacer>
+                   <property name="maximumSize">
+                    <size>
+                     <width>0</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton {
+	background-color: rgb(50, 50, 50);
+	border: 2px solid rgb(60, 60, 60);
+	border-radius: 5px;
+	color: rgb(255, 255, 255);
+}
+QPushButton:hover {
+	background-color: rgb(60, 60, 60);
+	border: 2px solid rgb(70,70, 70);
+}
+QPushButton:pressed {
+	background-color: rgb(250, 230, 0);
+	border: 2px solid rgb(161, 0, 0);
+	color: rgb(35, 35, 35);
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>Atualizar</string>
+                   </property>
+                  </widget>
                  </item>
                  <item>
                   <widget class="QPushButton" name="pushButton_baixar">
@@ -2080,7 +2124,7 @@ QPushButton:pressed {
                    </property>
                    <property name="maximumSize">
                     <size>
-                     <width>100</width>
+                     <width>0</width>
                      <height>16777215</height>
                     </size>
                    </property>
@@ -2129,7 +2173,7 @@ QPushButton:pressed {
                     </font>
                    </property>
                    <property name="currentIndex">
-                    <number>1</number>
+                    <number>2</number>
                    </property>
                    <widget class="QWidget" name="tab_3">
                     <attribute name="title">
@@ -2184,7 +2228,7 @@ QPushButton:pressed {
                     </attribute>
                     <layout class="QVBoxLayout" name="verticalLayout_22">
                      <item>
-                      <widget class="QTableWidget" name="tableWidget">
+                      <widget class="QTableWidget" name="tableWidget_planilha_estoque">
                        <column>
                         <property name="text">
                          <string>Fornecedor</string>

@@ -7,6 +7,29 @@ from calendar import monthrange
 class tratamento_db:
     def __init__(self):
         pass
+    def estoque(self):
+        #lista
+        index = [
+            'Fornecedor',
+            'Produto',
+            'Quantidade',
+            'Valor',
+            'Data pedido',
+            'e comerce'
+        ]
+
+        self.df = pd.DataFrame(index)
+        #invertendo linha para coluna
+        self.df = self.df.T
+        #transformando primeira linha em indice
+        self.df.columns = self.df.loc[0]
+        #deletando primeira linha
+        self.df = self.df.drop(range(1))
+        #resete index linha
+        self.df = self.df.reset_index(drop=True)
+
+        return self.df
+
     def vendas(self):
         valor_janeiro = {}
         valor_fevereiro = {}
@@ -252,12 +275,13 @@ class tratamento_db:
 
 if __name__ == '__main__':
     tr = tratamento_db()
-    tr.vendas()
-    tr.grafico_barra()
+    #tr.vendas()
+    #tr.grafico_barra()
     #tr.cliente_s()
     #tr.planilha_completa()
     #tr.data_prazo()
-    #tr.salvar('vendas.xlsx',)
+    tr.estoque()
+    tr.salvar('Estoque.xlsx',)
     
 
     

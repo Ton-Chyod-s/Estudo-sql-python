@@ -1109,6 +1109,7 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_5.sizePolicy().hasHeightForWidth())
         self.label_5.setSizePolicy(sizePolicy)
+        self.label_5.setMaximumSize(QtCore.QSize(150, 16777215))
         font = QtGui.QFont()
         font.setFamily("Segoe UI Black")
         font.setPointSize(12)
@@ -1117,11 +1118,38 @@ class Ui_MainWindow(object):
         self.label_5.setFont(font)
         self.label_5.setObjectName("label_5")
         self.horizontalLayout_5.addWidget(self.label_5)
-        spacerItem7 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_5.addItem(spacerItem7)
+        self.label_plan_label = QtWidgets.QLabel(parent=self.frame_30)
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(9)
+        font.setBold(False)
+        font.setWeight(50)
+        self.label_plan_label.setFont(font)
+        self.label_plan_label.setObjectName("label_plan_label")
+        self.horizontalLayout_5.addWidget(self.label_plan_label)
+        self.pushButton_plan_atualizar = QtWidgets.QPushButton(parent=self.frame_30)
+        self.pushButton_plan_atualizar.setMinimumSize(QtCore.QSize(80, 0))
+        self.pushButton_plan_atualizar.setMaximumSize(QtCore.QSize(0, 16777215))
+        self.pushButton_plan_atualizar.setStyleSheet("QPushButton {\n"
+"    background-color: rgb(50, 50, 50);\n"
+"    border: 2px solid rgb(60, 60, 60);\n"
+"    border-radius: 5px;\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(60, 60, 60);\n"
+"    border: 2px solid rgb(70,70, 70);\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(250, 230, 0);\n"
+"    border: 2px solid rgb(161, 0, 0);\n"
+"    color: rgb(35, 35, 35);\n"
+"}")
+        self.pushButton_plan_atualizar.setObjectName("pushButton_plan_atualizar")
+        self.horizontalLayout_5.addWidget(self.pushButton_plan_atualizar)
         self.pushButton_baixar = QtWidgets.QPushButton(parent=self.frame_30)
         self.pushButton_baixar.setMinimumSize(QtCore.QSize(80, 0))
-        self.pushButton_baixar.setMaximumSize(QtCore.QSize(100, 16777215))
+        self.pushButton_baixar.setMaximumSize(QtCore.QSize(0, 16777215))
         self.pushButton_baixar.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(50, 50, 50);\n"
 "    border: 2px solid rgb(60, 60, 60);\n"
@@ -1180,19 +1208,19 @@ class Ui_MainWindow(object):
         self.tab_5.setObjectName("tab_5")
         self.verticalLayout_22 = QtWidgets.QVBoxLayout(self.tab_5)
         self.verticalLayout_22.setObjectName("verticalLayout_22")
-        self.tableWidget = QtWidgets.QTableWidget(parent=self.tab_5)
-        self.tableWidget.setObjectName("tableWidget")
-        self.tableWidget.setColumnCount(4)
-        self.tableWidget.setRowCount(0)
+        self.tableWidget_planilha_estoque = QtWidgets.QTableWidget(parent=self.tab_5)
+        self.tableWidget_planilha_estoque.setObjectName("tableWidget_planilha_estoque")
+        self.tableWidget_planilha_estoque.setColumnCount(4)
+        self.tableWidget_planilha_estoque.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(0, item)
+        self.tableWidget_planilha_estoque.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(1, item)
+        self.tableWidget_planilha_estoque.setHorizontalHeaderItem(1, item)
         item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(2, item)
+        self.tableWidget_planilha_estoque.setHorizontalHeaderItem(2, item)
         item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(3, item)
-        self.verticalLayout_22.addWidget(self.tableWidget)
+        self.tableWidget_planilha_estoque.setHorizontalHeaderItem(3, item)
+        self.verticalLayout_22.addWidget(self.tableWidget_planilha_estoque)
         self.tabWidget_planilha.addTab(self.tab_5, "")
         self.verticalLayout_18.addWidget(self.tabWidget_planilha)
         self.verticalLayout_17.addWidget(self.frame_31)
@@ -1335,7 +1363,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         self.stackedWidget.setCurrentIndex(2)
         self.tabWidget_formulario.setCurrentIndex(0)
-        self.tabWidget_planilha.setCurrentIndex(1)
+        self.tabWidget_planilha.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -1388,6 +1416,8 @@ class Ui_MainWindow(object):
         self.pushButton_form_procurar.setText(_translate("MainWindow", "Procurar"))
         self.tabWidget_formulario.setTabText(self.tabWidget_formulario.indexOf(self.tab), _translate("MainWindow", "Estoque"))
         self.label_5.setText(_translate("MainWindow", "Planilha"))
+        self.label_plan_label.setText(_translate("MainWindow", "00 Quadros Pendente e 00 Quadros Concluidos"))
+        self.pushButton_plan_atualizar.setText(_translate("MainWindow", "Atualizar"))
         self.pushButton_baixar.setText(_translate("MainWindow", "Baixar Excel"))
         self.tabWidget_planilha.setTabText(self.tabWidget_planilha.indexOf(self.tab_3), _translate("MainWindow", "DRE"))
         item = self.tableWidget_planilha_cliente.horizontalHeaderItem(0)
@@ -1401,13 +1431,13 @@ class Ui_MainWindow(object):
         item = self.tableWidget_planilha_cliente.horizontalHeaderItem(4)
         item.setText(_translate("MainWindow", "Situação"))
         self.tabWidget_planilha.setTabText(self.tabWidget_planilha.indexOf(self.tab_4), _translate("MainWindow", "Venda"))
-        item = self.tableWidget.horizontalHeaderItem(0)
+        item = self.tableWidget_planilha_estoque.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "Fornecedor"))
-        item = self.tableWidget.horizontalHeaderItem(1)
+        item = self.tableWidget_planilha_estoque.horizontalHeaderItem(1)
         item.setText(_translate("MainWindow", "Produto"))
-        item = self.tableWidget.horizontalHeaderItem(2)
+        item = self.tableWidget_planilha_estoque.horizontalHeaderItem(2)
         item.setText(_translate("MainWindow", "Quantidade"))
-        item = self.tableWidget.horizontalHeaderItem(3)
+        item = self.tableWidget_planilha_estoque.horizontalHeaderItem(3)
         item.setText(_translate("MainWindow", "E-comerce"))
         self.tabWidget_planilha.setTabText(self.tabWidget_planilha.indexOf(self.tab_5), _translate("MainWindow", "Estoque"))
         self.label.setText(_translate("MainWindow", "Dash Board Vendas"))
