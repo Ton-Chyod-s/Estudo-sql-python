@@ -11159,3 +11159,5 @@ gui/Lib/site-packages/sqlalchemy/util/queue.py
 gui/Lib/site-packages/sqlalchemy/util/tool_support.py
 gui/Lib/site-packages/sqlalchemy/util/topological.py
 gui/Lib/site-packages/sqlalchemy/util/typing.py
+__pycache__/main.cpython-310.pyc
+__pycache__/BD_myframecg.cpython-310.pyc

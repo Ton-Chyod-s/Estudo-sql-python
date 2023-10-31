@@ -344,4 +344,3 @@ if __name__ == '__main__':
         
         run(venda_realizada(linha[0], linha[1], linha[2], linha[3], linha[4], linha[5], valor, data_venda, uber_flash, impressao,'0',status))
 """
-    print(run(buscar_pessoa()))

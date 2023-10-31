@@ -2,11 +2,10 @@
 # SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 import pandas as pd
-
+import tratamento_db_v2 as tr
 from PySide6.QtWidgets import QTableView, QApplication
 from PySide6.QtCore import QAbstractTableModel, Qt, QModelIndex
 import sys
-
 
 class PandasModel(QAbstractTableModel):
     """A model to interface a Qt view with pandas dataframe """
@@ -63,20 +62,28 @@ class PandasModel(QAbstractTableModel):
 
         return None
 
+    def planilha_banco_gui():
+        banco = tr.tratamento_db()
+        app = QApplication(sys.argv)
+        df = banco.planilha_completa()
+        df = df.drop("e-mail", axis=1)
+        df = df.drop("contato", axis=1)
+        df = df.drop("Produto", axis=1)
+        df = df.drop("Quantidade", axis=1)
+        df = df.drop("Valor", axis=1)
+        df = df.drop("Data pedido", axis=1)
+        df = df.drop("status", axis=1)
+
+        view = QTableView()
+        view.resize(675, 500)
+
+        model = PandasModel(df)
+        view.setModel(model)
+        view.show()
+        return print(df)
 
 if __name__ == "__main__":
+    
+    PandasModel.planilha_banco_gui()
 
-    app = QApplication(sys.argv)
-
-    df = pd.read_csv("iris.csv")
-
-    view = QTableView()
-    view.resize(800, 500)
-    view.horizontalHeader().setStretchLastSection(True)
-    view.setAlternatingRowColors(True)
-    view.setSelectionBehavior(QTableView.SelectRows)
-
-    model = PandasModel(df)
-    view.setModel(model)
-    view.show()
-    app.exec()
+    
