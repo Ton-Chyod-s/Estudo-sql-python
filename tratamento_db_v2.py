@@ -7,7 +7,8 @@ from calendar import monthrange
 class tratamento_db:
     def __init__(self):
         pass
-    def estoque(self):
+    
+    def estoque_analise(self):
         #lista
         index = [
             'Fornecedor',
@@ -15,7 +16,7 @@ class tratamento_db:
             'Quantidade',
             'Valor',
             'Data pedido',
-            'e comerce'
+            'E-commerce'
         ]
 
         self.df = pd.DataFrame(index)
@@ -28,8 +29,26 @@ class tratamento_db:
         #resete index linha
         self.df = self.df.reset_index(drop=True)
 
-        return self.df
+        for num, linha in enumerate(bd.estoque_()):
+            linha_list = str(linha).split(".")
+            for linha_index in index:
+                for ince_linha_str in linha_list:
+                    try:
+                        linha_list_nv = ince_linha_str.split(':')
+                        indice_linha = linha_list_nv[0]
+                        valor_linha = linha_list_nv[1]
+                    except Exception as e:
+                        print(e)
+                        
+                    #fazendo uma comparação se o indice encontrado ex "Produto" é igual ao valor que esta na lista ex "valor"
+                    if linha_index == indice_linha:
+                        descricao_list = valor_linha.split('-')
+                        #adicionando valor no data frame
+                        self.df.at[num,linha_index] = valor_linha
+                        break
 
+        return self.df
+    
     def vendas(self):
         valor_janeiro = {}
         valor_fevereiro = {}
@@ -203,7 +222,15 @@ class tratamento_db:
             ano = int(data_lis[2])
             data = datetime(ano,mes,dia)
             prazo_dia = dia + 4
-            ultimo_dia = (data_atual.replace(day=monthrange(data.year, data.month)[1])).day
+             # Obter o último dia do mês
+            ultimo_dia = monthrange(ano, mes)[1]
+
+            # Verificar se o prazo ultrapassa o último dia do mês
+            if prazo_dia > ultimo_dia:
+                prazo_dia = ultimo_dia  # Definir o prazo para o último dia do mês
+
+            data_prazo = datetime(ano, mes, prazo_dia)
+
             
             if prazo_dia > ultimo_dia:
                 prazo_dia = prazo_dia - ultimo_dia
@@ -265,13 +292,145 @@ class tratamento_db:
         self.x = meses
         self.y = valor_tot
 
-        fig = px.bar(self.df,x=self.x, y=self.y,height = 450,width=700 , labels={'x': '','y': ''},template='none',color_discrete_sequence=px.colors.qualitative.Prism)
+        fig = px.bar(self.df,x=self.x, y=self.y,height = 450,width=650 , labels={'x': '','y': ''},template='none',color_discrete_sequence=px.colors.qualitative.Prism)
         fig.update_traces(textposition='outside',texttemplate='%{y:.4s}')
-        fig.update_yaxes(showticklabels=False)
-        fig.update_layout(title={
-        'text' : 'Venda x Mês',
-    })
+        fig.update_yaxes(visible=False)
+        fig.update_layout(title={'text' : 'Venda x Mês',})
         fig.show()
+
+    def dre(self):
+        index = [
+            'Descrição','Janeiro','Av','Fevereiro','Av','Março','Av','Abril','Av','Maio','Av',
+            'Junho','Av','Julho','Av','Agosto','Av','Setembro','Av','Outubro','Av','Novembro',
+            'Av','Dezembro','Av'
+        ]
+
+        self.df = pd.DataFrame(index)
+        #invertendo linha para coluna
+        self.df = self.df.T
+        #transformando primeira linha em indice
+        self.df.columns = self.df.loc[0]
+        #deletando primeira linha
+        self.df = self.df.drop(range(1))
+        #resete index linha
+        self.df = self.df.reset_index(drop=True)
+
+        for num, linha in enumerate(bd.dre_()):
+            for linha_index in index:
+                try:
+                    linha_list = str(linha).split(":")
+                    indice_linha = linha_list[0]
+                    valor_linha = linha_list[1]
+                except Exception as e:
+                    print(e)
+                    
+                #fazendo uma comparação se o indice encontrado ex "Produto" é igual ao valor que esta na lista ex "valor"
+                if linha_index == indice_linha:
+                    descricao_list = valor_linha.split('-')
+                    #adicionando valor no data frame
+                    self.df.at[num,linha_index] = valor_linha
+                    break
+
+        valor_janeiro = 0
+        valor_fevereiro = 0 
+        valor_marco = 0
+        valor_abril = 0
+        valor_maio = 0
+        valor_junho = 0
+        valor_julho = 0
+        valor_agosto = 0
+        valor_setembro = 0
+        valor_outubro = 0
+        valor_novembro = 0
+        valor_dezembro = 0
+
+        for cliente, i in enumerate(bd.venda()):
+            print(i)
+            try:
+                #linha que transforma o i em string logo em seguida em uma lista pegando o valor 7 dessa lista no final transforma em inteiro
+                valor_lis = str(i).split(".")
+                data_ = valor_lis[9].split("-")
+                mes = int(data_[0])
+                valor_lista = float(valor_lis[7].replace(",","."))
+                if mes == 1:
+                    valor_janeiro += valor_lista
+                if mes == 2:
+                    valor_fevereiro += valor_lista
+                if mes == 3:
+                    valor_marco += valor_lista
+                if mes == 4:
+                    valor_abril += valor_lista
+                if mes == 5:
+                    valor_maio += valor_lista
+                if mes == 6:
+                    valor_junho += valor_lista
+                if mes == 7:
+                    valor_julho += valor_lista
+                if mes == 8:
+                    valor_agosto += valor_lista
+                if mes == 9:
+                    valor_setembro += valor_lista
+                if mes == 10:
+                    valor_outubro += valor_lista
+                if mes == 11:
+                    valor_novembro += valor_lista
+                if mes == 12:
+                    valor_dezembro += valor_lista
+
+            except Exception as e:
+                print(e)
+
+        for cliente, i in enumerate(bd.estoque_()):
+            try:
+                #linha que transforma o i em string logo em seguida em uma lista pegando o valor 7 dessa lista no final transforma em inteiro
+                valor_lis = str(i).split(".")
+                for linha in valor_lis:
+                    data = str(valor_lis[5]).split(":")[1]
+                    data_ = int(data.split("/")[1])
+                    linha_lista = str(valor_lis[4]).split(":")
+                    linha_lista = int(linha_lista[1])
+
+                    if mes == 1:
+                        calculo = valor_janeiro - linha_lista
+                        valor_janeiro = calculo
+                    if mes == 2:
+                        calculo = valor_fevereiro - linha_lista
+                        valor_fevereiro = calculo
+                    if mes == 3:
+                        calculo = valor_marco - linha_lista
+                        valor_marco = calculo
+                    if mes == 4:
+                        calculo = valor_abril - linha_lista
+                        valor_abril = calculo
+                    if mes == 5:
+                        calculo = valor_maio - linha_lista
+                        valor_maio = calculo
+                    if mes == 6:
+                        calculo = valor_junho - linha_lista
+                        valor_junho = calculo
+                    if mes == 7:
+                        calculo = valor_julho - linha_lista
+                        valor_julho = calculo
+                    if mes == 8:
+                        calculo = valor_agosto - linha_lista
+                        valor_agosto = calculo
+                    if mes == 9:
+                        calculo = valor_setembro - linha_lista
+                        valor_setembro = calculo
+                    if mes == 10:
+                        calculo = valor_outubro - linha_lista
+                        valor_outubro = calculo
+                    if mes == 11:
+                        calculo = valor_novembro - linha_lista
+                        valor_novembro = calculo
+                    if mes == 12:
+                        calculo = valor_dezembro - linha_lista
+                        valor_dezembro = calculo
+
+            except Exception as e:
+                print(e)
+
+        return self.df
 
 if __name__ == '__main__':
     tr = tratamento_db()
@@ -280,8 +439,9 @@ if __name__ == '__main__':
     #tr.cliente_s()
     #tr.planilha_completa()
     #tr.data_prazo()
-    tr.estoque()
-    tr.salvar('Estoque.xlsx',)
+    #tr.estoque_analise()
+    tr.dre()
+    tr.salvar('dre.xlsx',)
     
 
     

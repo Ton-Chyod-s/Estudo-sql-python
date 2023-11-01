@@ -124,3 +124,28 @@ venda_2023 = [
 'jessica elo7,@gmail.com,00 990000099,campo grande,quadro data a3 branco,1,93.30,09-27-yyyy,0,0,0,Concluido',
 'LUCAS ELO7,@gmail.com,00 990000100,campo grande,VARAL + QUADRO DATA 20X25 BRANCO,2,108,02-10-yyyy,0,0,0,Concluido',
 ]
+
+dre_2023 = [
+    'RECEITA BRUTA',
+    '(-) DEVOLUÇÕES/CANCELAMENTO',
+    'RECEITA LÍQUIDA',
+    '(-) CUSTO DE PROCDUTOS VENDIDOS/CPV',
+    '(-) ENTRADA DE MERCADORIA',
+    'LUCRO BRUTO',
+    '(-) DESPESAS/RECEITAS OPERACIONAIS GERAIS E ADM',
+    'PRO LABORE',
+    'TI',
+    '(-) OUTRAS DESPESAS/RECEITAS',
+    'UBER FLASH',
+    'SITE',
+    'DNS',
+    'MARKETING',
+    'NUVEM DE ARQUIVOS',
+    '(+) OUTRAS RECEITAS',
+    'INVESTIMENTO',
+    'RESULTADO DO MES ANTERIOR',
+    'RESULTADO FINANCEIRO',
+    '(-) IR/CS',
+    'CPNJ',
+    'LUCRO LIQUIDO'
+]

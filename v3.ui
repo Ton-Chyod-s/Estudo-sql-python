@@ -2173,12 +2173,143 @@ QPushButton:pressed {
                     </font>
                    </property>
                    <property name="currentIndex">
-                    <number>2</number>
+                    <number>0</number>
                    </property>
                    <widget class="QWidget" name="tab_3">
                     <attribute name="title">
                      <string>DRE</string>
                     </attribute>
+                    <layout class="QVBoxLayout" name="verticalLayout_23">
+                     <item>
+                      <widget class="QTableWidget" name="tableWidget_dre">
+                       <column>
+                        <property name="text">
+                         <string>Descrição</string>
+                        </property>
+                       </column>
+                       <column>
+                        <property name="text">
+                         <string>Jan</string>
+                        </property>
+                       </column>
+                       <column>
+                        <property name="text">
+                         <string>Av</string>
+                        </property>
+                       </column>
+                       <column>
+                        <property name="text">
+                         <string>Fev</string>
+                        </property>
+                       </column>
+                       <column>
+                        <property name="text">
+                         <string>Av</string>
+                        </property>
+                       </column>
+                       <column>
+                        <property name="text">
+                         <string>Mar</string>
+                        </property>
+                       </column>
+                       <column>
+                        <property name="text">
+                         <string>Av</string>
+                        </property>
+                       </column>
+                       <column>
+                        <property name="text">
+                         <string>Abr</string>
+                        </property>
+                       </column>
+                       <column>
+                        <property name="text">
+                         <string>Av</string>
+                        </property>
+                       </column>
+                       <column>
+                        <property name="text">
+                         <string>Mai</string>
+                        </property>
+                       </column>
+                       <column>
+                        <property name="text">
+                         <string>Av</string>
+                        </property>
+                       </column>
+                       <column>
+                        <property name="text">
+                         <string>Jun</string>
+                        </property>
+                       </column>
+                       <column>
+                        <property name="text">
+                         <string>Av</string>
+                        </property>
+                       </column>
+                       <column>
+                        <property name="text">
+                         <string>Jul</string>
+                        </property>
+                       </column>
+                       <column>
+                        <property name="text">
+                         <string>Av</string>
+                        </property>
+                       </column>
+                       <column>
+                        <property name="text">
+                         <string>Ago</string>
+                        </property>
+                       </column>
+                       <column>
+                        <property name="text">
+                         <string>Av</string>
+                        </property>
+                       </column>
+                       <column>
+                        <property name="text">
+                         <string>Set</string>
+                        </property>
+                       </column>
+                       <column>
+                        <property name="text">
+                         <string>Av</string>
+                        </property>
+                       </column>
+                       <column>
+                        <property name="text">
+                         <string>Out</string>
+                        </property>
+                       </column>
+                       <column>
+                        <property name="text">
+                         <string>Av</string>
+                        </property>
+                       </column>
+                       <column>
+                        <property name="text">
+                         <string>Nov</string>
+                        </property>
+                       </column>
+                       <column>
+                        <property name="text">
+                         <string>Av</string>
+                        </property>
+                       </column>
+                       <column>
+                        <property name="text">
+                         <string>Dez</string>
+                        </property>
+                       </column>
+                       <column>
+                        <property name="text">
+                         <string>Av</string>
+                        </property>
+                       </column>
+                      </widget>
+                     </item>
+                    </layout>
                    </widget>
                    <widget class="QWidget" name="tab_4">
                     <attribute name="title">
@@ -2246,7 +2377,7 @@ QPushButton:pressed {
                        </column>
                        <column>
                         <property name="text">
-                         <string>E-comerce</string>
+                         <string>E-commerce</string>
                         </property>
                        </column>
                       </widget>

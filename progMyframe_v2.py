@@ -36,41 +36,42 @@ class Principal(Ui_MainWindow, QMainWindow):
         self.pushButton_form_atualizar.clicked.connect(self.atualiza_estoque)
         self.pushButton_form_deletar.clicked.connect(self.deletar_linha_estoque)
         self.pushButton_form_procurar.clicked.connect(self.procurar_estoque)
-        self.pushButton_plan_atualizar.clicked.connect(self.planilha_venda)
+        self.pushButton_plan_atualizar.clicked.connect(self.atualizar)
+        self.tableWidget_dre.setRowCount(35)
         self.tableWidget_planilha_cliente.setRowCount(150)
         self.tableWidget_planilha_estoque.setRowCount(50)
+
         self.planilha_venda()
         self.planilha_estoque()
-
+        self.planilha_dre()
 
     def planilha_estoque(self):
         
         # Limpar a tabela (caso necessário)
         self.tableWidget_planilha_estoque.clearContents()
 
-        tabela = self.tratamento.planilha_completa()
+        tabela = self.tratamento.estoque_analise()
        
         def preencher_planilha(txt,coluna,linha):
                 try:
                     # Adicionar um novo item à tabela
                     item = QtWidgets.QTableWidgetItem(txt)
-                    self.tableWidget_planilha_cliente.setItem(linha, coluna, item)
+                    self.tableWidget_planilha_estoque.setItem(linha, coluna, item)
                 except Exception as e:
                     print(f"Erro ao preencher a linha {linha}: {str(e)}")
         cont = 0
+
         for linha in range(len(tabela)):
-            nome = tabela['nome'][cont]
-            whats_app = tabela['whats-app'][cont]
-            localidade = tabela['localidade'][cont]
-            data_prazo = tabela['Data prazo'][cont]
-            situacao = tabela['Situação'][cont]
-
-            preencher_planilha(nome,0,cont)
-            preencher_planilha(whats_app,1,cont)
-            preencher_planilha(localidade,2,cont)
-            preencher_planilha(data_prazo,3,cont)
-            preencher_planilha(situacao,4,cont)
-
+            fornecedor = tabela['Fornecedor'][linha]
+            produto = tabela['Produto'][linha]
+            quantidade = tabela['Quantidade'][linha]
+            ecommerce = tabela['E-commerce'][linha]
+            
+            preencher_planilha(fornecedor,0,cont)
+            preencher_planilha(produto,1,cont)
+            preencher_planilha(quantidade,2,cont)
+            preencher_planilha(ecommerce,3,cont)
+        
             cont += 1
 
     def planilha_venda(self):
@@ -103,6 +104,36 @@ class Principal(Ui_MainWindow, QMainWindow):
 
             cont += 1
     
+    def planilha_dre(self):
+        # Limpar a tabela (caso necessário)
+        self.tableWidget_dre.clearContents()
+
+        tabela = self.tratamento.dre()
+       
+        def preencher_planilha(txt,coluna,linha):
+                try:
+                    # Adicionar um novo item à tabela
+                    item = QtWidgets.QTableWidgetItem(txt)
+                    self.tableWidget_dre.setItem(linha, coluna, item)
+                except Exception as e:
+                    print(f"Erro ao preencher a linha {linha}: {str(e)}")
+        cont = 0
+
+        for linha in range(len(tabela)):
+            dre = tabela['Descrição'][linha]
+            janeiro = tabela['Janeiro'][linha]
+            #janeiro_av = tabela['Av_janeiro'][linha]
+
+            preencher_planilha(dre,0,cont)
+            preencher_planilha(janeiro,1,cont)
+
+            cont += 1
+
+    def atualizar(self):
+        self.planilha_venda()
+        self.planilha_estoque()
+        self.planilha_dre()
+
     def hide_message(self):
         self.frame_erro.hide()
         self.timer.stop()
