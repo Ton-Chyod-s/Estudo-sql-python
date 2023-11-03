@@ -1,9 +1,10 @@
 import plotly.express as px
 import BD_myframecg as bd
 import pandas as pd
-from datetime import datetime
+from datetime import date
 from calendar import monthrange
 import datetime
+from time import sleep
 
 class tratamento_db:
     def __init__(self):
@@ -33,17 +34,18 @@ class tratamento_db:
         for num, linha in enumerate(bd.estoque_()):
             linha_list = str(linha).split(".")
             for linha_index in index:
+                cont = 0
                 for ince_linha_str in linha_list:
                     try:
                         linha_list_nv = ince_linha_str.split(':')
-                        indice_linha = linha_list_nv[0]
-                        valor_linha = linha_list_nv[1]
+                        valor_linha = linha_list[cont + 1]
+                        
                     except Exception as e:
                         print(e)
-                        
+                    cont += 1
+
                     #fazendo uma comparação se o indice encontrado ex "Produto" é igual ao valor que esta na lista ex "valor"
-                    if linha_index == indice_linha:
-                        descricao_list = valor_linha.split('-')
+                    if linha_index == linha_list_nv[0]:
                         #adicionando valor no data frame
                         self.df.at[num,linha_index] = valor_linha
                         break
@@ -213,15 +215,14 @@ class tratamento_db:
         return self.df
 
     def vendas_adicionais(self):
-        data_atual = datetime.today()
+        data_atual = date.today()
         tabela = self.vendas()
         for index_linha, i in enumerate(tabela['Data pedido']):
-            
-            data_lis = i.split("-")
-            mes = int(data_lis[0])
-            dia = int(data_lis[1])
+            data_lis = i.split("/")
+            dia = int(data_lis[0])
+            mes = int(data_lis[1])
             ano = int(data_lis[2])
-            data = datetime(ano,mes,dia)
+            data = date(ano,mes,dia)
             prazo_dia = dia + 4
              # Obter o último dia do mês
             ultimo_dia = monthrange(ano, mes)[1]
@@ -230,9 +231,8 @@ class tratamento_db:
             if prazo_dia > ultimo_dia:
                 prazo_dia = ultimo_dia  # Definir o prazo para o último dia do mês
 
-            data_prazo = datetime(ano, mes, prazo_dia)
+            data_prazo = date(ano, mes, prazo_dia)
 
-            
             if prazo_dia > ultimo_dia:
                 prazo_dia = prazo_dia - ultimo_dia
                 mes = mes + 1
@@ -243,9 +243,8 @@ class tratamento_db:
                     mes = mes + 1
 
             #pegando informação no data frame
-            status = self.df.at[index_linha,'status']
+            status = str(self.df.at[index_linha,'status']).lower()
     
-            data_prazo = datetime(ano,mes,prazo_dia)
             #formatar data
             data_em_texto = '{}/{}/{}'.format(data_prazo.day,data_prazo.month,data_prazo.year)
             #formatar data
@@ -255,12 +254,11 @@ class tratamento_db:
             self.df.at[index_linha,'Data prazo'] = data_em_texto
             #adicionar no dataframe Data
             self.df.at[index_linha,'Data pedido'] = data_texto
-            
-            if data_prazo.date() < data_atual.date() and status != 'Concluido':
-                calculo = (data_atual.date() - data_prazo.date()).days
+            if status != 'concluído':
+                calculo = (data_atual - data_prazo).days
                 self.df.at[index_linha,'Situação'] = f'Fora do prazo, {calculo} dias'
             else:
-                if status == 'Concluido':
+                if status == 'concluído':
                     self.df.at[index_linha,'Situação'] = 'Produto enviado'
                 else:
                     self.df.at[index_linha,'Situação'] = 'Dentro do prazo'
@@ -351,49 +349,53 @@ class tratamento_db:
         for cliente, i in enumerate(bd.venda()):
             try:
                 #linha que transforma o i em string logo em seguida em uma lista pegando o valor 7 dessa lista no final transforma em inteiro
-                valor_lis = str(i).split(".")
-                data_ = valor_lis[9].split("-")
-                mes = int(data_[0])
+                valor_lis = str(i).split(",")
+                data_ = valor_lis[9].split("/")
+                mes = int(data_[1])
                 ano = int(data_[2])
                 valor_lista = float(valor_lis[7].replace(",","."))
-                if mes == 1 and ano == ano_atual:
-                    valor_janeiro += valor_lista
-
-                if mes == 2 and ano == ano_atual:
-                    valor_fevereiro += valor_lista
-
-                if mes == 3 and ano == ano_atual:
-                    valor_marco += valor_lista
-
-                if mes == 4 and ano == ano_atual:
-                    valor_abril += valor_lista
-
-                if mes == 5 and ano == ano_atual:
-                    valor_maio += valor_lista
-
-                if mes == 6 and ano == ano_atual:
-                    valor_junho += valor_lista
-
-                if mes == 7 and ano == ano_atual:
-                    valor_julho += valor_lista
-
-                if mes == 8 and ano == ano_atual:
-                    valor_agosto += valor_lista
-
-                if mes == 9 and ano == ano_atual:
-                    valor_setembro += valor_lista
-
-                if mes == 10 and ano == ano_atual:
-                    valor_outubro += valor_lista
-
-                if mes == 11 and ano == ano_atual:
-                    valor_novembro += valor_lista
-
-                if mes == 12 and ano == ano_atual:
-                    valor_dezembro += valor_lista
-
+                if ano == ano_atual:
+                    
+                    if mes == 1 :
+                        valor_janeiro += valor_lista
+                        
+                    elif mes == 2 :
+                        valor_fevereiro += valor_lista
+                        
+                    elif mes == 3 :
+                        valor_marco += valor_lista
+                        
+                    elif mes == 4 :
+                        valor_abril += valor_lista
+                        
+                    elif mes == 5 :
+                        valor_maio += valor_lista
+                        
+                    elif mes == 6 :
+                        valor_junho += valor_lista
+                        
+                    elif mes == 7 :
+                        valor_julho += valor_lista
+                        
+                    elif mes == 8 :
+                        valor_agosto += valor_lista
+                        
+                    elif mes == 9 :
+                        valor_setembro += valor_lista
+                        
+                    elif mes == 10 :
+                        valor_outubro += valor_lista
+                        
+                    elif mes == 11 :
+                        valor_novembro += valor_lista
+                
+                    elif mes == 12 :
+                        valor_dezembro += valor_lista
+                    
+                
             except Exception as e:
                 print(e)
+            
 
         """for cliente, i in enumerate(bd.estoque_()):
             try:
