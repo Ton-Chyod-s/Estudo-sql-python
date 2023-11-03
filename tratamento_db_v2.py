@@ -3,6 +3,7 @@ import BD_myframecg as bd
 import pandas as pd
 from datetime import datetime
 from calendar import monthrange
+import datetime
 
 class tratamento_db:
     def __init__(self):
@@ -299,6 +300,9 @@ class tratamento_db:
         fig.show()
 
     def dre(self):
+        data_atual = datetime.date.today()
+        ano_atual = data_atual.year
+        
         index = [
             'Descrição','Janeiro','Av','Fevereiro','Av','Março','Av','Abril','Av','Maio','Av',
             'Junho','Av','Julho','Av','Agosto','Av','Setembro','Av','Outubro','Av','Novembro',
@@ -345,90 +349,101 @@ class tratamento_db:
         valor_dezembro = 0
 
         for cliente, i in enumerate(bd.venda()):
-            print(i)
             try:
                 #linha que transforma o i em string logo em seguida em uma lista pegando o valor 7 dessa lista no final transforma em inteiro
                 valor_lis = str(i).split(".")
                 data_ = valor_lis[9].split("-")
                 mes = int(data_[0])
+                ano = int(data_[2])
                 valor_lista = float(valor_lis[7].replace(",","."))
-                if mes == 1:
+                if mes == 1 and ano == ano_atual:
                     valor_janeiro += valor_lista
-                if mes == 2:
+
+                if mes == 2 and ano == ano_atual:
                     valor_fevereiro += valor_lista
-                if mes == 3:
+
+                if mes == 3 and ano == ano_atual:
                     valor_marco += valor_lista
-                if mes == 4:
+
+                if mes == 4 and ano == ano_atual:
                     valor_abril += valor_lista
-                if mes == 5:
+
+                if mes == 5 and ano == ano_atual:
                     valor_maio += valor_lista
-                if mes == 6:
+
+                if mes == 6 and ano == ano_atual:
                     valor_junho += valor_lista
-                if mes == 7:
+
+                if mes == 7 and ano == ano_atual:
                     valor_julho += valor_lista
-                if mes == 8:
+
+                if mes == 8 and ano == ano_atual:
                     valor_agosto += valor_lista
-                if mes == 9:
+
+                if mes == 9 and ano == ano_atual:
                     valor_setembro += valor_lista
-                if mes == 10:
+
+                if mes == 10 and ano == ano_atual:
                     valor_outubro += valor_lista
-                if mes == 11:
+
+                if mes == 11 and ano == ano_atual:
                     valor_novembro += valor_lista
-                if mes == 12:
+
+                if mes == 12 and ano == ano_atual:
                     valor_dezembro += valor_lista
 
             except Exception as e:
                 print(e)
 
-        for cliente, i in enumerate(bd.estoque_()):
+        """for cliente, i in enumerate(bd.estoque_()):
             try:
                 #linha que transforma o i em string logo em seguida em uma lista pegando o valor 7 dessa lista no final transforma em inteiro
                 valor_lis = str(i).split(".")
-                for linha in valor_lis:
-                    data = str(valor_lis[5]).split(":")[1]
-                    data_ = int(data.split("/")[1])
-                    linha_lista = str(valor_lis[4]).split(":")
-                    linha_lista = int(linha_lista[1])
+               
+                data = str(valor_lis[11])
+                mes = int(data.split("/")[1])
+                ano = int(data.split("/")[2])
+                linha_lista = float(valor_lis[9].replace(",","."))
+            
+                if mes == 1 and ano == ano_atual:
+                    valor_janeiro -= linha_lista
 
-                    if mes == 1:
-                        calculo = valor_janeiro - linha_lista
-                        valor_janeiro = calculo
-                    if mes == 2:
-                        calculo = valor_fevereiro - linha_lista
-                        valor_fevereiro = calculo
-                    if mes == 3:
-                        calculo = valor_marco - linha_lista
-                        valor_marco = calculo
-                    if mes == 4:
-                        calculo = valor_abril - linha_lista
-                        valor_abril = calculo
-                    if mes == 5:
-                        calculo = valor_maio - linha_lista
-                        valor_maio = calculo
-                    if mes == 6:
-                        calculo = valor_junho - linha_lista
-                        valor_junho = calculo
-                    if mes == 7:
-                        calculo = valor_julho - linha_lista
-                        valor_julho = calculo
-                    if mes == 8:
-                        calculo = valor_agosto - linha_lista
-                        valor_agosto = calculo
-                    if mes == 9:
-                        calculo = valor_setembro - linha_lista
-                        valor_setembro = calculo
-                    if mes == 10:
-                        calculo = valor_outubro - linha_lista
-                        valor_outubro = calculo
-                    if mes == 11:
-                        calculo = valor_novembro - linha_lista
-                        valor_novembro = calculo
-                    if mes == 12:
-                        calculo = valor_dezembro - linha_lista
-                        valor_dezembro = calculo
+                if mes == 2 and ano == ano_atual:
+                    valor_fevereiro -= linha_lista
+
+                if mes == 3 and ano == ano_atual:
+                    valor_marco -= linha_lista
+
+                if mes == 4 and ano == ano_atual:
+                    valor_abril -= linha_lista
+
+                if mes == 5 and ano == ano_atual:
+                    valor_maio -= linha_lista
+
+                if mes == 6 and ano == ano_atual:
+                    valor_junho -= linha_lista
+
+                if mes == 7 and ano == ano_atual:
+                    valor_julho -= linha_lista
+
+                if mes == 8 and ano == ano_atual:
+                    valor_agosto -= linha_lista
+
+                if mes == 9 and ano == ano_atual:
+                    valor_setembro -= linha_lista
+
+                if mes == 10 and ano == ano_atual:
+                    valor_outubro -= linha_lista
+
+                if mes == 11 and ano == ano_atual:
+                    valor_novembro -= linha_lista
+
+                if mes == 12 and ano == ano_atual:
+                    valor_dezembro -= linha_lista
+            
 
             except Exception as e:
-                print(e)
+                print(e)"""
 
         return self.df
 

@@ -1,3 +1,8 @@
+import pandas as pd
+
+df = pd.read_excel('VENDA 2023.xlsx')
+print(df)
+
 estoque_2023= [
     'BRANDÃO MOLDURAS,20X25,5,78,23/11/2022',
     'BRANDÃO MOLDURAS, 15X21,3, 48.46, 23/11/2022',
@@ -149,3 +154,4 @@ dre_2023 = [
     'CPNJ',
     'LUCRO LIQUIDO'
 ]
+

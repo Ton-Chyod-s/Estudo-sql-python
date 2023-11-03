@@ -72,7 +72,7 @@ class Estoque(Base):
     ecomerce = Column(String, nullable=True)
     #modo grafico de representação
     def __repr__(self):
-        return f'id:{self.id}.Fornecedor:{self.fornecedor}.Produto:{self.produto}.Quantidade:{self.qtde}.Valor:{self.valor}.Data pedido:{self.data_pedido}.E-commerce:{self.ecomerce}'
+        return f'id.{self.id}.Fornecedor.{self.fornecedor}.Produto.{self.produto}.Quantidade.{self.qtde}.Valor.{self.valor}.Data pedido.{self.data_pedido}.E-commerce.{self.ecomerce}'
 #tabela DRE
 class Dre(Base):
     __tablename__ = 'dre'
