@@ -743,6 +743,44 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.addWidget(self.pushButton_deletar)
         spacerItem2 = QtWidgets.QSpacerItem(80, 10, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_3.addItem(spacerItem2)
+        self.pushButton_custo_fixo = QtWidgets.QPushButton(parent=self.frame_17)
+        self.pushButton_custo_fixo.setMinimumSize(QtCore.QSize(80, 0))
+        self.pushButton_custo_fixo.setStyleSheet("QPushButton {\n"
+"    background-color: rgb(50, 50, 50);\n"
+"    border: 2px solid rgb(60, 60, 60);\n"
+"    border-radius: 5px;\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(60, 60, 60);\n"
+"    border: 2px solid rgb(70,70, 70);\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(250, 230, 0);\n"
+"    border: 2px solid rgb(161, 0, 0);\n"
+"    color: rgb(35, 35, 35);\n"
+"}")
+        self.pushButton_custo_fixo.setObjectName("pushButton_custo_fixo")
+        self.horizontalLayout_3.addWidget(self.pushButton_custo_fixo)
+        self.pushButton_estoque = QtWidgets.QPushButton(parent=self.frame_17)
+        self.pushButton_estoque.setMinimumSize(QtCore.QSize(80, 0))
+        self.pushButton_estoque.setStyleSheet("QPushButton {\n"
+"    background-color: rgb(50, 50, 50);\n"
+"    border: 2px solid rgb(60, 60, 60);\n"
+"    border-radius: 5px;\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(60, 60, 60);\n"
+"    border: 2px solid rgb(70,70, 70);\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(250, 230, 0);\n"
+"    border: 2px solid rgb(161, 0, 0);\n"
+"    color: rgb(35, 35, 35);\n"
+"}")
+        self.pushButton_estoque.setObjectName("pushButton_estoque")
+        self.horizontalLayout_3.addWidget(self.pushButton_estoque)
         self.verticalLayout_20.addWidget(self.frame_17)
         self.tabWidget_formulario.addTab(self.tab_2, "")
         self.tab = QtWidgets.QWidget()
@@ -1186,7 +1224,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_23.setObjectName("verticalLayout_23")
         self.tableWidget_dre = QtWidgets.QTableWidget(parent=self.tab_3)
         self.tableWidget_dre.setObjectName("tableWidget_dre")
-        self.tableWidget_dre.setColumnCount(25)
+        self.tableWidget_dre.setColumnCount(13)
         self.tableWidget_dre.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_dre.setHorizontalHeaderItem(0, item)
@@ -1214,30 +1252,6 @@ class Ui_MainWindow(object):
         self.tableWidget_dre.setHorizontalHeaderItem(11, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_dre.setHorizontalHeaderItem(12, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_dre.setHorizontalHeaderItem(13, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_dre.setHorizontalHeaderItem(14, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_dre.setHorizontalHeaderItem(15, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_dre.setHorizontalHeaderItem(16, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_dre.setHorizontalHeaderItem(17, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_dre.setHorizontalHeaderItem(18, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_dre.setHorizontalHeaderItem(19, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_dre.setHorizontalHeaderItem(20, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_dre.setHorizontalHeaderItem(21, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_dre.setHorizontalHeaderItem(22, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_dre.setHorizontalHeaderItem(23, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_dre.setHorizontalHeaderItem(24, item)
         self.verticalLayout_23.addWidget(self.tableWidget_dre)
         self.tabWidget_planilha.addTab(self.tab_3, "")
         self.tab_4 = QtWidgets.QWidget()
@@ -1418,7 +1432,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(1)
         self.tabWidget_formulario.setCurrentIndex(0)
         self.tabWidget_planilha.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -1455,6 +1469,8 @@ class Ui_MainWindow(object):
         self.pushButton_inserir.setText(_translate("MainWindow", "inserir"))
         self.pushButton_atualizar.setText(_translate("MainWindow", "Atualizar"))
         self.pushButton_deletar.setText(_translate("MainWindow", "Deletar"))
+        self.pushButton_custo_fixo.setText(_translate("MainWindow", "Custo Fixo"))
+        self.pushButton_estoque.setText(_translate("MainWindow", "Estoque"))
         self.tabWidget_formulario.setTabText(self.tabWidget_formulario.indexOf(self.tab_2), _translate("MainWindow", "Venda"))
         self.label_6.setText(_translate("MainWindow", "Estoque"))
         self.pushButton_form_salvar.setText(_translate("MainWindow", "Salvar excel"))
@@ -1479,53 +1495,29 @@ class Ui_MainWindow(object):
         item = self.tableWidget_dre.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "Descrição"))
         item = self.tableWidget_dre.horizontalHeaderItem(1)
-        item.setText(_translate("MainWindow", "Jan"))
+        item.setText(_translate("MainWindow", "Janeiro"))
         item = self.tableWidget_dre.horizontalHeaderItem(2)
-        item.setText(_translate("MainWindow", "Av"))
+        item.setText(_translate("MainWindow", "Fevereiro"))
         item = self.tableWidget_dre.horizontalHeaderItem(3)
-        item.setText(_translate("MainWindow", "Fev"))
+        item.setText(_translate("MainWindow", "Março"))
         item = self.tableWidget_dre.horizontalHeaderItem(4)
-        item.setText(_translate("MainWindow", "Av"))
+        item.setText(_translate("MainWindow", "Abril"))
         item = self.tableWidget_dre.horizontalHeaderItem(5)
-        item.setText(_translate("MainWindow", "Mar"))
+        item.setText(_translate("MainWindow", "Maio"))
         item = self.tableWidget_dre.horizontalHeaderItem(6)
-        item.setText(_translate("MainWindow", "Av"))
+        item.setText(_translate("MainWindow", "Junho"))
         item = self.tableWidget_dre.horizontalHeaderItem(7)
-        item.setText(_translate("MainWindow", "Abr"))
+        item.setText(_translate("MainWindow", "Julho"))
         item = self.tableWidget_dre.horizontalHeaderItem(8)
-        item.setText(_translate("MainWindow", "Av"))
+        item.setText(_translate("MainWindow", "Agosto"))
         item = self.tableWidget_dre.horizontalHeaderItem(9)
-        item.setText(_translate("MainWindow", "Mai"))
+        item.setText(_translate("MainWindow", "Setembro"))
         item = self.tableWidget_dre.horizontalHeaderItem(10)
-        item.setText(_translate("MainWindow", "Av"))
+        item.setText(_translate("MainWindow", "Outubro"))
         item = self.tableWidget_dre.horizontalHeaderItem(11)
-        item.setText(_translate("MainWindow", "Jun"))
+        item.setText(_translate("MainWindow", "Novembro"))
         item = self.tableWidget_dre.horizontalHeaderItem(12)
-        item.setText(_translate("MainWindow", "Av"))
-        item = self.tableWidget_dre.horizontalHeaderItem(13)
-        item.setText(_translate("MainWindow", "Jul"))
-        item = self.tableWidget_dre.horizontalHeaderItem(14)
-        item.setText(_translate("MainWindow", "Av"))
-        item = self.tableWidget_dre.horizontalHeaderItem(15)
-        item.setText(_translate("MainWindow", "Ago"))
-        item = self.tableWidget_dre.horizontalHeaderItem(16)
-        item.setText(_translate("MainWindow", "Av"))
-        item = self.tableWidget_dre.horizontalHeaderItem(17)
-        item.setText(_translate("MainWindow", "Set"))
-        item = self.tableWidget_dre.horizontalHeaderItem(18)
-        item.setText(_translate("MainWindow", "Av"))
-        item = self.tableWidget_dre.horizontalHeaderItem(19)
-        item.setText(_translate("MainWindow", "Out"))
-        item = self.tableWidget_dre.horizontalHeaderItem(20)
-        item.setText(_translate("MainWindow", "Av"))
-        item = self.tableWidget_dre.horizontalHeaderItem(21)
-        item.setText(_translate("MainWindow", "Nov"))
-        item = self.tableWidget_dre.horizontalHeaderItem(22)
-        item.setText(_translate("MainWindow", "Av"))
-        item = self.tableWidget_dre.horizontalHeaderItem(23)
-        item.setText(_translate("MainWindow", "Dez"))
-        item = self.tableWidget_dre.horizontalHeaderItem(24)
-        item.setText(_translate("MainWindow", "Av"))
+        item.setText(_translate("MainWindow", "Dezembro"))
         self.tabWidget_planilha.setTabText(self.tabWidget_planilha.indexOf(self.tab_3), _translate("MainWindow", "DRE"))
         item = self.tableWidget_planilha_cliente.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "Nome"))

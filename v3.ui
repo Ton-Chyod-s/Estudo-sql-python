@@ -528,7 +528,7 @@ box-shadow: none;</string>
              <string notr="true"/>
             </property>
             <property name="currentIndex">
-             <number>2</number>
+             <number>1</number>
             </property>
             <widget class="QWidget" name="estoque_page">
              <layout class="QVBoxLayout" name="verticalLayout_19"/>
@@ -1426,6 +1426,66 @@ QPushButton:pressed {
                        </property>
                       </spacer>
                      </item>
+                     <item>
+                      <widget class="QPushButton" name="pushButton_custo_fixo">
+                       <property name="minimumSize">
+                        <size>
+                         <width>80</width>
+                         <height>0</height>
+                        </size>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">QPushButton {
+	background-color: rgb(50, 50, 50);
+	border: 2px solid rgb(60, 60, 60);
+	border-radius: 5px;
+	color: rgb(255, 255, 255);
+}
+QPushButton:hover {
+	background-color: rgb(60, 60, 60);
+	border: 2px solid rgb(70,70, 70);
+}
+QPushButton:pressed {
+	background-color: rgb(250, 230, 0);
+	border: 2px solid rgb(161, 0, 0);
+	color: rgb(35, 35, 35);
+}</string>
+                       </property>
+                       <property name="text">
+                        <string>Custo Fixo</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="pushButton_estoque">
+                       <property name="minimumSize">
+                        <size>
+                         <width>80</width>
+                         <height>0</height>
+                        </size>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">QPushButton {
+	background-color: rgb(50, 50, 50);
+	border: 2px solid rgb(60, 60, 60);
+	border-radius: 5px;
+	color: rgb(255, 255, 255);
+}
+QPushButton:hover {
+	background-color: rgb(60, 60, 60);
+	border: 2px solid rgb(70,70, 70);
+}
+QPushButton:pressed {
+	background-color: rgb(250, 230, 0);
+	border: 2px solid rgb(161, 0, 0);
+	color: rgb(35, 35, 35);
+}</string>
+                       </property>
+                       <property name="text">
+                        <string>Estoque</string>
+                       </property>
+                      </widget>
+                     </item>
                     </layout>
                    </widget>
                   </item>
@@ -2189,122 +2249,62 @@ QPushButton:pressed {
                        </column>
                        <column>
                         <property name="text">
-                         <string>Jan</string>
+                         <string>Janeiro</string>
                         </property>
                        </column>
                        <column>
                         <property name="text">
-                         <string>Av</string>
+                         <string>Fevereiro</string>
                         </property>
                        </column>
                        <column>
                         <property name="text">
-                         <string>Fev</string>
+                         <string>Março</string>
                         </property>
                        </column>
                        <column>
                         <property name="text">
-                         <string>Av</string>
+                         <string>Abril</string>
                         </property>
                        </column>
                        <column>
                         <property name="text">
-                         <string>Mar</string>
+                         <string>Maio</string>
                         </property>
                        </column>
                        <column>
                         <property name="text">
-                         <string>Av</string>
+                         <string>Junho</string>
                         </property>
                        </column>
                        <column>
                         <property name="text">
-                         <string>Abr</string>
+                         <string>Julho</string>
                         </property>
                        </column>
                        <column>
                         <property name="text">
-                         <string>Av</string>
+                         <string>Agosto</string>
                         </property>
                        </column>
                        <column>
                         <property name="text">
-                         <string>Mai</string>
+                         <string>Setembro</string>
                         </property>
                        </column>
                        <column>
                         <property name="text">
-                         <string>Av</string>
+                         <string>Outubro</string>
                         </property>
                        </column>
                        <column>
                         <property name="text">
-                         <string>Jun</string>
+                         <string>Novembro</string>
                         </property>
                        </column>
                        <column>
                         <property name="text">
-                         <string>Av</string>
-                        </property>
-                       </column>
-                       <column>
-                        <property name="text">
-                         <string>Jul</string>
-                        </property>
-                       </column>
-                       <column>
-                        <property name="text">
-                         <string>Av</string>
-                        </property>
-                       </column>
-                       <column>
-                        <property name="text">
-                         <string>Ago</string>
-                        </property>
-                       </column>
-                       <column>
-                        <property name="text">
-                         <string>Av</string>
-                        </property>
-                       </column>
-                       <column>
-                        <property name="text">
-                         <string>Set</string>
-                        </property>
-                       </column>
-                       <column>
-                        <property name="text">
-                         <string>Av</string>
-                        </property>
-                       </column>
-                       <column>
-                        <property name="text">
-                         <string>Out</string>
-                        </property>
-                       </column>
-                       <column>
-                        <property name="text">
-                         <string>Av</string>
-                        </property>
-                       </column>
-                       <column>
-                        <property name="text">
-                         <string>Nov</string>
-                        </property>
-                       </column>
-                       <column>
-                        <property name="text">
-                         <string>Av</string>
-                        </property>
-                       </column>
-                       <column>
-                        <property name="text">
-                         <string>Dez</string>
-                        </property>
-                       </column>
-                       <column>
-                        <property name="text">
-                         <string>Av</string>
+                         <string>Dezembro</string>
                         </property>
                        </column>
                       </widget>

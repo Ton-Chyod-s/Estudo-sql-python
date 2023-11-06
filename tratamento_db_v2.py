@@ -93,7 +93,7 @@ class tratamento_db:
                 #transformando primeira linha da lista em str
                 linha = str(i)
                 #separando em outra lista a str obtida
-                linha_str = linha.split(".")
+                linha_str = linha.split(",")
                 for linha_index in index:
                     #pegando primeiro valor da lista
                     try:
@@ -271,7 +271,6 @@ class tratamento_db:
         frame_clientes = self.cliente_s()
         #juntando os dois data frame pelo id
         tabela = pd.merge(frame_clientes, frame_vendas, on="id")
-        
         self.df = pd.DataFrame(tabela)
         return self.df
 
@@ -302,9 +301,9 @@ class tratamento_db:
         ano_atual = data_atual.year
         
         index = [
-            'Descrição','Janeiro','Av','Fevereiro','Av','Março','Av','Abril','Av','Maio','Av',
-            'Junho','Av','Julho','Av','Agosto','Av','Setembro','Av','Outubro','Av','Novembro',
-            'Av','Dezembro','Av'
+            'Descrição','Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro',
+            'Outubro','Novembro',
+            'Dezembro'
         ]
 
         self.df = pd.DataFrame(index)
@@ -345,107 +344,194 @@ class tratamento_db:
         valor_outubro = 0
         valor_novembro = 0
         valor_dezembro = 0
+        
+        despesa_janeiro = 0
+        despesa_fevereiro = 0 
+        despesa_marco = 0
+        despesa_abril = 0
+        despesa_maio = 0
+        despesa_junho = 0
+        despesa_julho = 0
+        despesa_agosto = 0
+        despesa_setembro = 0
+        despesa_outubro = 0
+        despesa_novembro = 0
+        despesa_dezembro = 0
 
-        for cliente, i in enumerate(bd.venda()):
-            try:
-                #linha que transforma o i em string logo em seguida em uma lista pegando o valor 7 dessa lista no final transforma em inteiro
-                valor_lis = str(i).split(",")
-                data_ = valor_lis[9].split("/")
-                mes = int(data_[1])
-                ano = int(data_[2])
-                valor_lista = float(valor_lis[7].replace(",","."))
-                if ano == ano_atual:
-                    
-                    if mes == 1 :
-                        valor_janeiro += valor_lista
-                        
-                    elif mes == 2 :
-                        valor_fevereiro += valor_lista
-                        
-                    elif mes == 3 :
-                        valor_marco += valor_lista
-                        
-                    elif mes == 4 :
-                        valor_abril += valor_lista
-                        
-                    elif mes == 5 :
-                        valor_maio += valor_lista
-                        
-                    elif mes == 6 :
-                        valor_junho += valor_lista
-                        
-                    elif mes == 7 :
-                        valor_julho += valor_lista
-                        
-                    elif mes == 8 :
-                        valor_agosto += valor_lista
-                        
-                    elif mes == 9 :
-                        valor_setembro += valor_lista
-                        
-                    elif mes == 10 :
-                        valor_outubro += valor_lista
-                        
-                    elif mes == 11 :
-                        valor_novembro += valor_lista
-                
-                    elif mes == 12 :
-                        valor_dezembro += valor_lista
-                    
-                
-            except Exception as e:
-                print(e)
-            
+        for num, i in enumerate(bd.venda()):
+            #linha que transforma o i em string logo em seguida em uma lista pegando o valor 7 dessa lista no final transforma em inteiro
+            valor_lis = str(i).split(",")
+            data_ = valor_lis[9].split("/")
+            mes = int(data_[1])
+            ano = int(data_[2])
+            valor_lista = float(valor_lis[7].replace(",","."))
+            if ano == ano_atual:
+                if mes == 1 :
+                    valor_janeiro += valor_lista     
+                elif mes == 2 :
+                    valor_fevereiro += valor_lista
+                elif mes == 3 :
+                    valor_marco += valor_lista    
+                elif mes == 4 :
+                    valor_abril += valor_lista
+                elif mes == 5 :
+                    valor_maio += valor_lista
+                elif mes == 6 :
+                    valor_junho += valor_lista
+                elif mes == 7 :
+                    valor_julho += valor_lista
+                elif mes == 8 :
+                    valor_agosto += valor_lista
+                elif mes == 9 :
+                    valor_setembro += valor_lista
+                elif mes == 10 :
+                    valor_outubro += valor_lista
+                elif mes == 11 :
+                    valor_novembro += valor_lista
+                elif mes == 12 :
+                    valor_dezembro += valor_lista
 
-        """for cliente, i in enumerate(bd.estoque_()):
+        for cliente, i in enumerate(bd.estoque_()):
             try:
                 #linha que transforma o i em string logo em seguida em uma lista pegando o valor 7 dessa lista no final transforma em inteiro
                 valor_lis = str(i).split(".")
-               
                 data = str(valor_lis[11])
                 mes = int(data.split("/")[1])
                 ano = int(data.split("/")[2])
                 linha_lista = float(valor_lis[9].replace(",","."))
             
                 if mes == 1 and ano == ano_atual:
-                    valor_janeiro -= linha_lista
-
-                if mes == 2 and ano == ano_atual:
-                    valor_fevereiro -= linha_lista
-
-                if mes == 3 and ano == ano_atual:
-                    valor_marco -= linha_lista
-
-                if mes == 4 and ano == ano_atual:
-                    valor_abril -= linha_lista
-
-                if mes == 5 and ano == ano_atual:
-                    valor_maio -= linha_lista
-
-                if mes == 6 and ano == ano_atual:
-                    valor_junho -= linha_lista
-
-                if mes == 7 and ano == ano_atual:
-                    valor_julho -= linha_lista
-
-                if mes == 8 and ano == ano_atual:
-                    valor_agosto -= linha_lista
-
-                if mes == 9 and ano == ano_atual:
-                    valor_setembro -= linha_lista
-
-                if mes == 10 and ano == ano_atual:
-                    valor_outubro -= linha_lista
-
-                if mes == 11 and ano == ano_atual:
-                    valor_novembro -= linha_lista
-
-                if mes == 12 and ano == ano_atual:
-                    valor_dezembro -= linha_lista
-            
-
+                    despesa_janeiro -= linha_lista
+                elif mes == 2 and ano == ano_atual:
+                    despesa_fevereiro -= linha_lista
+                elif mes == 3 and ano == ano_atual:
+                    despesa_marco -= linha_lista
+                elif mes == 4 and ano == ano_atual:
+                    despesa_abril -= linha_lista
+                elif mes == 5 and ano == ano_atual:
+                    despesa_maio -= linha_lista
+                elif mes == 6 and ano == ano_atual:
+                    despesa_junho -= linha_lista
+                elif mes == 7 and ano == ano_atual:
+                    despesa_julho -= linha_lista
+                elif mes == 8 and ano == ano_atual:
+                    despesa_agosto -= linha_lista
+                elif mes == 9 and ano == ano_atual:
+                    despesa_setembro -= linha_lista
+                elif mes == 10 and ano == ano_atual:
+                    despesa_outubro -= linha_lista
+                elif mes == 11 and ano == ano_atual:
+                    despesa_novembro -= linha_lista
+                elif mes == 12 and ano == ano_atual:
+                    despesa_dezembro -= linha_lista
             except Exception as e:
-                print(e)"""
+                print(e)
+
+        def preencher_dre(mes_nome,porcentagem_nome,biblioteca_mes,biblioteca_despesas):
+            try:
+                def jan_df(linha,valor,porcentagem):
+                    self.df.at[linha,mes_nome] = valor
+                #receita bruta
+                jan_df(0,biblioteca_mes,1)
+                #devolução
+                devolucao = 0
+                porcentagem_devolucao = devolucao / biblioteca_mes
+                jan_df(1,devolucao,porcentagem_devolucao)
+                #receita liquida
+                receita_liquida = biblioteca_mes - devolucao
+                porcentagem_receita = receita_liquida / biblioteca_mes
+                jan_df(2,receita_liquida,porcentagem_receita)
+                #CUSTO DE PROCDUTOS VENDIDOS/CPV
+                porcentagem_custo_vendidos = biblioteca_despesas * -1 / biblioteca_mes
+                jan_df(3,biblioteca_despesas * -1,porcentagem_custo_vendidos)
+                #ENTRADA DE MERCADORIA
+                porcentagem_custo_vendidos = biblioteca_despesas * -1 / biblioteca_mes
+                jan_df(4,biblioteca_despesas * -1,porcentagem_custo_vendidos)
+                #LUCRO BRUTO
+                lucro_bruto = ((biblioteca_despesas * -1) - receita_liquida) * -1
+                porcentagem_lucro_bruto = lucro_bruto / biblioteca_mes
+                jan_df(5,lucro_bruto,porcentagem_lucro_bruto)
+                #PRO LABORE
+                pro_labore = biblioteca_mes * 0.12
+                porcentagem_pro_labore = pro_labore / biblioteca_mes
+                jan_df(7,pro_labore,porcentagem_pro_labore)
+                #TI
+                ti = 45
+                porcentagem_ti = ti / biblioteca_mes
+                jan_df(8,ti,porcentagem_ti)
+                #DESPESAS/RECEITAS OPERACIONAIS GERAIS E ADM
+                despesas_gerais = pro_labore + ti
+                porcentagem_despesas_gerais = despesas_gerais / biblioteca_mes
+                jan_df(6,despesas_gerais,porcentagem_despesas_gerais)
+                #UBER FLASH
+                uber_flash = 0 / 12
+                porcentagem_uber_flash = uber_flash  / biblioteca_mes 
+                jan_df(10,uber_flash,porcentagem_uber_flash)
+                #SITE
+                site = 468 / 12
+                porcentagem_site = site  / biblioteca_mes
+                jan_df(11,site ,porcentagem_site)
+                #DNS
+                dns = 50 / 12
+                porcentagem_dns = dns  / biblioteca_mes
+                jan_df(12,dns ,porcentagem_dns)
+                #MARKETING
+                marketing = 40 / 12
+                porcentagem_marketing = marketing  / biblioteca_mes
+                jan_df(13,marketing ,porcentagem_marketing)
+                #NUVEM DE ARQUIVOS
+                nuvem_arquivos = 0 / 12
+                porcentagem_nuvem_arquivos = nuvem_arquivos  / biblioteca_mes
+                jan_df(14,nuvem_arquivos ,porcentagem_nuvem_arquivos)
+                #OUTRAS DESPESAS/RECEITAS
+                outras_despesas_receitas = uber_flash + site + dns + marketing + nuvem_arquivos
+                porcentagem_outras_despesas = outras_despesas_receitas / biblioteca_mes
+                jan_df(9,outras_despesas_receitas,porcentagem_outras_despesas)
+                #INVESTIMENTO
+                investimento = 150
+                porcentagem_investimento = investimento / biblioteca_mes
+                jan_df(16,investimento,porcentagem_investimento)
+                #RESULTADO DO MES ANTERIOR
+                resultado_anterior = 1
+                porcentagem_resultado_anterior = resultado_anterior / biblioteca_mes
+                jan_df(17,resultado_anterior,porcentagem_resultado_anterior)
+                #OUTRAS RECEITAS
+                outras_receitas = investimento + resultado_anterior
+                porcentagem_outras_receitas = outras_receitas / biblioteca_mes
+                jan_df(15,outras_receitas,porcentagem_outras_receitas)
+                #RESULTADO FINANCEIRO
+                resultado_financeiro = lucro_bruto - despesas_gerais - outras_despesas_receitas + outras_receitas
+                porcentagem_resultado_financeiro = resultado_financeiro / biblioteca_mes
+                jan_df(18, resultado_financeiro , porcentagem_resultado_financeiro)
+                #IR/CS
+                ir_cs = 0
+                porcentagem_ir_cs = ir_cs / biblioteca_mes
+                jan_df(19,ir_cs,porcentagem_ir_cs)
+                #CPNJ
+                cnpj = 0
+                porcentagem_cnpj = cnpj / biblioteca_mes
+                jan_df(20,cnpj,porcentagem_cnpj)
+                #LUCRO LIQUIDO
+                lucro_liquido = resultado_financeiro - ir_cs - cnpj
+                porcentagem_lucro_liquido = lucro_liquido / biblioteca_mes
+                jan_df(21,lucro_liquido, porcentagem_lucro_liquido)
+
+                return lucro_liquido
+            except:
+                pass
+        
+        resultado_janeiro = preencher_dre('Janeiro','Avj',valor_janeiro,despesa_janeiro)
+        resultado_fevereiro = preencher_dre('Fevereiro','Avf',valor_fevereiro,despesa_fevereiro)
+        resultado_marco = preencher_dre('Março','Avmç',valor_marco,despesa_marco)
+        resultado_abril = preencher_dre('Abril','Avab',valor_abril,despesa_abril)
+        resultado_maio = preencher_dre('Maio','Avmo',valor_maio,despesa_maio)
+        resultado_junho = preencher_dre('Junho','Avjn',valor_junho,despesa_junho)
+        resultado_julho = preencher_dre('Julho','Avjl',valor_julho,despesa_julho)
+        resultado_agosto = preencher_dre('Agosto','Avag',valor_agosto,despesa_agosto)
+        resultado_setembro = preencher_dre('Setembro','Avs',valor_setembro,despesa_setembro)
+        resultado_outubro = preencher_dre('Outubro','Avo',valor_outubro,despesa_outubro)
+        resultado_novembro = preencher_dre('Novembro','Avn',valor_novembro,despesa_novembro)
+        resultado_desembro = preencher_dre('Dezembro','Avd',valor_dezembro,despesa_dezembro)
 
         return self.df
 

@@ -37,7 +37,7 @@ class Principal(Ui_MainWindow, QMainWindow):
         self.pushButton_form_deletar.clicked.connect(self.deletar_linha_estoque)
         self.pushButton_form_procurar.clicked.connect(self.procurar_estoque)
         self.pushButton_plan_atualizar.clicked.connect(self.atualizar)
-        self.tableWidget_dre.setRowCount(35)
+        self.tableWidget_dre.setRowCount(22)
         self.tableWidget_planilha_cliente.setRowCount(150)
         self.tableWidget_planilha_estoque.setRowCount(50)
 
@@ -117,15 +117,45 @@ class Principal(Ui_MainWindow, QMainWindow):
                     self.tableWidget_dre.setItem(linha, coluna, item)
                 except Exception as e:
                     print(f"Erro ao preencher a linha {linha}: {str(e)}")
+
+        def preencher_planilha_numero(txt,coluna,linha):
+                try:
+                    # Adicionar um novo item à tabela
+                    item = QtWidgets.QTableWidgetItem(txt)
+                    self.tableWidget_dre.setItem(linha, coluna, item)
+                except Exception as e:
+                    print(f"Erro ao preencher a linha {linha}: {str(e)}")
+
         cont = 0
 
         for linha in range(len(tabela)):
-            dre = tabela['Descrição'][linha]
-            janeiro = tabela['Janeiro'][linha]
-            #janeiro_av = tabela['Av_janeiro'][linha]
-
+            dre = tabela["Descrição"][linha]
+            janeiro = f'{tabela["Janeiro"][linha]:.2f}'
+            fevereiro = f'{tabela["Fevereiro"][linha]:.2f}'
+            marco = f'{tabela["Março"][linha]:.2f}'
+            abril = f'{tabela["Abril"][linha]:.2f}'
+            maio = f'{tabela["Maio"][linha]:.2f}'
+            junho = f'{tabela["Junho"][linha]:.2f}'
+            julho = f'{tabela["Julho"][linha]:.2f}'
+            agosto = f'{tabela["Agosto"][linha]:.2f}'
+            setembro = f'{tabela["Setembro"][linha]:.2f}'
+            outubro = f'{tabela["Outubro"][linha]:.2f}'
+            novembro = f'{tabela["Novembro"][linha]:.2f}'
+            dezembro = f'{tabela["Dezembro"][linha]:.2f}'
+            
             preencher_planilha(dre,0,cont)
-            preencher_planilha(janeiro,1,cont)
+            preencher_planilha_numero(f'{janeiro}',1,cont)
+            preencher_planilha_numero(f'{fevereiro}',2,cont)
+            preencher_planilha_numero(f'{marco}',3,cont)
+            preencher_planilha_numero(f'{abril}',4,cont)
+            preencher_planilha_numero(f'{maio}',5,cont)
+            preencher_planilha_numero(f'{junho}',6,cont)
+            preencher_planilha_numero(f'{julho}',7,cont)
+            preencher_planilha_numero(f'{agosto}',8,cont)
+            preencher_planilha_numero(f'{setembro}',9,cont)
+            preencher_planilha_numero(f'{outubro}',10,cont)
+            preencher_planilha_numero(f'{novembro}',11,cont)
+            preencher_planilha_numero(f'{dezembro}',12,cont)
 
             cont += 1
 
