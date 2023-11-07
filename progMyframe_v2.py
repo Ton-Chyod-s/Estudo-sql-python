@@ -14,7 +14,7 @@ import plotly.offline as pyo
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWidgets import QMainWindow, QApplication
 from PyQt6 import QtWidgets
-
+from time import sleep
 
 class Principal(Ui_MainWindow, QMainWindow):
     def __init__(self,parent = None) -> None:
@@ -175,18 +175,18 @@ class Principal(Ui_MainWindow, QMainWindow):
         caminho_bd = os.path.abspath('myframecg.db')  
         try:
             if os.path.exists(caminho_bd):    
-                nome = isEmpty(self.lineEdit_nome.text())
-                telefone = isEmpty(self.lineEdit_telefone.text())
-                email = isEmpty(self.lineEdit_email.text())
-                localidade = isEmpty(self.lineEdit_localidade.text())
-                descricao = isEmpty(self.lineEdit_descricao.text())
-                quantidade = isEmpty(self.lineEdit_quantidade.text())
-                valor = isEmpty(self.lineEdit_valor.text())
-                data = isEmpty(self.lineEdit_data.text())
-                uberflash = isEmpty(self.lineEdit_uberflash.text())
-                impressao = isEmpty(self.lineEdit_impressao.text())
-                outros = isEmpty(self.lineEdit_outros.text())
-                status = isEmpty(self.lineEdit_status.text())
+                nome = isEmpty(self.lineEdit_nome_2.text())
+                telefone = isEmpty(self.lineEdit_telefone_2.text())
+                email = isEmpty(self.lineEdit_email_2.text())
+                localidade = isEmpty(self.lineEdit_localidade_2.text())
+                descricao = isEmpty(self.lineEdit_descricao_3.text())
+                quantidade = isEmpty(self.lineEdit_quantidade_3.text())
+                valor = isEmpty(self.lineEdit_valor_3.text())
+                data = isEmpty(self.lineEdit_data_3.text())
+                uberflash = isEmpty(self.lineEdit_uberflash_2.text())
+                impressao = isEmpty(self.lineEdit_impressao_2.text())
+                outros = isEmpty(self.lineEdit_outros_2.text())
+                status = isEmpty(self.lineEdit_status_2.text())
 
                 #inserindo informações no banco de dados
                 run(bd.venda_realizada(nome,email,telefone,localidade,descricao,quantidade,valor,data,uberflash,impressao,outros,status))
@@ -226,26 +226,26 @@ class Principal(Ui_MainWindow, QMainWindow):
             else:
                 return txt
             
-        nome = isEmpty(self.lineEdit_form_nome.text())
+        nome = isEmpty(self.estoque_popup.lineEdit_form_nome.text())
         if nome == None:
             self.label_erro.setText('Campo em branco')
             self.frame_erro.setStyleSheet("background-color: red;")
             self.frame_erro.show()
         else:    
-            produto = isEmpty(self.lineEdit_form_produto.text())
-            ecomerce = isEmpty(self.lineEdit_form_ecomerce.text())
-            quantidade = isEmpty(self.lineEdit_form_quantidade.text())
-            valor = isEmpty(self.lineEdit_form_valor.text())
-            data = isEmpty(self.lineEdit_form_data.text())
+            produto = isEmpty(self.estoque_popup.lineEdit_form_produto.text())
+            ecomerce = isEmpty(self.estoque_popup.lineEdit_form_ecomerce.text())
+            quantidade = isEmpty(self.estoque_popup.lineEdit_form_quantidade.text())
+            valor = isEmpty(self.estoque_popup.lineEdit_form_valor.text())
+            data = isEmpty(self.estoque_popup.lineEdit_form_data.text())
 
             run(bd.estoque(nome,produto,quantidade,valor,data,ecomerce))
 
-            self.lineEdit_form_nome.setText('')
-            self.lineEdit_form_produto.setText('')
-            self.lineEdit_form_ecomerce.setText('')
-            self.lineEdit_form_quantidade.setText('')
-            self.lineEdit_form_valor.setText('')
-            self.lineEdit_form_data.setText('')
+            self.estoque_popup.lineEdit_form_nome.setText('')
+            self.estoque_popup.lineEdit_form_produto.setText('')
+            self.estoque_popup.lineEdit_form_ecomerce.setText('')
+            self.estoque_popup.lineEdit_form_quantidade.setText('')
+            self.estoque_popup.lineEdit_form_valor.setText('')
+            self.estoque_popup.lineEdit_form_data.setText('')
 
             self.label_erro.setText('Dados inserido com sucesso!')
             self.frame_erro.setStyleSheet("background-color: green;")
@@ -307,28 +307,111 @@ class Principal(Ui_MainWindow, QMainWindow):
         self.frame_erro.hide()
         self.stackedWidget.setCurrentWidget(self.resumo_page)
     
+    def popup(self):
+        from popup import Ui_MainWindow_estoque
+
+        self.janela = QtWidgets.QMainWindow()
+        self.estoque_popup = Ui_MainWindow_estoque()
+        self.estoque_popup.setupUi(self.janela)
+        self.janela.show()
+        qt.exec()
+
     def estoque(self):
         from estoque import Ui_MainWindow_estoque
 
         self.janela = QtWidgets.QMainWindow()
-        self.estoque_ = Ui_MainWindow_estoque()
-        self.estoque_.setupUi(self.janela)
+        self.estoque_popup = Ui_MainWindow_estoque()
+        self.estoque_popup.setupUi(self.janela)
+        self.estoque_popup.pushButton_form_inserir.clicked.connect(self.inserir_estoque)
+        self.estoque_popup.pushButton_form_atualizar.clicked.connect(self.atualizar_estoque)
+        self.estoque_popup.pushButton_form_deletar.clicked.connect(self.deletar_estoque)
+        self.estoque_popup.pushButton_form_procurar.clicked.connect(self.procurar_estoque)
+        self.estoque_popup.pushButton_form_salvar.clicked.connect(self.salvar_estoque)
         self.janela.show()
         qt.exec()
-        #self.pushButton_form_inserir.clicked.connect(self.inserir_estoque)
-        #self.pushButton_form_atualizar.clicked.connect(self.atualiza_estoque)
-        #self.pushButton_form_deletar.clicked.connect(self.deletar_linha_estoque)
-        #self.pushButton_form_procurar.clicked.connect(self.procurar_estoque)
-    
+
+    def atualizar_estoque(self):
+        pass
+
+    def deletar_estoque(self):
+        pass
+
+    def salvar_estoque(self):
+        pass
+
     def custos_fixos(self):
         from custos_fixos import Ui_MainWindow_estoque
 
+        principal.hide()
         self.janela = QtWidgets.QMainWindow()
         self.estoque_ = Ui_MainWindow_estoque()
         self.estoque_.setupUi(self.janela)
+        self.estoque_.pushButton_form_inserir.clicked.connect(self.inserir_custos)
+        self.estoque_.pushButton_form_atualizar.clicked.connect(self.atualizar_custos)
+        self.estoque_.pushButton_form_deletar.clicked.connect(self.deletar_custos)
+        self.estoque_.pushButton_form_procurar.clicked.connect(self.procurar_custos)
+        self.estoque_.pushButton_form_salvar.clicked.connect(self.salvar_custos)
+
         self.janela.show()
         qt.exec()
 
+    def inserir_custos(self):
+        def isEmpty(txt):
+            if txt == '':
+                txt = 'vazio'
+            else:
+                return txt
+            
+        pro_labore = isEmpty(self.estoque_.lineEdit_form_nome.text())
+        ti = isEmpty(self.estoque_.lineEdit_form_produto.text())
+        site = isEmpty(self.estoque_.lineEdit_form_ecomerce.text())
+        dns = isEmpty(self.estoque_.lineEdit_form_quantidade.text())
+        marketing = isEmpty(self.estoque_.lineEdit_form_valor.text())
+        nuvem_arquivos = isEmpty(self.estoque_.lineEdit_form_data.text())
+
+        run(bd.custos_fixos(pro_labore,ti,site,dns,marketing,nuvem_arquivos))
+
+        self.estoque_.lineEdit_form_nome.setText('')
+        self.estoque_.lineEdit_form_produto.setText('')
+        self.estoque_.lineEdit_form_ecomerce.setText('')
+        self.estoque_.lineEdit_form_quantidade.setText('')
+        self.estoque_.lineEdit_form_valor.setText('')
+        self.estoque_.lineEdit_form_data.setText('')
+        
+        self.janela.hide()
+        principal.show()
+        qt.exec()
+
+    def atualizar_custos(self):
+        def isEmpty(txt):
+                if txt == '':
+                    txt = 'vazio'
+                else:
+                    return txt
+            
+        pro_labore = isEmpty(self.estoque_.lineEdit_form_nome.text())
+        ti = isEmpty(self.estoque_.lineEdit_form_produto.text())
+        site = isEmpty(self.estoque_.lineEdit_form_ecomerce.text())
+        dns = isEmpty(self.estoque_.lineEdit_form_quantidade.text())
+        marketing = isEmpty(self.estoque_.lineEdit_form_valor.text())
+        nuvem_arquivos = isEmpty(self.estoque_.lineEdit_form_data.text())
+
+        self.estoque_.lineEdit_form_nome.setText('')
+        self.estoque_.lineEdit_form_produto.setText('')
+        self.estoque_.lineEdit_form_ecomerce.setText('')
+        self.estoque_.lineEdit_form_quantidade.setText('')
+        self.estoque_.lineEdit_form_valor.setText('')
+        self.estoque_.lineEdit_form_data.setText('')
+    
+    def deletar_custos(self):
+        pass
+
+    def procurar_custos(self):
+        pass
+
+    def salvar_custos(self):
+        pass
+        
     def fechar_popup(self):
         self.frame_erro.hide()
     
@@ -445,17 +528,22 @@ class Principal(Ui_MainWindow, QMainWindow):
             self.frame_erro.show()
 
     def procurar_estoque(self):
-        nome_estoque = self.lineEdit_form_procurar_nome.text()
+        nome_estoque = self.estoque_popup.lineEdit_form_procurar_nome.text()
+        
         try:
             self.estoque_ = str(run(bd.buscar_fornecedor(nome_estoque))).replace("[","").replace("]","")
-            self.estoque_list = self.estoque_.split('.')
+            lol = self.estoque_.split(", ")
 
-            self.lineEdit_form_nome.setText(self.estoque_list[3])
-            self.lineEdit_form_produto.setText(self.estoque_list[5])
-            self.lineEdit_form_ecomerce.setText(self.estoque_list[13])
-            self.lineEdit_form_quantidade.setText(self.estoque_list[7])
-            self.lineEdit_form_valor.setText(self.estoque_list[9])
-            self.lineEdit_form_data.setText(self.estoque_list[11])
+            for i in lol:
+                self.estoque_list = i.split('.')
+            
+            self.estoque_popup.lineEdit_form_nome.setText(self.estoque_list[3])
+            self.estoque_popup.lineEdit_form_produto.setText(self.estoque_list[5])
+            self.estoque_popup.lineEdit_form_ecomerce.setText(self.estoque_list[13])
+            self.estoque_popup.lineEdit_form_quantidade.setText(self.estoque_list[7])
+            self.estoque_popup.lineEdit_form_valor.setText(self.estoque_list[9])
+            self.estoque_popup.lineEdit_form_data.setText(self.estoque_list[11])
+
         except:
             self.label_erro.setText('Cliente não encontrado no banco de dados!')
             self.frame_erro.setStyleSheet("background-color: red;")

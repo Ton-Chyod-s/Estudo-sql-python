@@ -73,7 +73,7 @@ class Estoque(Base):
     ecomerce = Column(String, nullable=True)
     #modo grafico de representação
     def __repr__(self):
-        return f'id.{self.id}.Fornecedor.{self.fornecedor}.Produto.{self.produto}.Quantidade.{self.qtde}.Valor.{self.valor}.Data pedido.{self.data_pedido}.E-commerce.{self.ecomerce}'
+        return f'id.{self.id}.Fornecedor.{self.fornecedor}.Produto.{self.produto}.Quantidade.{self.qtde}.Valor.{self.valor}.Data_pedido.{self.data_pedido}.E-commerce.{self.ecomerce}'
 #tabela DRE
 class Dre(Base):
     __tablename__ = 'dre'
@@ -82,12 +82,31 @@ class Dre(Base):
     descricao = Column(String(50), nullable=True)
     def __repr__(self):
         return f'Descrição:{self.descricao}'
-    
+#tabela custos
+class Custos_fixos(Base):
+    __tablename__ = 'custos fixos'
+    #coluna da tabela
+    id =  Column(Integer, primary_key=True)
+    pro_labore = Column(Integer, nullable=False)
+    ti = Column(Integer, nullable=False)
+    site = Column(Integer, nullable=False)
+    dns = Column(Integer, nullable=False)
+    marketing = Column(Integer, nullable=False)
+    nuvem_arquivos = Column(Integer, nullable=False)
+    def __repr__(self):
+        return f'Pro Labore,{self.pro_labore},TI,{self.ti},Site,{self.site},DNS,{self.dns},Marketing,{self.marketing},Nuvem de arquivos,{self.nuvem_arquivos}'
+
 #função para criar banco de dadps 
 async def create_database():
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.drop_all)
         await conn.run_sync(Base.metadata.create_all)
+
+async def custos_fixos(pro_labore, ti , site, dns, marketing, nuvem_arquivos):
+    async with session() as s:
+        pessoa = (Custos_fixos(pro_labore=pro_labore, ti=ti, site=site, dns=dns, marketing=marketing, nuvem_arquivos=nuvem_arquivos))
+        s.add(pessoa)
+        await s.commit()
 
 async def inserir_dre(descricao):
     async with session() as s:
