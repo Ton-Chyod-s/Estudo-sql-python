@@ -319,6 +319,7 @@ class Principal(Ui_MainWindow, QMainWindow):
     def estoque(self):
         from estoque import Ui_MainWindow_estoque
 
+        principal.hide()
         self.janela = QtWidgets.QMainWindow()
         self.estoque_popup = Ui_MainWindow_estoque()
         self.estoque_popup.setupUi(self.janela)
@@ -327,6 +328,7 @@ class Principal(Ui_MainWindow, QMainWindow):
         self.estoque_popup.pushButton_form_deletar.clicked.connect(self.deletar_estoque)
         self.estoque_popup.pushButton_form_procurar.clicked.connect(self.procurar_estoque)
         self.estoque_popup.pushButton_form_salvar.clicked.connect(self.salvar_estoque)
+
         self.janela.show()
         qt.exec()
 
@@ -395,6 +397,10 @@ class Principal(Ui_MainWindow, QMainWindow):
         dns = isEmpty(self.estoque_.lineEdit_form_quantidade.text())
         marketing = isEmpty(self.estoque_.lineEdit_form_valor.text())
         nuvem_arquivos = isEmpty(self.estoque_.lineEdit_form_data.text())
+
+        lol = bd.custos_fixos_ler
+        run(bd.atualizar_custo_pro_labore())
+
 
         self.estoque_.lineEdit_form_nome.setText('')
         self.estoque_.lineEdit_form_produto.setText('')

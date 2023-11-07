@@ -292,6 +292,48 @@ async def atualizar_estoque_fornecedor(dado_antigo, dado_novo):
         )
         await s.commit()
 
+async def atualizar_custo_pro_labore(dado_antigo, dado_novo):
+    async with session() as s:
+        query = await s.execute(
+            update(Custos_fixos).where(Custos_fixos.pro_labore == dado_antigo).values(pro_labore=dado_novo)
+        )
+        await s.commit()
+
+async def atualizar_custo_ti(dado_antigo, dado_novo):
+    async with session() as s:
+        query = await s.execute(
+            update(Custos_fixos).where(Custos_fixos.ti == dado_antigo).values(ti=dado_novo)
+        )
+        await s.commit()
+
+async def atualizar_custo_site(dado_antigo, dado_novo):
+    async with session() as s:
+        query = await s.execute(
+            update(Custos_fixos).where(Custos_fixos.site == dado_antigo).values(site=dado_novo)
+        )
+        await s.commit()
+
+async def atualizar_custo_dns(dado_antigo, dado_novo):
+    async with session() as s:
+        query = await s.execute(
+            update(Custos_fixos).where(Custos_fixos.dns == dado_antigo).values(dns=dado_novo)
+        )
+        await s.commit()
+
+async def atualizar_custo_marketing(dado_antigo, dado_novo):
+    async with session() as s:
+        query = await s.execute(
+            update(Custos_fixos).where(Custos_fixos.marketing == dado_antigo).values(marketing=dado_novo)
+        )
+        await s.commit()
+
+async def atualizar_custo_nuvem_arquivos(dado_antigo, dado_novo):
+    async with session() as s:
+        query = await s.execute(
+            update(Custos_fixos).where(Custos_fixos.nuvem_arquivos == dado_antigo).values(nuvem_arquivos=dado_novo)
+        )
+        await s.commit()
+
 async def deletar_pessoa(nome):
     async with session() as s:
         query = await s.execute(
@@ -320,6 +362,13 @@ async def deletar_linha_estoque(nome):
         )
         await s.commit()
 
+async def deletar_linha_custo(id):
+    async with session() as s:
+        query = await s.execute(
+            delete(Custos_fixos).where(Custos_fixos.id == id)
+        )
+        await s.commit()
+
 async def ler_planilha(txt):
     async with session() as s:
         query = await s.execute(
@@ -344,6 +393,8 @@ def estoque_():
 def dre_():
     return run(ler_planilha(Dre))
 
+def custos_fixos_ler():
+    return run(ler_planilha(Custos_fixos))
 
 if __name__ == '__main__':
     run(create_database())
