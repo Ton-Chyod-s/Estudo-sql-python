@@ -15,6 +15,7 @@ from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWidgets import QMainWindow, QApplication
 from PyQt6 import QtWidgets
 
+
 class Principal(Ui_MainWindow, QMainWindow):
     def __init__(self,parent = None) -> None:
         self.tratamento = tr.tratamento_db()
@@ -22,25 +23,22 @@ class Principal(Ui_MainWindow, QMainWindow):
         super().__init__(parent)
         super().setupUi(self)
         self.frame_erro.hide()
-        self.pushButton_inserir.clicked.connect(self.inserir_cliente)
-        self.pushButton_procurar.clicked.connect(self.procurar_pessoa)
-        self.pushButton_criarBD.clicked.connect(self.criar_bd)
+        self.pushButton_inserir_2.clicked.connect(self.inserir_cliente)
+        self.pushButton_procurar_21.clicked.connect(self.procurar_pessoa)
+        self.pushButton_criarBD_2.clicked.connect(self.criar_bd)
         self.pushButton_formulario.clicked.connect(self.formulario)
         self.pushButton_planilha.clicked.connect(self.planilha)
         self.pushButton_dashboard.clicked.connect(self.dashboard)
-        self.pushButton_form_inserir.clicked.connect(self.inserir_estoque)
         self.pushButton_erro.clicked.connect(self.fechar_popup)
         self.pushButton_baixar.clicked.connect(self.baixar_excel)
-        self.pushButton_atualizar.clicked.connect(self.atualizar_bd)
-        self.pushButton_deletar.clicked.connect(self.deletar_linha_bd)
-        self.pushButton_form_atualizar.clicked.connect(self.atualiza_estoque)
-        self.pushButton_form_deletar.clicked.connect(self.deletar_linha_estoque)
-        self.pushButton_form_procurar.clicked.connect(self.procurar_estoque)
+        self.pushButton_atualizar_2.clicked.connect(self.atualizar_bd)
+        self.pushButton_deletar_2.clicked.connect(self.deletar_linha_bd)
         self.pushButton_plan_atualizar.clicked.connect(self.atualizar)
         self.tableWidget_dre.setRowCount(22)
         self.tableWidget_planilha_cliente.setRowCount(150)
         self.tableWidget_planilha_estoque.setRowCount(50)
-
+        self.pushButton_estoque_2.clicked.connect(self.estoque)
+        self.pushButton_custo_fixo_2.clicked.connect(self.custos_fixos)
         self.planilha_venda()
         self.planilha_estoque()
         self.planilha_dre()
@@ -192,18 +190,18 @@ class Principal(Ui_MainWindow, QMainWindow):
 
                 #inserindo informações no banco de dados
                 run(bd.venda_realizada(nome,email,telefone,localidade,descricao,quantidade,valor,data,uberflash,impressao,outros,status))
-                self.lineEdit_nome.setText('')
-                self.lineEdit_telefone.setText('')
-                self.lineEdit_email.setText('')
-                self.lineEdit_localidade.setText('')
-                self.lineEdit_descricao.setText('')
-                self.lineEdit_quantidade.setText('')
-                self.lineEdit_valor.setText('')
-                self.lineEdit_data.setText('')
-                self.lineEdit_uberflash.setText('')
-                self.lineEdit_impressao.setText('')
-                self.lineEdit_outros.setText('')
-                self.lineEdit_status.setText('')
+                self.lineEdit_nome_2.setText('')
+                self.lineEdit_telefone_2.setText('')
+                self.lineEdit_email_2.setText('')
+                self.lineEdit_localidade_2.setText('')
+                self.lineEdit_descricao_3.setText('')
+                self.lineEdit_quantidade_3.setText('')
+                self.lineEdit_valor_3.setText('')
+                self.lineEdit_data_3.setText('')
+                self.lineEdit_uberflash_2.setText('')
+                self.lineEdit_impressao_2.setText('')
+                self.lineEdit_outros_2.setText('')
+                self.lineEdit_status_2.setText('')
 
                 self.label_erro.setText('Dados inserido com sucesso!')
                 self.frame_erro.setStyleSheet("background-color: green;")
@@ -258,29 +256,29 @@ class Principal(Ui_MainWindow, QMainWindow):
             self.timer.start(1500)  # 1000 ms = 1 segundo
 
     def procurar_pessoa(self):
-        procurar_nome = self.lineEdit_procurar.text()
+        procurar_nome = self.lineEdit_procurar_2.text()
         try:
             pessoa = str(run(bd.buscar_pessoa(procurar_nome))).replace("[","").replace("]","").replace(",",":")
             self.pessoa_registro = pessoa.split(':')
         
             venda = str(run(bd.buscar_id_venda(self.pessoa_registro[1]))).replace("[","").replace("]","")
-            self.venda_registro = venda.split('.')
+            self.venda_registro = venda.split(',')
 
             despesas_venda = str(run(bd.buscar_id_despesas(self.venda_registro[1]))).replace("[","").replace("]","")
             self.despesas_venda_registro = despesas_venda.split(':')
 
-            self.lineEdit_nome.setText(self.pessoa_registro[3])
-            self.lineEdit_telefone.setText(self.pessoa_registro[7])
-            self.lineEdit_email.setText(self.pessoa_registro[5])
-            self.lineEdit_localidade.setText(self.pessoa_registro[9])
-            self.lineEdit_descricao.setText(self.venda_registro[3])
-            self.lineEdit_quantidade.setText(self.venda_registro[5])
-            self.lineEdit_valor.setText(self.venda_registro[7])
-            self.lineEdit_data.setText(self.venda_registro[9])
-            self.lineEdit_uberflash.setText(self.despesas_venda_registro[1])
-            self.lineEdit_impressao.setText(self.despesas_venda_registro[3])
-            self.lineEdit_outros.setText(self.despesas_venda_registro[5])
-            self.lineEdit_status.setText(self.venda_registro[13])
+            self.lineEdit_nome_2.setText(self.pessoa_registro[3])
+            self.lineEdit_telefone_2.setText(self.pessoa_registro[7])
+            self.lineEdit_email_2.setText(self.pessoa_registro[5])
+            self.lineEdit_localidade_2.setText(self.pessoa_registro[9])
+            self.lineEdit_descricao_3.setText(self.venda_registro[3])
+            self.lineEdit_quantidade_3.setText(self.venda_registro[5])
+            self.lineEdit_valor_3.setText(self.venda_registro[7])
+            self.lineEdit_data_3.setText(self.venda_registro[9])
+            self.lineEdit_uberflash_2.setText(self.despesas_venda_registro[1])
+            self.lineEdit_impressao_2.setText(self.despesas_venda_registro[3])
+            self.lineEdit_outros_2.setText(self.despesas_venda_registro[5])
+            self.lineEdit_status_2.setText(self.venda_registro[13])
 
         except:
             self.label_erro.setText('Cliente não encontrado no banco de dados!')
@@ -310,9 +308,27 @@ class Principal(Ui_MainWindow, QMainWindow):
         self.stackedWidget.setCurrentWidget(self.resumo_page)
     
     def estoque(self):
-        self.frame_erro.hide()
-        self.stackedWidget.setCurrentWidget(self.estoque_page)
+        from estoque import Ui_MainWindow_estoque
+
+        self.janela = QtWidgets.QMainWindow()
+        self.estoque_ = Ui_MainWindow_estoque()
+        self.estoque_.setupUi(self.janela)
+        self.janela.show()
+        qt.exec()
+        #self.pushButton_form_inserir.clicked.connect(self.inserir_estoque)
+        #self.pushButton_form_atualizar.clicked.connect(self.atualiza_estoque)
+        #self.pushButton_form_deletar.clicked.connect(self.deletar_linha_estoque)
+        #self.pushButton_form_procurar.clicked.connect(self.procurar_estoque)
     
+    def custos_fixos(self):
+        from custos_fixos import Ui_MainWindow_estoque
+
+        self.janela = QtWidgets.QMainWindow()
+        self.estoque_ = Ui_MainWindow_estoque()
+        self.estoque_.setupUi(self.janela)
+        self.janela.show()
+        qt.exec()
+
     def fechar_popup(self):
         self.frame_erro.hide()
     
@@ -334,18 +350,18 @@ class Principal(Ui_MainWindow, QMainWindow):
         
     def atualizar_bd(self):
         try:
-            nome_novo = self.lineEdit_nome.text()
-            telefone_novo = self.lineEdit_telefone.text()
-            email_novo = self.lineEdit_email.text()
-            localidade_novo = self.lineEdit_localidade.text()
-            descricao_novo = self.lineEdit_descricao.text()
-            quantidade_novo = self.lineEdit_quantidade.text()
-            valor_novo = self.lineEdit_valor.text()
-            data_novo = self.lineEdit_data.text()
-            uber_novo = self.lineEdit_uberflash.text()
-            impressao_novo = self.lineEdit_impressao.text()
-            outros_novo = self.lineEdit_outros.text()
-            status_novo = self.lineEdit_status.text()
+            nome_novo = self.lineEdit_nome_2.text()
+            telefone_novo = self.lineEdit_telefone_2.text()
+            email_novo = self.lineEdit_email_2.text()
+            localidade_novo = self.lineEdit_localidade_2.text()
+            descricao_novo = self.lineEdit_descricao_3.text()
+            quantidade_novo = self.lineEdit_quantidade_3.text()
+            valor_novo = self.lineEdit_valor_3.text()
+            data_novo = self.lineEdit_data_3.text()
+            uber_novo = self.lineEdit_uberflash_2.text()
+            impressao_novo = self.lineEdit_impressao_2.text()
+            outros_novo = self.lineEdit_outros_2.text()
+            status_novo = self.lineEdit_status_2.text()
 
             run(bd.atualizar_cliente_nome(self.pessoa_registro[3],nome_novo))
             run(bd.atualizar_cliente_whats_app(self.pessoa_registro[7],telefone_novo))
@@ -356,22 +372,22 @@ class Principal(Ui_MainWindow, QMainWindow):
             run(bd.atualizar_venda_valor(self.venda_registro[7],valor_novo))
             run(bd.atualizar_venda_data_pedido(self.venda_registro[9],data_novo))
             run(bd.atualizar_despesasvenda_uber_flash(self.venda_registro[1],uber_novo))
-            run(bd.atualizar_despesasvenda_impressao(self.despesas_venda_registro[3],impressao_novo))
+            run(bd.atualizar_despesasvenda_impressao(self.venda_registro[1],impressao_novo))
             run(bd.atualizar_despesasvenda_outros(self.venda_registro[1],outros_novo))
             run(bd.atualizar_venda_status(self.venda_registro[13],status_novo))
 
-            self.lineEdit_nome.setText('')
-            self.lineEdit_telefone.setText('')
-            self.lineEdit_email.setText('')
-            self.lineEdit_localidade.setText('')
-            self.lineEdit_descricao.setText('')
-            self.lineEdit_quantidade.setText('')
-            self.lineEdit_valor.setText('')
-            self.lineEdit_data.setText('')
-            self.lineEdit_uberflash.setText('')
-            self.lineEdit_impressao.setText('')
-            self.lineEdit_outros.setText('')
-            self.lineEdit_status.setText('')
+            self.lineEdit_nome_2.setText('')
+            self.lineEdit_telefone_2.setText('')
+            self.lineEdit_email_2.setText('')
+            self.lineEdit_localidade_2.setText('')
+            self.lineEdit_descricao_3.setText('')
+            self.lineEdit_quantidade_3.setText('')
+            self.lineEdit_valor_3.setText('')
+            self.lineEdit_data_3.setText('')
+            self.lineEdit_uberflash_2.setText('')
+            self.lineEdit_impressao_2.setText('')
+            self.lineEdit_outros_2.setText('')
+            self.lineEdit_status_2.setText('')
 
             self.label_erro.setText('Dados Atualizado com sucesso!')
             self.frame_erro.setStyleSheet("background-color: green;")

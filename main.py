@@ -231,694 +231,15 @@ class Ui_MainWindow(object):
         self.formulario_page.setObjectName("formulario_page")
         self.verticalLayout_9 = QtWidgets.QVBoxLayout(self.formulario_page)
         self.verticalLayout_9.setObjectName("verticalLayout_9")
-        self.tabWidget_formulario = QtWidgets.QTabWidget(parent=self.formulario_page)
-        self.tabWidget_formulario.setObjectName("tabWidget_formulario")
-        self.tab_2 = QtWidgets.QWidget()
-        self.tab_2.setObjectName("tab_2")
-        self.verticalLayout_20 = QtWidgets.QVBoxLayout(self.tab_2)
-        self.verticalLayout_20.setObjectName("verticalLayout_20")
-        self.frame_27 = QtWidgets.QFrame(parent=self.tab_2)
+        self.frame_27 = QtWidgets.QFrame(parent=self.formulario_page)
         self.frame_27.setMaximumSize(QtCore.QSize(16777215, 45))
         self.frame_27.setStyleSheet("background-color: rgb(255, 255, 0);")
         self.frame_27.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_27.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_27.setObjectName("frame_27")
-        self.horizontalLayout_6 = QtWidgets.QHBoxLayout(self.frame_27)
-        self.horizontalLayout_6.setObjectName("horizontalLayout_6")
-        self.label_8 = QtWidgets.QLabel(parent=self.frame_27)
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI Black")
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_8.setFont(font)
-        self.label_8.setObjectName("label_8")
-        self.horizontalLayout_6.addWidget(self.label_8)
-        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_6.addItem(spacerItem)
-        self.pushButton_criarBD = QtWidgets.QPushButton(parent=self.frame_27)
-        self.pushButton_criarBD.setStyleSheet("QPushButton {\n"
-"    background-color: rgb(50, 50, 50);\n"
-"    border: 2px solid rgb(60, 60, 60);\n"
-"    border-radius: 5px;\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"QPushButton:hover {\n"
-"    background-color: rgb(60, 60, 60);\n"
-"    border: 2px solid rgb(70,70, 70);\n"
-"}\n"
-"QPushButton:pressed {\n"
-"    background-color: rgb(250, 230, 0);\n"
-"    border: 2px solid rgb(161, 0, 0);\n"
-"    color: rgb(35, 35, 35);\n"
-"}")
-        self.pushButton_criarBD.setObjectName("pushButton_criarBD")
-        self.horizontalLayout_6.addWidget(self.pushButton_criarBD)
-        self.verticalLayout_20.addWidget(self.frame_27)
-        self.frame_15 = QtWidgets.QFrame(parent=self.tab_2)
-        self.frame_15.setStyleSheet("background-color: rgb(255, 255, 0);")
-        self.frame_15.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame_15.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_15.setObjectName("frame_15")
-        self.gridLayout_4 = QtWidgets.QGridLayout(self.frame_15)
-        self.gridLayout_4.setObjectName("gridLayout_4")
-        self.Cliente_label = QtWidgets.QLabel(parent=self.frame_15)
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI Black")
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.Cliente_label.setFont(font)
-        self.Cliente_label.setObjectName("Cliente_label")
-        self.gridLayout_4.addWidget(self.Cliente_label, 0, 0, 1, 1)
-        self.lineEdit_nome = QtWidgets.QLineEdit(parent=self.frame_15)
-        self.lineEdit_nome.setMinimumSize(QtCore.QSize(0, 0))
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI")
-        font.setPointSize(10)
-        self.lineEdit_nome.setFont(font)
-        self.lineEdit_nome.setAutoFillBackground(False)
-        self.lineEdit_nome.setStyleSheet("QLineEdit {\n"
-"    border: 2px solid rgb(45,45,45);\n"
-"    border-radius: 5px;\n"
-"    padding: 1px;\n"
-"    background-color: rgb(30,30, 30);\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"QLineEdit:hover {\n"
-"    border: 2px solid rgb(55,55,55);\n"
-"}\n"
-"QLineEdit:focus {\n"
-"    border: 2px solid rgb(161, 0, 0);\n"
-"    color: rgb(200, 200, 200);\n"
-"}")
-        self.lineEdit_nome.setMaxLength(50)
-        self.lineEdit_nome.setObjectName("lineEdit_nome")
-        self.gridLayout_4.addWidget(self.lineEdit_nome, 2, 0, 1, 1)
-        self.lineEdit_telefone = QtWidgets.QLineEdit(parent=self.frame_15)
-        self.lineEdit_telefone.setMinimumSize(QtCore.QSize(0, 0))
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI")
-        font.setPointSize(10)
-        self.lineEdit_telefone.setFont(font)
-        self.lineEdit_telefone.setAutoFillBackground(False)
-        self.lineEdit_telefone.setStyleSheet("QLineEdit {\n"
-"    border: 2px solid rgb(45,45,45);\n"
-"    border-radius: 5px;\n"
-"    padding: 1px;\n"
-"    background-color: rgb(30,30, 30);\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"QLineEdit:hover {\n"
-"    border: 2px solid rgb(55,55,55);\n"
-"}\n"
-"QLineEdit:focus {\n"
-"    border: 2px solid rgb(161, 0, 0);\n"
-"    color: rgb(200, 200, 200);\n"
-"}")
-        self.lineEdit_telefone.setMaxLength(50)
-        self.lineEdit_telefone.setObjectName("lineEdit_telefone")
-        self.gridLayout_4.addWidget(self.lineEdit_telefone, 2, 1, 1, 1)
-        self.lineEdit_localidade = QtWidgets.QLineEdit(parent=self.frame_15)
-        self.lineEdit_localidade.setMinimumSize(QtCore.QSize(0, 0))
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI")
-        font.setPointSize(10)
-        self.lineEdit_localidade.setFont(font)
-        self.lineEdit_localidade.setAutoFillBackground(False)
-        self.lineEdit_localidade.setStyleSheet("QLineEdit {\n"
-"    border: 2px solid rgb(45,45,45);\n"
-"    border-radius: 5px;\n"
-"    padding: 1px;\n"
-"    background-color: rgb(30,30, 30);\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"QLineEdit:hover {\n"
-"    border: 2px solid rgb(55,55,55);\n"
-"}\n"
-"QLineEdit:focus {\n"
-"    border: 2px solid rgb(161, 0, 0);\n"
-"    color: rgb(200, 200, 200);\n"
-"}")
-        self.lineEdit_localidade.setMaxLength(50)
-        self.lineEdit_localidade.setObjectName("lineEdit_localidade")
-        self.gridLayout_4.addWidget(self.lineEdit_localidade, 2, 3, 1, 1)
-        self.lineEdit_email = QtWidgets.QLineEdit(parent=self.frame_15)
-        self.lineEdit_email.setMinimumSize(QtCore.QSize(0, 0))
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI")
-        font.setPointSize(10)
-        self.lineEdit_email.setFont(font)
-        self.lineEdit_email.setAutoFillBackground(False)
-        self.lineEdit_email.setStyleSheet("QLineEdit {\n"
-"    border: 2px solid rgb(45,45,45);\n"
-"    border-radius: 5px;\n"
-"    padding: 1px;\n"
-"    background-color: rgb(30,30, 30);\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"QLineEdit:hover {\n"
-"    border: 2px solid rgb(55,55,55);\n"
-"}\n"
-"QLineEdit:focus {\n"
-"    border: 2px solid rgb(161, 0, 0);\n"
-"    color: rgb(200, 200, 200);\n"
-"}")
-        self.lineEdit_email.setMaxLength(50)
-        self.lineEdit_email.setObjectName("lineEdit_email")
-        self.gridLayout_4.addWidget(self.lineEdit_email, 2, 2, 1, 1)
-        self.verticalLayout_20.addWidget(self.frame_15)
-        self.frame_16 = QtWidgets.QFrame(parent=self.tab_2)
-        self.frame_16.setStyleSheet("background-color: rgb(255, 255, 0);")
-        self.frame_16.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame_16.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_16.setObjectName("frame_16")
-        self.gridLayout_2 = QtWidgets.QGridLayout(self.frame_16)
-        self.gridLayout_2.setObjectName("gridLayout_2")
-        self.lineEdit_quantidade = QtWidgets.QLineEdit(parent=self.frame_16)
-        self.lineEdit_quantidade.setMinimumSize(QtCore.QSize(0, 0))
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI")
-        font.setPointSize(10)
-        self.lineEdit_quantidade.setFont(font)
-        self.lineEdit_quantidade.setAutoFillBackground(False)
-        self.lineEdit_quantidade.setStyleSheet("QLineEdit {\n"
-"    border: 2px solid rgb(45,45,45);\n"
-"    border-radius: 5px;\n"
-"    padding: 1px;\n"
-"    background-color: rgb(30,30, 30);\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"QLineEdit:hover {\n"
-"    border: 2px solid rgb(55,55,55);\n"
-"}\n"
-"QLineEdit:focus {\n"
-"    border: 2px solid rgb(161, 0, 0);\n"
-"    color: rgb(200, 200, 200);\n"
-"}")
-        self.lineEdit_quantidade.setMaxLength(50)
-        self.lineEdit_quantidade.setObjectName("lineEdit_quantidade")
-        self.gridLayout_2.addWidget(self.lineEdit_quantidade, 1, 1, 1, 1)
-        self.lineEdit_descricao = QtWidgets.QLineEdit(parent=self.frame_16)
-        self.lineEdit_descricao.setMinimumSize(QtCore.QSize(0, 0))
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI")
-        font.setPointSize(10)
-        self.lineEdit_descricao.setFont(font)
-        self.lineEdit_descricao.setAutoFillBackground(False)
-        self.lineEdit_descricao.setStyleSheet("QLineEdit {\n"
-"    border: 2px solid rgb(45,45,45);\n"
-"    border-radius: 5px;\n"
-"    padding: 1px;\n"
-"    background-color: rgb(30,30, 30);\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"QLineEdit:hover {\n"
-"    border: 2px solid rgb(55,55,55);\n"
-"}\n"
-"QLineEdit:focus {\n"
-"    border: 2px solid rgb(161, 0, 0);\n"
-"    color: rgb(200, 200, 200);\n"
-"}")
-        self.lineEdit_descricao.setMaxLength(50)
-        self.lineEdit_descricao.setObjectName("lineEdit_descricao")
-        self.gridLayout_2.addWidget(self.lineEdit_descricao, 1, 0, 1, 1)
-        self.lineEdit_valor = QtWidgets.QLineEdit(parent=self.frame_16)
-        self.lineEdit_valor.setMinimumSize(QtCore.QSize(0, 0))
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI")
-        font.setPointSize(10)
-        self.lineEdit_valor.setFont(font)
-        self.lineEdit_valor.setAutoFillBackground(False)
-        self.lineEdit_valor.setStyleSheet("QLineEdit {\n"
-"    border: 2px solid rgb(45,45,45);\n"
-"    border-radius: 5px;\n"
-"    padding: 1px;\n"
-"    background-color: rgb(30,30, 30);\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"QLineEdit:hover {\n"
-"    border: 2px solid rgb(55,55,55);\n"
-"}\n"
-"QLineEdit:focus {\n"
-"    border: 2px solid rgb(161, 0, 0);\n"
-"    color: rgb(200, 200, 200);\n"
-"}")
-        self.lineEdit_valor.setMaxLength(50)
-        self.lineEdit_valor.setObjectName("lineEdit_valor")
-        self.gridLayout_2.addWidget(self.lineEdit_valor, 1, 2, 1, 1)
-        self.Pedido_label = QtWidgets.QLabel(parent=self.frame_16)
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI Black")
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.Pedido_label.setFont(font)
-        self.Pedido_label.setObjectName("Pedido_label")
-        self.gridLayout_2.addWidget(self.Pedido_label, 0, 0, 1, 1)
-        self.lineEdit_data = QtWidgets.QLineEdit(parent=self.frame_16)
-        self.lineEdit_data.setMinimumSize(QtCore.QSize(0, 0))
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI")
-        font.setPointSize(10)
-        self.lineEdit_data.setFont(font)
-        self.lineEdit_data.setAutoFillBackground(False)
-        self.lineEdit_data.setStyleSheet("QLineEdit {\n"
-"    border: 2px solid rgb(45,45,45);\n"
-"    border-radius: 5px;\n"
-"    padding: 1px;\n"
-"    background-color: rgb(30,30, 30);\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"QLineEdit:hover {\n"
-"    border: 2px solid rgb(55,55,55);\n"
-"}\n"
-"QLineEdit:focus {\n"
-"    border: 2px solid rgb(161, 0, 0);\n"
-"    color: rgb(200, 200, 200);\n"
-"}")
-        self.lineEdit_data.setMaxLength(50)
-        self.lineEdit_data.setObjectName("lineEdit_data")
-        self.gridLayout_2.addWidget(self.lineEdit_data, 1, 4, 1, 1)
-        self.verticalLayout_20.addWidget(self.frame_16)
-        self.frame_18 = QtWidgets.QFrame(parent=self.tab_2)
-        self.frame_18.setStyleSheet("background-color: rgb(255, 255, 0);")
-        self.frame_18.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame_18.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_18.setObjectName("frame_18")
-        self.gridLayout = QtWidgets.QGridLayout(self.frame_18)
-        self.gridLayout.setObjectName("gridLayout")
-        self.lineEdit_uberflash = QtWidgets.QLineEdit(parent=self.frame_18)
-        self.lineEdit_uberflash.setMinimumSize(QtCore.QSize(0, 0))
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI")
-        font.setPointSize(10)
-        self.lineEdit_uberflash.setFont(font)
-        self.lineEdit_uberflash.setAutoFillBackground(False)
-        self.lineEdit_uberflash.setStyleSheet("QLineEdit {\n"
-"    border: 2px solid rgb(45,45,45);\n"
-"    border-radius: 5px;\n"
-"    padding: 1px;\n"
-"    background-color: rgb(30,30, 30);\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"QLineEdit:hover {\n"
-"    border: 2px solid rgb(55,55,55);\n"
-"}\n"
-"QLineEdit:focus {\n"
-"    border: 2px solid rgb(161, 0, 0);\n"
-"    color: rgb(200, 200, 200);\n"
-"}")
-        self.lineEdit_uberflash.setMaxLength(50)
-        self.lineEdit_uberflash.setObjectName("lineEdit_uberflash")
-        self.gridLayout.addWidget(self.lineEdit_uberflash, 3, 0, 1, 1)
-        self.lineEdit_outros = QtWidgets.QLineEdit(parent=self.frame_18)
-        self.lineEdit_outros.setMinimumSize(QtCore.QSize(0, 0))
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI")
-        font.setPointSize(10)
-        self.lineEdit_outros.setFont(font)
-        self.lineEdit_outros.setAutoFillBackground(False)
-        self.lineEdit_outros.setStyleSheet("QLineEdit {\n"
-"    border: 2px solid rgb(45,45,45);\n"
-"    border-radius: 5px;\n"
-"    padding: 1px;\n"
-"    background-color: rgb(30,30, 30);\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"QLineEdit:hover {\n"
-"    border: 2px solid rgb(55,55,55);\n"
-"}\n"
-"QLineEdit:focus {\n"
-"    border: 2px solid rgb(161, 0, 0);\n"
-"    color: rgb(200, 200, 200);\n"
-"}")
-        self.lineEdit_outros.setMaxLength(50)
-        self.lineEdit_outros.setObjectName("lineEdit_outros")
-        self.gridLayout.addWidget(self.lineEdit_outros, 3, 2, 1, 1)
-        self.despesas_label = QtWidgets.QLabel(parent=self.frame_18)
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI Black")
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.despesas_label.setFont(font)
-        self.despesas_label.setObjectName("despesas_label")
-        self.gridLayout.addWidget(self.despesas_label, 0, 0, 1, 1)
-        self.lineEdit_impressao = QtWidgets.QLineEdit(parent=self.frame_18)
-        self.lineEdit_impressao.setMinimumSize(QtCore.QSize(0, 0))
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI")
-        font.setPointSize(10)
-        self.lineEdit_impressao.setFont(font)
-        self.lineEdit_impressao.setAutoFillBackground(False)
-        self.lineEdit_impressao.setStyleSheet("QLineEdit {\n"
-"    border: 2px solid rgb(45,45,45);\n"
-"    border-radius: 5px;\n"
-"    padding: 1px;\n"
-"    background-color: rgb(30,30, 30);\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"QLineEdit:hover {\n"
-"    border: 2px solid rgb(55,55,55);\n"
-"}\n"
-"QLineEdit:focus {\n"
-"    border: 2px solid rgb(161, 0, 0);\n"
-"    color: rgb(200, 200, 200);\n"
-"}")
-        self.lineEdit_impressao.setMaxLength(50)
-        self.lineEdit_impressao.setObjectName("lineEdit_impressao")
-        self.gridLayout.addWidget(self.lineEdit_impressao, 3, 1, 1, 1)
-        self.verticalLayout_20.addWidget(self.frame_18)
-        self.frame = QtWidgets.QFrame(parent=self.tab_2)
-        self.frame.setStyleSheet("background-color: rgb(255, 255, 0);")
-        self.frame.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame.setObjectName("frame")
-        self.gridLayout_8 = QtWidgets.QGridLayout(self.frame)
-        self.gridLayout_8.setObjectName("gridLayout_8")
-        spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.gridLayout_8.addItem(spacerItem1, 1, 1, 1, 1)
-        self.label_13 = QtWidgets.QLabel(parent=self.frame)
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI Black")
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_13.setFont(font)
-        self.label_13.setObjectName("label_13")
-        self.gridLayout_8.addWidget(self.label_13, 0, 0, 1, 1)
-        self.lineEdit_status = QtWidgets.QLineEdit(parent=self.frame)
-        self.lineEdit_status.setStyleSheet("QLineEdit {\n"
-"    border: 2px solid rgb(45,45,45);\n"
-"    border-radius: 5px;\n"
-"    padding: 1px;\n"
-"    background-color: rgb(30,30, 30);\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"QLineEdit:hover {\n"
-"    border: 2px solid rgb(55,55,55);\n"
-"}\n"
-"QLineEdit:focus {\n"
-"    border: 2px solid rgb(161, 0, 0);\n"
-"    color: rgb(200, 200, 200);\n"
-"}")
-        self.lineEdit_status.setObjectName("lineEdit_status")
-        self.gridLayout_8.addWidget(self.lineEdit_status, 1, 0, 1, 1)
-        self.pushButton_procurar = QtWidgets.QPushButton(parent=self.frame)
-        self.pushButton_procurar.setMinimumSize(QtCore.QSize(80, 0))
-        self.pushButton_procurar.setMaximumSize(QtCore.QSize(16777215, 16777215))
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI")
-        font.setPointSize(8)
-        self.pushButton_procurar.setFont(font)
-        self.pushButton_procurar.setStyleSheet("QPushButton {\n"
-"    background-color: rgb(50, 50, 50);\n"
-"    border: 2px solid rgb(60, 60, 60);\n"
-"    border-radius: 5px;\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"QPushButton:hover {\n"
-"    background-color: rgb(60, 60, 60);\n"
-"    border: 2px solid rgb(70,70, 70);\n"
-"}\n"
-"QPushButton:pressed {\n"
-"    background-color: rgb(250, 230, 0);\n"
-"    border: 2px solid rgb(161, 0, 0);\n"
-"    color: rgb(35, 35, 35);\n"
-"}")
-        self.pushButton_procurar.setObjectName("pushButton_procurar")
-        self.gridLayout_8.addWidget(self.pushButton_procurar, 1, 3, 1, 1)
-        self.lineEdit_procurar = QtWidgets.QLineEdit(parent=self.frame)
-        self.lineEdit_procurar.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.lineEdit_procurar.setStyleSheet("QLineEdit {\n"
-"    border: 2px solid rgb(45,45,45);\n"
-"    border-radius: 5px;\n"
-"    padding: 1px;\n"
-"    background-color: rgb(30,30, 30);\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"QLineEdit:hover {\n"
-"    border: 2px solid rgb(55,55,55);\n"
-"}\n"
-"QLineEdit:focus {\n"
-"    border: 2px solid rgb(161, 0, 0);\n"
-"    color: rgb(200, 200, 200);\n"
-"}")
-        self.lineEdit_procurar.setObjectName("lineEdit_procurar")
-        self.gridLayout_8.addWidget(self.lineEdit_procurar, 1, 2, 1, 1)
-        self.verticalLayout_20.addWidget(self.frame)
-        self.frame_17 = QtWidgets.QFrame(parent=self.tab_2)
-        self.frame_17.setStyleSheet("background-color: rgb(255, 255, 0);")
-        self.frame_17.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame_17.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_17.setObjectName("frame_17")
-        self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.frame_17)
-        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        self.pushButton_inserir = QtWidgets.QPushButton(parent=self.frame_17)
-        self.pushButton_inserir.setMinimumSize(QtCore.QSize(80, 0))
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI")
-        self.pushButton_inserir.setFont(font)
-        self.pushButton_inserir.setStyleSheet("QPushButton {\n"
-"    background-color: rgb(50, 50, 50);\n"
-"    border: 2px solid rgb(60, 60, 60);\n"
-"    border-radius: 5px;\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"QPushButton:hover {\n"
-"    background-color: rgb(60, 60, 60);\n"
-"    border: 2px solid rgb(70,70, 70);\n"
-"}\n"
-"QPushButton:pressed {\n"
-"    background-color: rgb(250, 230, 0);\n"
-"    border: 2px solid rgb(161, 0, 0);\n"
-"    color: rgb(35, 35, 35);\n"
-"}")
-        self.pushButton_inserir.setObjectName("pushButton_inserir")
-        self.horizontalLayout_3.addWidget(self.pushButton_inserir)
-        self.pushButton_atualizar = QtWidgets.QPushButton(parent=self.frame_17)
-        self.pushButton_atualizar.setMinimumSize(QtCore.QSize(80, 0))
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI")
-        self.pushButton_atualizar.setFont(font)
-        self.pushButton_atualizar.setStyleSheet("QPushButton {\n"
-"    background-color: rgb(50, 50, 50);\n"
-"    border: 2px solid rgb(60, 60, 60);\n"
-"    border-radius: 5px;\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"QPushButton:hover {\n"
-"    background-color: rgb(60, 60, 60);\n"
-"    border: 2px solid rgb(70,70, 70);\n"
-"}\n"
-"QPushButton:pressed {\n"
-"    background-color: rgb(250, 230, 0);\n"
-"    border: 2px solid rgb(161, 0, 0);\n"
-"    color: rgb(35, 35, 35);\n"
-"}")
-        self.pushButton_atualizar.setObjectName("pushButton_atualizar")
-        self.horizontalLayout_3.addWidget(self.pushButton_atualizar)
-        self.pushButton_deletar = QtWidgets.QPushButton(parent=self.frame_17)
-        self.pushButton_deletar.setMinimumSize(QtCore.QSize(80, 0))
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI")
-        self.pushButton_deletar.setFont(font)
-        self.pushButton_deletar.setStyleSheet("QPushButton {\n"
-"    background-color: rgb(50, 50, 50);\n"
-"    border: 2px solid rgb(60, 60, 60);\n"
-"    border-radius: 5px;\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"QPushButton:hover {\n"
-"    background-color: rgb(60, 60, 60);\n"
-"    border: 2px solid rgb(70,70, 70);\n"
-"}\n"
-"QPushButton:pressed {\n"
-"    background-color: rgb(250, 230, 0);\n"
-"    border: 2px solid rgb(161, 0, 0);\n"
-"    color: rgb(35, 35, 35);\n"
-"}")
-        self.pushButton_deletar.setObjectName("pushButton_deletar")
-        self.horizontalLayout_3.addWidget(self.pushButton_deletar)
-        spacerItem2 = QtWidgets.QSpacerItem(80, 10, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_3.addItem(spacerItem2)
-        self.pushButton_custo_fixo = QtWidgets.QPushButton(parent=self.frame_17)
-        self.pushButton_custo_fixo.setMinimumSize(QtCore.QSize(80, 0))
-        self.pushButton_custo_fixo.setStyleSheet("QPushButton {\n"
-"    background-color: rgb(50, 50, 50);\n"
-"    border: 2px solid rgb(60, 60, 60);\n"
-"    border-radius: 5px;\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"QPushButton:hover {\n"
-"    background-color: rgb(60, 60, 60);\n"
-"    border: 2px solid rgb(70,70, 70);\n"
-"}\n"
-"QPushButton:pressed {\n"
-"    background-color: rgb(250, 230, 0);\n"
-"    border: 2px solid rgb(161, 0, 0);\n"
-"    color: rgb(35, 35, 35);\n"
-"}")
-        self.pushButton_custo_fixo.setObjectName("pushButton_custo_fixo")
-        self.horizontalLayout_3.addWidget(self.pushButton_custo_fixo)
-        self.pushButton_estoque = QtWidgets.QPushButton(parent=self.frame_17)
-        self.pushButton_estoque.setMinimumSize(QtCore.QSize(80, 0))
-        self.pushButton_estoque.setStyleSheet("QPushButton {\n"
-"    background-color: rgb(50, 50, 50);\n"
-"    border: 2px solid rgb(60, 60, 60);\n"
-"    border-radius: 5px;\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"QPushButton:hover {\n"
-"    background-color: rgb(60, 60, 60);\n"
-"    border: 2px solid rgb(70,70, 70);\n"
-"}\n"
-"QPushButton:pressed {\n"
-"    background-color: rgb(250, 230, 0);\n"
-"    border: 2px solid rgb(161, 0, 0);\n"
-"    color: rgb(35, 35, 35);\n"
-"}")
-        self.pushButton_estoque.setObjectName("pushButton_estoque")
-        self.horizontalLayout_3.addWidget(self.pushButton_estoque)
-        self.verticalLayout_20.addWidget(self.frame_17)
-        self.tabWidget_formulario.addTab(self.tab_2, "")
-        self.tab = QtWidgets.QWidget()
-        self.tab.setObjectName("tab")
-        self.verticalLayout_16 = QtWidgets.QVBoxLayout(self.tab)
-        self.verticalLayout_16.setObjectName("verticalLayout_16")
-        self.frame_35 = QtWidgets.QFrame(parent=self.tab)
-        self.frame_35.setMaximumSize(QtCore.QSize(16777215, 45))
-        self.frame_35.setStyleSheet("background-color: rgb(255, 255, 0);")
-        self.frame_35.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame_35.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_35.setObjectName("frame_35")
-        self.horizontalLayout_8 = QtWidgets.QHBoxLayout(self.frame_35)
+        self.horizontalLayout_8 = QtWidgets.QHBoxLayout(self.frame_27)
         self.horizontalLayout_8.setObjectName("horizontalLayout_8")
-        self.label_6 = QtWidgets.QLabel(parent=self.frame_35)
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI Black")
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_6.setFont(font)
-        self.label_6.setObjectName("label_6")
-        self.horizontalLayout_8.addWidget(self.label_6)
-        spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_8.addItem(spacerItem3)
-        self.pushButton_form_salvar = QtWidgets.QPushButton(parent=self.frame_35)
-        self.pushButton_form_salvar.setMinimumSize(QtCore.QSize(80, 0))
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI")
-        self.pushButton_form_salvar.setFont(font)
-        self.pushButton_form_salvar.setStyleSheet("QPushButton {\n"
-"    background-color: rgb(50, 50, 50);\n"
-"    border: 2px solid rgb(60, 60, 60);\n"
-"    border-radius: 5px;\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"QPushButton:hover {\n"
-"    background-color: rgb(60, 60, 60);\n"
-"    border: 2px solid rgb(70,70, 70);\n"
-"}\n"
-"QPushButton:pressed {\n"
-"    background-color: rgb(250, 230, 0);\n"
-"    border: 2px solid rgb(161, 0, 0);\n"
-"    color: rgb(35, 35, 35);\n"
-"}")
-        self.pushButton_form_salvar.setObjectName("pushButton_form_salvar")
-        self.horizontalLayout_8.addWidget(self.pushButton_form_salvar)
-        self.verticalLayout_16.addWidget(self.frame_35)
-        self.frame_19 = QtWidgets.QFrame(parent=self.tab)
-        self.frame_19.setStyleSheet("background-color: rgb(255, 255, 0);")
-        self.frame_19.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame_19.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_19.setObjectName("frame_19")
-        self.gridLayout_6 = QtWidgets.QGridLayout(self.frame_19)
-        self.gridLayout_6.setObjectName("gridLayout_6")
-        self.label_7 = QtWidgets.QLabel(parent=self.frame_19)
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI Black")
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_7.setFont(font)
-        self.label_7.setObjectName("label_7")
-        self.gridLayout_6.addWidget(self.label_7, 0, 0, 1, 1)
-        self.lineEdit_form_produto = QtWidgets.QLineEdit(parent=self.frame_19)
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI")
-        font.setPointSize(10)
-        self.lineEdit_form_produto.setFont(font)
-        self.lineEdit_form_produto.setStyleSheet("QLineEdit {\n"
-"    border: 2px solid rgb(45,45,45);\n"
-"    border-radius: 5px;\n"
-"    padding: 1px;\n"
-"    background-color: rgb(30,30, 30);\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"QLineEdit:hover {\n"
-"    border: 2px solid rgb(55,55,55);\n"
-"}\n"
-"QLineEdit:focus {\n"
-"    border: 2px solid rgb(161, 0, 0);\n"
-"    color: rgb(200, 200, 200);\n"
-"}")
-        self.lineEdit_form_produto.setObjectName("lineEdit_form_produto")
-        self.gridLayout_6.addWidget(self.lineEdit_form_produto, 1, 1, 1, 1)
-        self.lineEdit_form_ecomerce = QtWidgets.QLineEdit(parent=self.frame_19)
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI")
-        font.setPointSize(10)
-        self.lineEdit_form_ecomerce.setFont(font)
-        self.lineEdit_form_ecomerce.setStyleSheet("QLineEdit {\n"
-"    border: 2px solid rgb(45,45,45);\n"
-"    border-radius: 5px;\n"
-"    padding: 1px;\n"
-"    background-color: rgb(30,30, 30);\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"QLineEdit:hover {\n"
-"    border: 2px solid rgb(55,55,55);\n"
-"}\n"
-"QLineEdit:focus {\n"
-"    border: 2px solid rgb(161, 0, 0);\n"
-"    color: rgb(200, 200, 200);\n"
-"}")
-        self.lineEdit_form_ecomerce.setObjectName("lineEdit_form_ecomerce")
-        self.gridLayout_6.addWidget(self.lineEdit_form_ecomerce, 1, 2, 1, 1)
-        self.lineEdit_form_nome = QtWidgets.QLineEdit(parent=self.frame_19)
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI")
-        font.setPointSize(10)
-        self.lineEdit_form_nome.setFont(font)
-        self.lineEdit_form_nome.setStyleSheet("QLineEdit {\n"
-"    border: 2px solid rgb(45,45,45);\n"
-"    border-radius: 5px;\n"
-"    padding: 1px;\n"
-"    background-color: rgb(30,30, 30);\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"QLineEdit:hover {\n"
-"    border: 2px solid rgb(55,55,55);\n"
-"}\n"
-"QLineEdit:focus {\n"
-"    border: 2px solid rgb(161, 0, 0);\n"
-"    color: rgb(200, 200, 200);\n"
-"}")
-        self.lineEdit_form_nome.setObjectName("lineEdit_form_nome")
-        self.gridLayout_6.addWidget(self.lineEdit_form_nome, 1, 0, 1, 1)
-        spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.gridLayout_6.addItem(spacerItem4, 1, 3, 1, 1)
-        self.verticalLayout_16.addWidget(self.frame_19)
-        self.frame_33 = QtWidgets.QFrame(parent=self.tab)
-        self.frame_33.setStyleSheet("background-color: rgb(255, 255, 0);")
-        self.frame_33.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame_33.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_33.setObjectName("frame_33")
-        self.gridLayout_7 = QtWidgets.QGridLayout(self.frame_33)
-        self.gridLayout_7.setObjectName("gridLayout_7")
-        self.label_10 = QtWidgets.QLabel(parent=self.frame_33)
+        self.label_10 = QtWidgets.QLabel(parent=self.frame_27)
         font = QtGui.QFont()
         font.setFamily("Segoe UI Black")
         font.setPointSize(12)
@@ -926,13 +247,43 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.label_10.setFont(font)
         self.label_10.setObjectName("label_10")
-        self.gridLayout_7.addWidget(self.label_10, 0, 0, 1, 1)
-        self.lineEdit_form_quantidade = QtWidgets.QLineEdit(parent=self.frame_33)
+        self.horizontalLayout_8.addWidget(self.label_10)
+        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_8.addItem(spacerItem)
+        self.pushButton_criarBD_2 = QtWidgets.QPushButton(parent=self.frame_27)
+        self.pushButton_criarBD_2.setStyleSheet("QPushButton {\n"
+"    background-color: rgb(50, 50, 50);\n"
+"    border: 2px solid rgb(60, 60, 60);\n"
+"    border-radius: 5px;\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(60, 60, 60);\n"
+"    border: 2px solid rgb(70,70, 70);\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(250, 230, 0);\n"
+"    border: 2px solid rgb(161, 0, 0);\n"
+"    color: rgb(35, 35, 35);\n"
+"}")
+        self.pushButton_criarBD_2.setObjectName("pushButton_criarBD_2")
+        self.horizontalLayout_8.addWidget(self.pushButton_criarBD_2)
+        self.verticalLayout_9.addWidget(self.frame_27)
+        self.frame_15 = QtWidgets.QFrame(parent=self.formulario_page)
+        self.frame_15.setStyleSheet("background-color: rgb(255, 255, 0);")
+        self.frame_15.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame_15.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_15.setObjectName("frame_15")
+        self.gridLayout_6 = QtWidgets.QGridLayout(self.frame_15)
+        self.gridLayout_6.setObjectName("gridLayout_6")
+        self.lineEdit_nome_2 = QtWidgets.QLineEdit(parent=self.frame_15)
+        self.lineEdit_nome_2.setMinimumSize(QtCore.QSize(0, 0))
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(10)
-        self.lineEdit_form_quantidade.setFont(font)
-        self.lineEdit_form_quantidade.setStyleSheet("QLineEdit {\n"
+        self.lineEdit_nome_2.setFont(font)
+        self.lineEdit_nome_2.setAutoFillBackground(False)
+        self.lineEdit_nome_2.setStyleSheet("QLineEdit {\n"
 "    border: 2px solid rgb(45,45,45);\n"
 "    border-radius: 5px;\n"
 "    padding: 1px;\n"
@@ -946,14 +297,26 @@ class Ui_MainWindow(object):
 "    border: 2px solid rgb(161, 0, 0);\n"
 "    color: rgb(200, 200, 200);\n"
 "}")
-        self.lineEdit_form_quantidade.setObjectName("lineEdit_form_quantidade")
-        self.gridLayout_7.addWidget(self.lineEdit_form_quantidade, 1, 0, 1, 1)
-        self.lineEdit_form_valor = QtWidgets.QLineEdit(parent=self.frame_33)
+        self.lineEdit_nome_2.setMaxLength(50)
+        self.lineEdit_nome_2.setObjectName("lineEdit_nome_2")
+        self.gridLayout_6.addWidget(self.lineEdit_nome_2, 2, 0, 1, 1)
+        self.Cliente_label_2 = QtWidgets.QLabel(parent=self.frame_15)
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI Black")
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.Cliente_label_2.setFont(font)
+        self.Cliente_label_2.setObjectName("Cliente_label_2")
+        self.gridLayout_6.addWidget(self.Cliente_label_2, 0, 0, 1, 1)
+        self.lineEdit_telefone_2 = QtWidgets.QLineEdit(parent=self.frame_15)
+        self.lineEdit_telefone_2.setMinimumSize(QtCore.QSize(0, 0))
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(10)
-        self.lineEdit_form_valor.setFont(font)
-        self.lineEdit_form_valor.setStyleSheet("QLineEdit {\n"
+        self.lineEdit_telefone_2.setFont(font)
+        self.lineEdit_telefone_2.setAutoFillBackground(False)
+        self.lineEdit_telefone_2.setStyleSheet("QLineEdit {\n"
 "    border: 2px solid rgb(45,45,45);\n"
 "    border-radius: 5px;\n"
 "    padding: 1px;\n"
@@ -967,14 +330,17 @@ class Ui_MainWindow(object):
 "    border: 2px solid rgb(161, 0, 0);\n"
 "    color: rgb(200, 200, 200);\n"
 "}")
-        self.lineEdit_form_valor.setObjectName("lineEdit_form_valor")
-        self.gridLayout_7.addWidget(self.lineEdit_form_valor, 1, 1, 1, 1)
-        self.lineEdit_form_data = QtWidgets.QLineEdit(parent=self.frame_33)
+        self.lineEdit_telefone_2.setMaxLength(50)
+        self.lineEdit_telefone_2.setObjectName("lineEdit_telefone_2")
+        self.gridLayout_6.addWidget(self.lineEdit_telefone_2, 2, 1, 1, 1)
+        self.lineEdit_email_2 = QtWidgets.QLineEdit(parent=self.frame_15)
+        self.lineEdit_email_2.setMinimumSize(QtCore.QSize(0, 0))
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(10)
-        self.lineEdit_form_data.setFont(font)
-        self.lineEdit_form_data.setStyleSheet("QLineEdit {\n"
+        self.lineEdit_email_2.setFont(font)
+        self.lineEdit_email_2.setAutoFillBackground(False)
+        self.lineEdit_email_2.setStyleSheet("QLineEdit {\n"
 "    border: 2px solid rgb(45,45,45);\n"
 "    border-radius: 5px;\n"
 "    padding: 1px;\n"
@@ -988,90 +354,162 @@ class Ui_MainWindow(object):
 "    border: 2px solid rgb(161, 0, 0);\n"
 "    color: rgb(200, 200, 200);\n"
 "}")
-        self.lineEdit_form_data.setObjectName("lineEdit_form_data")
-        self.gridLayout_7.addWidget(self.lineEdit_form_data, 1, 2, 1, 1)
-        spacerItem5 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.gridLayout_7.addItem(spacerItem5, 1, 3, 1, 1)
-        self.verticalLayout_16.addWidget(self.frame_33)
-        self.frame_32 = QtWidgets.QFrame(parent=self.tab)
-        self.frame_32.setStyleSheet("background-color: rgb(255, 255, 0);")
-        self.frame_32.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame_32.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_32.setObjectName("frame_32")
-        self.gridLayout_9 = QtWidgets.QGridLayout(self.frame_32)
+        self.lineEdit_email_2.setMaxLength(50)
+        self.lineEdit_email_2.setObjectName("lineEdit_email_2")
+        self.gridLayout_6.addWidget(self.lineEdit_email_2, 2, 2, 1, 1)
+        self.lineEdit_localidade_2 = QtWidgets.QLineEdit(parent=self.frame_15)
+        self.lineEdit_localidade_2.setMinimumSize(QtCore.QSize(0, 0))
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(10)
+        self.lineEdit_localidade_2.setFont(font)
+        self.lineEdit_localidade_2.setAutoFillBackground(False)
+        self.lineEdit_localidade_2.setStyleSheet("QLineEdit {\n"
+"    border: 2px solid rgb(45,45,45);\n"
+"    border-radius: 5px;\n"
+"    padding: 1px;\n"
+"    background-color: rgb(30,30, 30);\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"QLineEdit:hover {\n"
+"    border: 2px solid rgb(55,55,55);\n"
+"}\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid rgb(161, 0, 0);\n"
+"    color: rgb(200, 200, 200);\n"
+"}")
+        self.lineEdit_localidade_2.setMaxLength(50)
+        self.lineEdit_localidade_2.setObjectName("lineEdit_localidade_2")
+        self.gridLayout_6.addWidget(self.lineEdit_localidade_2, 2, 3, 1, 1)
+        self.verticalLayout_9.addWidget(self.frame_15)
+        self.frame_16 = QtWidgets.QFrame(parent=self.formulario_page)
+        self.frame_16.setStyleSheet("background-color: rgb(255, 255, 0);")
+        self.frame_16.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame_16.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_16.setObjectName("frame_16")
+        self.gridLayout_11 = QtWidgets.QGridLayout(self.frame_16)
+        self.gridLayout_11.setObjectName("gridLayout_11")
+        self.lineEdit_quantidade_3 = QtWidgets.QLineEdit(parent=self.frame_16)
+        self.lineEdit_quantidade_3.setMinimumSize(QtCore.QSize(0, 0))
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(10)
+        self.lineEdit_quantidade_3.setFont(font)
+        self.lineEdit_quantidade_3.setAutoFillBackground(False)
+        self.lineEdit_quantidade_3.setStyleSheet("QLineEdit {\n"
+"    border: 2px solid rgb(45,45,45);\n"
+"    border-radius: 5px;\n"
+"    padding: 1px;\n"
+"    background-color: rgb(30,30, 30);\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"QLineEdit:hover {\n"
+"    border: 2px solid rgb(55,55,55);\n"
+"}\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid rgb(161, 0, 0);\n"
+"    color: rgb(200, 200, 200);\n"
+"}")
+        self.lineEdit_quantidade_3.setMaxLength(50)
+        self.lineEdit_quantidade_3.setObjectName("lineEdit_quantidade_3")
+        self.gridLayout_11.addWidget(self.lineEdit_quantidade_3, 1, 1, 1, 1)
+        self.lineEdit_descricao_3 = QtWidgets.QLineEdit(parent=self.frame_16)
+        self.lineEdit_descricao_3.setMinimumSize(QtCore.QSize(0, 0))
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(10)
+        self.lineEdit_descricao_3.setFont(font)
+        self.lineEdit_descricao_3.setAutoFillBackground(False)
+        self.lineEdit_descricao_3.setStyleSheet("QLineEdit {\n"
+"    border: 2px solid rgb(45,45,45);\n"
+"    border-radius: 5px;\n"
+"    padding: 1px;\n"
+"    background-color: rgb(30,30, 30);\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"QLineEdit:hover {\n"
+"    border: 2px solid rgb(55,55,55);\n"
+"}\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid rgb(161, 0, 0);\n"
+"    color: rgb(200, 200, 200);\n"
+"}")
+        self.lineEdit_descricao_3.setMaxLength(50)
+        self.lineEdit_descricao_3.setObjectName("lineEdit_descricao_3")
+        self.gridLayout_11.addWidget(self.lineEdit_descricao_3, 1, 0, 1, 1)
+        self.lineEdit_valor_3 = QtWidgets.QLineEdit(parent=self.frame_16)
+        self.lineEdit_valor_3.setMinimumSize(QtCore.QSize(0, 0))
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(10)
+        self.lineEdit_valor_3.setFont(font)
+        self.lineEdit_valor_3.setAutoFillBackground(False)
+        self.lineEdit_valor_3.setStyleSheet("QLineEdit {\n"
+"    border: 2px solid rgb(45,45,45);\n"
+"    border-radius: 5px;\n"
+"    padding: 1px;\n"
+"    background-color: rgb(30,30, 30);\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"QLineEdit:hover {\n"
+"    border: 2px solid rgb(55,55,55);\n"
+"}\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid rgb(161, 0, 0);\n"
+"    color: rgb(200, 200, 200);\n"
+"}")
+        self.lineEdit_valor_3.setMaxLength(50)
+        self.lineEdit_valor_3.setObjectName("lineEdit_valor_3")
+        self.gridLayout_11.addWidget(self.lineEdit_valor_3, 1, 2, 1, 1)
+        self.Pedido_label_3 = QtWidgets.QLabel(parent=self.frame_16)
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI Black")
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.Pedido_label_3.setFont(font)
+        self.Pedido_label_3.setObjectName("Pedido_label_3")
+        self.gridLayout_11.addWidget(self.Pedido_label_3, 0, 0, 1, 1)
+        self.lineEdit_data_3 = QtWidgets.QLineEdit(parent=self.frame_16)
+        self.lineEdit_data_3.setMinimumSize(QtCore.QSize(0, 0))
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(10)
+        self.lineEdit_data_3.setFont(font)
+        self.lineEdit_data_3.setAutoFillBackground(False)
+        self.lineEdit_data_3.setStyleSheet("QLineEdit {\n"
+"    border: 2px solid rgb(45,45,45);\n"
+"    border-radius: 5px;\n"
+"    padding: 1px;\n"
+"    background-color: rgb(30,30, 30);\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"QLineEdit:hover {\n"
+"    border: 2px solid rgb(55,55,55);\n"
+"}\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid rgb(161, 0, 0);\n"
+"    color: rgb(200, 200, 200);\n"
+"}")
+        self.lineEdit_data_3.setMaxLength(50)
+        self.lineEdit_data_3.setObjectName("lineEdit_data_3")
+        self.gridLayout_11.addWidget(self.lineEdit_data_3, 1, 4, 1, 1)
+        self.verticalLayout_9.addWidget(self.frame_16)
+        self.frame_18 = QtWidgets.QFrame(parent=self.formulario_page)
+        self.frame_18.setStyleSheet("background-color: rgb(255, 255, 0);")
+        self.frame_18.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame_18.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_18.setObjectName("frame_18")
+        self.gridLayout_9 = QtWidgets.QGridLayout(self.frame_18)
         self.gridLayout_9.setObjectName("gridLayout_9")
-        self.pushButton_form_inserir = QtWidgets.QPushButton(parent=self.frame_32)
-        self.pushButton_form_inserir.setMinimumSize(QtCore.QSize(80, 0))
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI")
-        self.pushButton_form_inserir.setFont(font)
-        self.pushButton_form_inserir.setStyleSheet("QPushButton {\n"
-"    background-color: rgb(50, 50, 50);\n"
-"    border: 2px solid rgb(60, 60, 60);\n"
-"    border-radius: 5px;\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"QPushButton:hover {\n"
-"    background-color: rgb(60, 60, 60);\n"
-"    border: 2px solid rgb(70,70, 70);\n"
-"}\n"
-"QPushButton:pressed {\n"
-"    background-color: rgb(250, 230, 0);\n"
-"    border: 2px solid rgb(161, 0, 0);\n"
-"    color: rgb(35, 35, 35);\n"
-"}")
-        self.pushButton_form_inserir.setObjectName("pushButton_form_inserir")
-        self.gridLayout_9.addWidget(self.pushButton_form_inserir, 1, 0, 1, 1)
-        self.pushButton_form_atualizar = QtWidgets.QPushButton(parent=self.frame_32)
-        self.pushButton_form_atualizar.setMinimumSize(QtCore.QSize(80, 0))
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI")
-        self.pushButton_form_atualizar.setFont(font)
-        self.pushButton_form_atualizar.setStyleSheet("QPushButton {\n"
-"    background-color: rgb(50, 50, 50);\n"
-"    border: 2px solid rgb(60, 60, 60);\n"
-"    border-radius: 5px;\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"QPushButton:hover {\n"
-"    background-color: rgb(60, 60, 60);\n"
-"    border: 2px solid rgb(70,70, 70);\n"
-"}\n"
-"QPushButton:pressed {\n"
-"    background-color: rgb(250, 230, 0);\n"
-"    border: 2px solid rgb(161, 0, 0);\n"
-"    color: rgb(35, 35, 35);\n"
-"}")
-        self.pushButton_form_atualizar.setObjectName("pushButton_form_atualizar")
-        self.gridLayout_9.addWidget(self.pushButton_form_atualizar, 1, 1, 1, 1)
-        self.pushButton_form_deletar = QtWidgets.QPushButton(parent=self.frame_32)
-        self.pushButton_form_deletar.setMinimumSize(QtCore.QSize(80, 0))
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI")
-        self.pushButton_form_deletar.setFont(font)
-        self.pushButton_form_deletar.setStyleSheet("QPushButton {\n"
-"    background-color: rgb(50, 50, 50);\n"
-"    border: 2px solid rgb(60, 60, 60);\n"
-"    border-radius: 5px;\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"QPushButton:hover {\n"
-"    background-color: rgb(60, 60, 60);\n"
-"    border: 2px solid rgb(70,70, 70);\n"
-"}\n"
-"QPushButton:pressed {\n"
-"    background-color: rgb(250, 230, 0);\n"
-"    border: 2px solid rgb(161, 0, 0);\n"
-"    color: rgb(35, 35, 35);\n"
-"}")
-        self.pushButton_form_deletar.setObjectName("pushButton_form_deletar")
-        self.gridLayout_9.addWidget(self.pushButton_form_deletar, 1, 2, 1, 1)
-        self.lineEdit_form_procurar_nome = QtWidgets.QLineEdit(parent=self.frame_32)
+        self.lineEdit_uberflash_2 = QtWidgets.QLineEdit(parent=self.frame_18)
+        self.lineEdit_uberflash_2.setMinimumSize(QtCore.QSize(0, 0))
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(10)
-        self.lineEdit_form_procurar_nome.setFont(font)
-        self.lineEdit_form_procurar_nome.setStyleSheet("QLineEdit {\n"
+        self.lineEdit_uberflash_2.setFont(font)
+        self.lineEdit_uberflash_2.setAutoFillBackground(False)
+        self.lineEdit_uberflash_2.setStyleSheet("QLineEdit {\n"
 "    border: 2px solid rgb(45,45,45);\n"
 "    border-radius: 5px;\n"
 "    padding: 1px;\n"
@@ -1085,16 +523,110 @@ class Ui_MainWindow(object):
 "    border: 2px solid rgb(161, 0, 0);\n"
 "    color: rgb(200, 200, 200);\n"
 "}")
-        self.lineEdit_form_procurar_nome.setObjectName("lineEdit_form_procurar_nome")
-        self.gridLayout_9.addWidget(self.lineEdit_form_procurar_nome, 1, 4, 1, 1)
-        self.pushButton_form_procurar = QtWidgets.QPushButton(parent=self.frame_32)
-        self.pushButton_form_procurar.setMinimumSize(QtCore.QSize(80, 0))
-        self.pushButton_form_procurar.setSizeIncrement(QtCore.QSize(0, 0))
+        self.lineEdit_uberflash_2.setMaxLength(50)
+        self.lineEdit_uberflash_2.setObjectName("lineEdit_uberflash_2")
+        self.gridLayout_9.addWidget(self.lineEdit_uberflash_2, 3, 0, 1, 1)
+        self.lineEdit_outros_2 = QtWidgets.QLineEdit(parent=self.frame_18)
+        self.lineEdit_outros_2.setMinimumSize(QtCore.QSize(0, 0))
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
-        font.setPointSize(9)
-        self.pushButton_form_procurar.setFont(font)
-        self.pushButton_form_procurar.setStyleSheet("QPushButton {\n"
+        font.setPointSize(10)
+        self.lineEdit_outros_2.setFont(font)
+        self.lineEdit_outros_2.setAutoFillBackground(False)
+        self.lineEdit_outros_2.setStyleSheet("QLineEdit {\n"
+"    border: 2px solid rgb(45,45,45);\n"
+"    border-radius: 5px;\n"
+"    padding: 1px;\n"
+"    background-color: rgb(30,30, 30);\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"QLineEdit:hover {\n"
+"    border: 2px solid rgb(55,55,55);\n"
+"}\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid rgb(161, 0, 0);\n"
+"    color: rgb(200, 200, 200);\n"
+"}")
+        self.lineEdit_outros_2.setMaxLength(50)
+        self.lineEdit_outros_2.setObjectName("lineEdit_outros_2")
+        self.gridLayout_9.addWidget(self.lineEdit_outros_2, 3, 2, 1, 1)
+        self.despesas_label_2 = QtWidgets.QLabel(parent=self.frame_18)
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI Black")
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.despesas_label_2.setFont(font)
+        self.despesas_label_2.setObjectName("despesas_label_2")
+        self.gridLayout_9.addWidget(self.despesas_label_2, 0, 0, 1, 1)
+        self.lineEdit_impressao_2 = QtWidgets.QLineEdit(parent=self.frame_18)
+        self.lineEdit_impressao_2.setMinimumSize(QtCore.QSize(0, 0))
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(10)
+        self.lineEdit_impressao_2.setFont(font)
+        self.lineEdit_impressao_2.setAutoFillBackground(False)
+        self.lineEdit_impressao_2.setStyleSheet("QLineEdit {\n"
+"    border: 2px solid rgb(45,45,45);\n"
+"    border-radius: 5px;\n"
+"    padding: 1px;\n"
+"    background-color: rgb(30,30, 30);\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"QLineEdit:hover {\n"
+"    border: 2px solid rgb(55,55,55);\n"
+"}\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid rgb(161, 0, 0);\n"
+"    color: rgb(200, 200, 200);\n"
+"}")
+        self.lineEdit_impressao_2.setMaxLength(50)
+        self.lineEdit_impressao_2.setObjectName("lineEdit_impressao_2")
+        self.gridLayout_9.addWidget(self.lineEdit_impressao_2, 3, 1, 1, 1)
+        self.verticalLayout_9.addWidget(self.frame_18)
+        self.frame = QtWidgets.QFrame(parent=self.formulario_page)
+        self.frame.setStyleSheet("background-color: rgb(255, 255, 0);")
+        self.frame.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame.setObjectName("frame")
+        self.gridLayout_10 = QtWidgets.QGridLayout(self.frame)
+        self.gridLayout_10.setObjectName("gridLayout_10")
+        spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.gridLayout_10.addItem(spacerItem1, 1, 1, 1, 1)
+        self.label_14 = QtWidgets.QLabel(parent=self.frame)
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI Black")
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_14.setFont(font)
+        self.label_14.setObjectName("label_14")
+        self.gridLayout_10.addWidget(self.label_14, 0, 0, 1, 1)
+        self.lineEdit_status_2 = QtWidgets.QLineEdit(parent=self.frame)
+        self.lineEdit_status_2.setStyleSheet("QLineEdit {\n"
+"    border: 2px solid rgb(45,45,45);\n"
+"    border-radius: 5px;\n"
+"    padding: 1px;\n"
+"    background-color: rgb(30,30, 30);\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"QLineEdit:hover {\n"
+"    border: 2px solid rgb(55,55,55);\n"
+"}\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid rgb(161, 0, 0);\n"
+"    color: rgb(200, 200, 200);\n"
+"}")
+        self.lineEdit_status_2.setObjectName("lineEdit_status_2")
+        self.gridLayout_10.addWidget(self.lineEdit_status_2, 1, 0, 1, 1)
+        self.pushButton_procurar_21 = QtWidgets.QPushButton(parent=self.frame)
+        self.pushButton_procurar_21.setMinimumSize(QtCore.QSize(80, 0))
+        self.pushButton_procurar_21.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(8)
+        self.pushButton_procurar_21.setFont(font)
+        self.pushButton_procurar_21.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(50, 50, 50);\n"
 "    border: 2px solid rgb(60, 60, 60);\n"
 "    border-radius: 5px;\n"
@@ -1109,25 +641,141 @@ class Ui_MainWindow(object):
 "    border: 2px solid rgb(161, 0, 0);\n"
 "    color: rgb(35, 35, 35);\n"
 "}")
-        self.pushButton_form_procurar.setObjectName("pushButton_form_procurar")
-        self.gridLayout_9.addWidget(self.pushButton_form_procurar, 1, 5, 1, 1)
-        spacerItem6 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.gridLayout_9.addItem(spacerItem6, 1, 3, 1, 1)
-        self.verticalLayout_16.addWidget(self.frame_32)
-        self.frame_2 = QtWidgets.QFrame(parent=self.tab)
-        self.frame_2.setStyleSheet("background-color: rgb(255, 255, 0);")
-        self.frame_2.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame_2.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_2.setObjectName("frame_2")
-        self.verticalLayout_16.addWidget(self.frame_2)
-        self.frame_34 = QtWidgets.QFrame(parent=self.tab)
-        self.frame_34.setStyleSheet("background-color: rgb(255, 255, 0);")
-        self.frame_34.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame_34.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_34.setObjectName("frame_34")
-        self.verticalLayout_16.addWidget(self.frame_34)
-        self.tabWidget_formulario.addTab(self.tab, "")
-        self.verticalLayout_9.addWidget(self.tabWidget_formulario)
+        self.pushButton_procurar_21.setObjectName("pushButton_procurar_21")
+        self.gridLayout_10.addWidget(self.pushButton_procurar_21, 1, 3, 1, 1)
+        self.lineEdit_procurar_2 = QtWidgets.QLineEdit(parent=self.frame)
+        self.lineEdit_procurar_2.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.lineEdit_procurar_2.setStyleSheet("QLineEdit {\n"
+"    border: 2px solid rgb(45,45,45);\n"
+"    border-radius: 5px;\n"
+"    padding: 1px;\n"
+"    background-color: rgb(30,30, 30);\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"QLineEdit:hover {\n"
+"    border: 2px solid rgb(55,55,55);\n"
+"}\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid rgb(161, 0, 0);\n"
+"    color: rgb(200, 200, 200);\n"
+"}")
+        self.lineEdit_procurar_2.setObjectName("lineEdit_procurar_2")
+        self.gridLayout_10.addWidget(self.lineEdit_procurar_2, 1, 2, 1, 1)
+        self.verticalLayout_9.addWidget(self.frame)
+        self.frame_17 = QtWidgets.QFrame(parent=self.formulario_page)
+        self.frame_17.setStyleSheet("background-color: rgb(255, 255, 0);")
+        self.frame_17.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame_17.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_17.setObjectName("frame_17")
+        self.horizontalLayout_9 = QtWidgets.QHBoxLayout(self.frame_17)
+        self.horizontalLayout_9.setObjectName("horizontalLayout_9")
+        self.pushButton_inserir_2 = QtWidgets.QPushButton(parent=self.frame_17)
+        self.pushButton_inserir_2.setMinimumSize(QtCore.QSize(80, 0))
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        self.pushButton_inserir_2.setFont(font)
+        self.pushButton_inserir_2.setStyleSheet("QPushButton {\n"
+"    background-color: rgb(50, 50, 50);\n"
+"    border: 2px solid rgb(60, 60, 60);\n"
+"    border-radius: 5px;\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(60, 60, 60);\n"
+"    border: 2px solid rgb(70,70, 70);\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(250, 230, 0);\n"
+"    border: 2px solid rgb(161, 0, 0);\n"
+"    color: rgb(35, 35, 35);\n"
+"}")
+        self.pushButton_inserir_2.setObjectName("pushButton_inserir_2")
+        self.horizontalLayout_9.addWidget(self.pushButton_inserir_2)
+        self.pushButton_atualizar_2 = QtWidgets.QPushButton(parent=self.frame_17)
+        self.pushButton_atualizar_2.setMinimumSize(QtCore.QSize(80, 0))
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        self.pushButton_atualizar_2.setFont(font)
+        self.pushButton_atualizar_2.setStyleSheet("QPushButton {\n"
+"    background-color: rgb(50, 50, 50);\n"
+"    border: 2px solid rgb(60, 60, 60);\n"
+"    border-radius: 5px;\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(60, 60, 60);\n"
+"    border: 2px solid rgb(70,70, 70);\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(250, 230, 0);\n"
+"    border: 2px solid rgb(161, 0, 0);\n"
+"    color: rgb(35, 35, 35);\n"
+"}")
+        self.pushButton_atualizar_2.setObjectName("pushButton_atualizar_2")
+        self.horizontalLayout_9.addWidget(self.pushButton_atualizar_2)
+        self.pushButton_deletar_2 = QtWidgets.QPushButton(parent=self.frame_17)
+        self.pushButton_deletar_2.setMinimumSize(QtCore.QSize(80, 0))
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        self.pushButton_deletar_2.setFont(font)
+        self.pushButton_deletar_2.setStyleSheet("QPushButton {\n"
+"    background-color: rgb(50, 50, 50);\n"
+"    border: 2px solid rgb(60, 60, 60);\n"
+"    border-radius: 5px;\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(60, 60, 60);\n"
+"    border: 2px solid rgb(70,70, 70);\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(250, 230, 0);\n"
+"    border: 2px solid rgb(161, 0, 0);\n"
+"    color: rgb(35, 35, 35);\n"
+"}")
+        self.pushButton_deletar_2.setObjectName("pushButton_deletar_2")
+        self.horizontalLayout_9.addWidget(self.pushButton_deletar_2)
+        spacerItem2 = QtWidgets.QSpacerItem(80, 10, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_9.addItem(spacerItem2)
+        self.pushButton_custo_fixo_2 = QtWidgets.QPushButton(parent=self.frame_17)
+        self.pushButton_custo_fixo_2.setMinimumSize(QtCore.QSize(80, 0))
+        self.pushButton_custo_fixo_2.setStyleSheet("QPushButton {\n"
+"    background-color: rgb(50, 50, 50);\n"
+"    border: 2px solid rgb(60, 60, 60);\n"
+"    border-radius: 5px;\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(60, 60, 60);\n"
+"    border: 2px solid rgb(70,70, 70);\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(250, 230, 0);\n"
+"    border: 2px solid rgb(161, 0, 0);\n"
+"    color: rgb(35, 35, 35);\n"
+"}")
+        self.pushButton_custo_fixo_2.setObjectName("pushButton_custo_fixo_2")
+        self.horizontalLayout_9.addWidget(self.pushButton_custo_fixo_2)
+        self.pushButton_estoque_2 = QtWidgets.QPushButton(parent=self.frame_17)
+        self.pushButton_estoque_2.setMinimumSize(QtCore.QSize(80, 0))
+        self.pushButton_estoque_2.setStyleSheet("QPushButton {\n"
+"    background-color: rgb(50, 50, 50);\n"
+"    border: 2px solid rgb(60, 60, 60);\n"
+"    border-radius: 5px;\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(60, 60, 60);\n"
+"    border: 2px solid rgb(70,70, 70);\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(250, 230, 0);\n"
+"    border: 2px solid rgb(161, 0, 0);\n"
+"    color: rgb(35, 35, 35);\n"
+"}")
+        self.pushButton_estoque_2.setObjectName("pushButton_estoque_2")
+        self.horizontalLayout_9.addWidget(self.pushButton_estoque_2)
+        self.verticalLayout_9.addWidget(self.frame_17)
         self.stackedWidget.addWidget(self.formulario_page)
         self.planilha_page = QtWidgets.QWidget()
         self.planilha_page.setObjectName("planilha_page")
@@ -1433,7 +1081,6 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         self.stackedWidget.setCurrentIndex(1)
-        self.tabWidget_formulario.setCurrentIndex(0)
         self.tabWidget_planilha.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -1446,48 +1093,31 @@ class Ui_MainWindow(object):
         self.pushButton_formulario.setText(_translate("MainWindow", "Formulario"))
         self.pushButton_planilha.setText(_translate("MainWindow", "Planilha"))
         self.pushButton_dashboard.setText(_translate("MainWindow", "Dash Board"))
-        self.label_8.setText(_translate("MainWindow", "Venda"))
-        self.pushButton_criarBD.setText(_translate("MainWindow", "  Criar BD  "))
-        self.Cliente_label.setText(_translate("MainWindow", "Cliente"))
-        self.lineEdit_nome.setPlaceholderText(_translate("MainWindow", "Nome"))
-        self.lineEdit_telefone.setPlaceholderText(_translate("MainWindow", "Telefone"))
-        self.lineEdit_localidade.setPlaceholderText(_translate("MainWindow", "Localidade"))
-        self.lineEdit_email.setPlaceholderText(_translate("MainWindow", "E-mail"))
-        self.lineEdit_quantidade.setPlaceholderText(_translate("MainWindow", "Quantidade 1"))
-        self.lineEdit_descricao.setPlaceholderText(_translate("MainWindow", "Descrição"))
-        self.lineEdit_valor.setPlaceholderText(_translate("MainWindow", "Valor 65,00"))
-        self.Pedido_label.setText(_translate("MainWindow", "Pedido"))
-        self.lineEdit_data.setPlaceholderText(_translate("MainWindow", "Data 29/03/2023"))
-        self.lineEdit_uberflash.setPlaceholderText(_translate("MainWindow", "Uber flash 5,00"))
-        self.lineEdit_outros.setPlaceholderText(_translate("MainWindow", "Outros"))
-        self.despesas_label.setText(_translate("MainWindow", "Despesa"))
-        self.lineEdit_impressao.setPlaceholderText(_translate("MainWindow", "Impressão 1,50"))
-        self.label_13.setText(_translate("MainWindow", "Status"))
-        self.lineEdit_status.setPlaceholderText(_translate("MainWindow", "Concluido"))
-        self.pushButton_procurar.setText(_translate("MainWindow", "Procurar"))
-        self.lineEdit_procurar.setPlaceholderText(_translate("MainWindow", "Nome"))
-        self.pushButton_inserir.setText(_translate("MainWindow", "inserir"))
-        self.pushButton_atualizar.setText(_translate("MainWindow", "Atualizar"))
-        self.pushButton_deletar.setText(_translate("MainWindow", "Deletar"))
-        self.pushButton_custo_fixo.setText(_translate("MainWindow", "Custo Fixo"))
-        self.pushButton_estoque.setText(_translate("MainWindow", "Estoque"))
-        self.tabWidget_formulario.setTabText(self.tabWidget_formulario.indexOf(self.tab_2), _translate("MainWindow", "Venda"))
-        self.label_6.setText(_translate("MainWindow", "Estoque"))
-        self.pushButton_form_salvar.setText(_translate("MainWindow", "Salvar excel"))
-        self.label_7.setText(_translate("MainWindow", "Formecedor"))
-        self.lineEdit_form_produto.setPlaceholderText(_translate("MainWindow", "Produto"))
-        self.lineEdit_form_ecomerce.setPlaceholderText(_translate("MainWindow", "E-commerce"))
-        self.lineEdit_form_nome.setPlaceholderText(_translate("MainWindow", "Nome "))
-        self.label_10.setText(_translate("MainWindow", "Item"))
-        self.lineEdit_form_quantidade.setPlaceholderText(_translate("MainWindow", "Quantidade"))
-        self.lineEdit_form_valor.setPlaceholderText(_translate("MainWindow", "Valor"))
-        self.lineEdit_form_data.setPlaceholderText(_translate("MainWindow", "Data"))
-        self.pushButton_form_inserir.setText(_translate("MainWindow", "Inserir"))
-        self.pushButton_form_atualizar.setText(_translate("MainWindow", "Atualizar"))
-        self.pushButton_form_deletar.setText(_translate("MainWindow", "Deletar"))
-        self.lineEdit_form_procurar_nome.setPlaceholderText(_translate("MainWindow", "Nome"))
-        self.pushButton_form_procurar.setText(_translate("MainWindow", "Procurar"))
-        self.tabWidget_formulario.setTabText(self.tabWidget_formulario.indexOf(self.tab), _translate("MainWindow", "Estoque"))
+        self.label_10.setText(_translate("MainWindow", "Venda"))
+        self.pushButton_criarBD_2.setText(_translate("MainWindow", "  Criar BD  "))
+        self.lineEdit_nome_2.setPlaceholderText(_translate("MainWindow", "Nome"))
+        self.Cliente_label_2.setText(_translate("MainWindow", "Cliente"))
+        self.lineEdit_telefone_2.setPlaceholderText(_translate("MainWindow", "Telefone"))
+        self.lineEdit_email_2.setPlaceholderText(_translate("MainWindow", "E-mail"))
+        self.lineEdit_localidade_2.setPlaceholderText(_translate("MainWindow", "Localidade"))
+        self.lineEdit_quantidade_3.setPlaceholderText(_translate("MainWindow", "Quantidade 1"))
+        self.lineEdit_descricao_3.setPlaceholderText(_translate("MainWindow", "Descrição"))
+        self.lineEdit_valor_3.setPlaceholderText(_translate("MainWindow", "Valor 65,00"))
+        self.Pedido_label_3.setText(_translate("MainWindow", "Pedido"))
+        self.lineEdit_data_3.setPlaceholderText(_translate("MainWindow", "Data 29/03/2023"))
+        self.lineEdit_uberflash_2.setPlaceholderText(_translate("MainWindow", "Uber flash 5,00"))
+        self.lineEdit_outros_2.setPlaceholderText(_translate("MainWindow", "Outros"))
+        self.despesas_label_2.setText(_translate("MainWindow", "Despesa"))
+        self.lineEdit_impressao_2.setPlaceholderText(_translate("MainWindow", "Impressão 1,50"))
+        self.label_14.setText(_translate("MainWindow", "Status"))
+        self.lineEdit_status_2.setPlaceholderText(_translate("MainWindow", "Concluido"))
+        self.pushButton_procurar_21.setText(_translate("MainWindow", "Procurar"))
+        self.lineEdit_procurar_2.setPlaceholderText(_translate("MainWindow", "Nome"))
+        self.pushButton_inserir_2.setText(_translate("MainWindow", "inserir"))
+        self.pushButton_atualizar_2.setText(_translate("MainWindow", "Atualizar"))
+        self.pushButton_deletar_2.setText(_translate("MainWindow", "Deletar"))
+        self.pushButton_custo_fixo_2.setText(_translate("MainWindow", "Custo Fixo"))
+        self.pushButton_estoque_2.setText(_translate("MainWindow", "Estoque"))
         self.label_5.setText(_translate("MainWindow", "Planilha"))
         self.label_plan_label.setText(_translate("MainWindow", "00 Quadros Pendente e 00 Quadros Concluidos"))
         self.pushButton_plan_atualizar.setText(_translate("MainWindow", "Atualizar"))

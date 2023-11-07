@@ -220,7 +220,7 @@ async def atualizar_despesasvenda_uber_flash(dado_antigo, dado_novo):
 async def atualizar_despesasvenda_impressao(dado_antigo, dado_novo):
     async with session() as s:
         query = await s.execute(
-            update(Despesavenda).where(Despesavenda.impressao == dado_antigo).values(impressao=dado_novo)
+            update(Despesavenda).where(Despesavenda.venda_id == dado_antigo).values(impressao=dado_novo)
         )
         await s.commit()
 
