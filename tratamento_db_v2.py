@@ -534,6 +534,47 @@ class tratamento_db:
         resultado_desembro = preencher_dre('Dezembro','Avd',valor_dezembro,despesa_dezembro)
 
         return self.df
+    
+    def custos_fixos(self):
+        #lista
+        index = [
+            'Pro Labore',
+            'TI',
+            'Site',
+            'DNS',
+            'Marketing',
+            'Nuvem de arquivos'
+        ]
+
+        self.df = pd.DataFrame(index)
+        #invertendo linha para coluna
+        self.df = self.df.T
+        #transformando primeira linha em indice
+        self.df.columns = self.df.loc[0]
+        #deletando primeira linha
+        self.df = self.df.drop(range(1))
+        #resete index linha
+        self.df = self.df.reset_index(drop=True)
+
+        for cliente, i in enumerate(bd.custos_fixos_ler()):
+                #transformando primeira linha da lista em str
+                linha = str(i)
+                #separando em outra lista a str obtida
+                linha_str = linha.split(",")
+                for linha_index in index:
+                    #pegando primeiro valor da lista
+                    try:
+                        indice = linha_index
+                    except:
+                        break
+                    for num, ince_linha_str in enumerate(linha_str):
+                        #fazendo uma comparação se o indice encontrado ex "Produto" é igual ao valor que esta na lista ex "valor"
+                        if linha_index == ince_linha_str:
+                            nome = indice
+                            descricao = linha_str[num+1]
+                            #print(f'{nome}: {descricao}\n')
+                            self.df.at[cliente,indice] = descricao
+                    
 
 if __name__ == '__main__':
     tr = tratamento_db()
@@ -543,8 +584,9 @@ if __name__ == '__main__':
     #tr.planilha_completa()
     #tr.data_prazo()
     #tr.estoque_analise()
-    tr.dre()
-    tr.salvar('dre.xlsx',)
+    #tr.dre()
+    tr.custos_fixos()
+    tr.salvar('custos_fixos.xlsx',)
     
 
     

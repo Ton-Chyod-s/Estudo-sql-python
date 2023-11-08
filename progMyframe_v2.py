@@ -398,7 +398,7 @@ class Principal(Ui_MainWindow, QMainWindow):
         marketing = isEmpty(self.estoque_.lineEdit_form_valor.text())
         nuvem_arquivos = isEmpty(self.estoque_.lineEdit_form_data.text())
 
-        lol = bd.custos_fixos_ler
+        
         run(bd.atualizar_custo_pro_labore())
 
 
