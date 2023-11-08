@@ -319,7 +319,7 @@ class Principal(Ui_MainWindow, QMainWindow):
     def estoque(self):
         from estoque import Ui_MainWindow_estoque
 
-        principal.hide()
+        
         self.janela = QtWidgets.QMainWindow()
         self.estoque_popup = Ui_MainWindow_estoque()
         self.estoque_popup.setupUi(self.janela)
@@ -333,7 +333,43 @@ class Principal(Ui_MainWindow, QMainWindow):
         qt.exec()
 
     def atualizar_estoque(self):
-        pass
+        
+        def isEmpty(txt):
+            if txt == '':
+                txt = 'vazio'
+            else:
+                return txt
+            
+        nome = isEmpty(self.estoque_popup.lineEdit_form_nome.text())
+        produto = isEmpty(self.estoque_popup.lineEdit_form_produto.text())
+        ecommerce = isEmpty(self.estoque_popup.lineEdit_form_ecomerce.text())
+        qtde = isEmpty(self.estoque_popup.lineEdit_form_quantidade.text())
+        valor = isEmpty(self.estoque_popup.lineEdit_form_valor.text())
+        data = isEmpty(self.estoque_popup.lineEdit_form_data.text())
+ 
+        try:
+            self.estoque_ = str(run(bd.buscar_fornecedor(nome))).replace("[","").replace("]","")
+            lol = self.estoque_.split(", ")
+
+            for i in lol:
+                self.estoque_list = i.split('.')
+            
+            nome_db = self.estoque_popup.lineEdit_form_nome.setText(self.estoque_list[3])
+            produto_db = self.estoque_popup.lineEdit_form_produto.setText(self.estoque_list[5])
+            ecommerce_db = self.estoque_popup.lineEdit_form_ecomerce.setText(self.estoque_list[13])
+            qtde_db = self.estoque_popup.lineEdit_form_quantidade.setText(self.estoque_list[7])
+            valor_db = self.estoque_popup.lineEdit_form_valor.setText(self.estoque_list[9])
+            data_db = self.estoque_popup.lineEdit_form_data.setText(self.estoque_list[11])
+
+        except:
+            pass
+
+        run(bd.atualizar_estoque_fornecedor(nome_db,nome))
+        run(bd.atualizar_estoque_produto(produto_db,produto))
+        run(bd.atualizar_estoque_ecomerce(ecommerce_db,ecommerce))
+        run(bd.atualizar_estoque_qtde(qtde_db,qtde))
+        run(bd.atualizar_estoque_valor(valor_db,valor))
+        run(bd.atualizar_estoque_data_pedido(data_db,data))
 
     def deletar_estoque(self):
         pass
@@ -343,8 +379,6 @@ class Principal(Ui_MainWindow, QMainWindow):
 
     def custos_fixos(self):
         from custos_fixos import Ui_MainWindow_estoque
-
-        principal.hide()
         self.janela = QtWidgets.QMainWindow()
         self.estoque_ = Ui_MainWindow_estoque()
         self.estoque_.setupUi(self.janela)
@@ -363,15 +397,18 @@ class Principal(Ui_MainWindow, QMainWindow):
                 txt = 'vazio'
             else:
                 return txt
-            
+        
         pro_labore = isEmpty(self.estoque_.lineEdit_form_nome.text())
         ti = isEmpty(self.estoque_.lineEdit_form_produto.text())
         site = isEmpty(self.estoque_.lineEdit_form_ecomerce.text())
         dns = isEmpty(self.estoque_.lineEdit_form_quantidade.text())
         marketing = isEmpty(self.estoque_.lineEdit_form_valor.text())
         nuvem_arquivos = isEmpty(self.estoque_.lineEdit_form_data.text())
-
-        run(bd.custos_fixos(pro_labore,ti,site,dns,marketing,nuvem_arquivos))
+        
+        try:
+            run(bd.custos_fixos(pro_labore,ti,site,dns,marketing,nuvem_arquivos))
+        except:
+            pass
 
         self.estoque_.lineEdit_form_nome.setText('')
         self.estoque_.lineEdit_form_produto.setText('')
@@ -385,6 +422,7 @@ class Principal(Ui_MainWindow, QMainWindow):
         qt.exec()
 
     def atualizar_custos(self):
+        
         def isEmpty(txt):
                 if txt == '':
                     txt = 'vazio'
@@ -399,24 +437,59 @@ class Principal(Ui_MainWindow, QMainWindow):
         nuvem_arquivos = isEmpty(self.estoque_.lineEdit_form_data.text())
 
         
-        run(bd.atualizar_custo_pro_labore())
+        linha = self.tratamento.custos_fixos()
+        linha_list = linha.iloc[0]
+        pro_abore_db = int(linha_list.loc['Pro Labore'])
+        ti_db = int(linha_list.loc['TI'])
+        site_db = int(linha_list.loc['Site'])
+        dns_db = int(linha_list.loc['DNS'])
+        marketing_db = int(linha_list.loc['Marketing'])
+        nuvem_arquivos_db = int(linha_list.loc['Nuvem de arquivos'])
 
 
-        self.estoque_.lineEdit_form_nome.setText('')
-        self.estoque_.lineEdit_form_produto.setText('')
-        self.estoque_.lineEdit_form_ecomerce.setText('')
-        self.estoque_.lineEdit_form_quantidade.setText('')
-        self.estoque_.lineEdit_form_valor.setText('')
-        self.estoque_.lineEdit_form_data.setText('')
-    
+        run(bd.atualizar_custo_pro_labore(pro_abore_db,pro_labore))
+        run(bd.atualizar_custo_ti(ti_db,ti))
+        run(bd.atualizar_custo_site(site_db,site))
+        run(bd.atualizar_custo_dns(dns_db,dns))
+        run(bd.atualizar_custo_marketing(marketing_db,marketing))
+        run(bd.atualizar_custo_nuvem_arquivos(nuvem_arquivos_db,nuvem_arquivos))
+
     def deletar_custos(self):
-        pass
-
+        try:
+            pro_labore = self.estoque_.lineEdit_form_nome.text()
+        
+            run(bd.deletar_linha_custo(pro_labore))
+            
+            self.estoque_.lineEdit_form_nome.setText('')
+            self.estoque_.lineEdit_form_produto.setText('')
+            self.estoque_.lineEdit_form_ecomerce.setText('')
+            self.estoque_.lineEdit_form_quantidade.setText('')
+            self.estoque_.lineEdit_form_valor.setText('')
+            self.estoque_.lineEdit_form_data.setText('')
+            
+        except:
+            pass
+        
     def procurar_custos(self):
-        pass
+        try:
+            id = self.estoque_.lineEdit_form_procurar_nome.text()
+        
+            id_name = str(run(bd.buscar_custos(id))).replace("[","").replace("]","")
+            id_list = id_name.split(",")
+
+            self.estoque_.lineEdit_form_nome.setText(id_list[1])
+            self.estoque_.lineEdit_form_produto.setText(id_list[3])
+            self.estoque_.lineEdit_form_ecomerce.setText(id_list[5])
+            self.estoque_.lineEdit_form_quantidade.setText(id_list[7])
+            self.estoque_.lineEdit_form_valor.setText(id_list[9])
+            self.estoque_.lineEdit_form_data.setText(id_list[11])
+        except:
+            pass
 
     def salvar_custos(self):
-        pass
+        tratamento = tr.tratamento_db()
+        tratamento.custos_fixos()
+        tratamento.salvar('Custos Fixos.xlsx',)
         
     def fechar_popup(self):
         self.frame_erro.hide()

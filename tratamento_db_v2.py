@@ -575,7 +575,8 @@ class tratamento_db:
                             #print(f'{nome}: {descricao}\n')
                             self.df.at[cliente,indice] = descricao
                     
-
+        return self.df
+    
 if __name__ == '__main__':
     tr = tratamento_db()
     #tr.vendas()
@@ -586,7 +587,7 @@ if __name__ == '__main__':
     #tr.estoque_analise()
     #tr.dre()
     tr.custos_fixos()
-    tr.salvar('custos_fixos.xlsx',)
+    #tr.salvar('custos_fixos.xlsx',)
     
 
     

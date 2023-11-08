@@ -166,6 +166,15 @@ async def buscar_fornecedor(nome):
         #result = query.all()
         return result
 
+async def buscar_custos(id):
+    async with session() as s:
+        query = await s.execute(
+            select(Custos_fixos).where(Custos_fixos.id == id)
+        )
+        result = query.scalars().all()
+        #result = query.all()
+        return result
+
 async def atualizar_cliente_nome(dado_antigo, dado_novo):
     async with session() as s:
         query = await s.execute(
@@ -362,10 +371,10 @@ async def deletar_linha_estoque(nome):
         )
         await s.commit()
 
-async def deletar_linha_custo(id):
+async def deletar_linha_custo(pro_labore):
     async with session() as s:
         query = await s.execute(
-            delete(Custos_fixos).where(Custos_fixos.id == id)
+            delete(Custos_fixos).where(Custos_fixos.pro_labore == pro_labore)
         )
         await s.commit()
 
