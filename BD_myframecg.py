@@ -269,7 +269,7 @@ async def atualizar_estoque_produto(dado_antigo, dado_novo):
 async def atualizar_estoque_qtde(dado_antigo, dado_novo):
     async with session() as s:
         await s.execute(
-            update(Estoque).where(Estoque.id == dado_antigo).values(qtde=dado_novo)
+            update(Estoque).where(Estoque.qtde == dado_antigo).values(qtde=dado_novo)
         )
         await s.commit()
 

@@ -359,11 +359,17 @@ class Principal(Ui_MainWindow, QMainWindow):
         run(bd.atualizar_estoque_fornecedor(nome_db,nome))
         run(bd.atualizar_estoque_produto(produto_db,produto))
         run(bd.atualizar_estoque_ecomerce(ecommerce_db,ecommerce))
-        #run(bd.atualizar_estoque_qtde(qtde_db,qtde))
-        #run(bd.atualizar_estoque_valor(valor_db,valor))
-        #run(bd.atualizar_estoque_data_pedido(data_db,data))
+        run(bd.atualizar_estoque_qtde(qtde_db,qtde))
+        run(bd.atualizar_estoque_valor(valor_db,valor))
+        run(bd.atualizar_estoque_data_pedido(data_db,data))
 
-        print('chego até aqui')
+        self.label_erro.setText('Dados Atualizados com sucesso!')
+        self.frame_erro.setStyleSheet("background-color: green;")
+        self.frame_erro.show()
+        # Configurar um timer para ocultar o rótulo após 1 segundo
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.hide_message)
+        self.timer.start(1500)  # 1000 ms = 1 segundo
 
     def deletar_estoque(self):
         try:

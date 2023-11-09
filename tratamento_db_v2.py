@@ -452,11 +452,15 @@ class tratamento_db:
                 porcentagem_lucro_bruto = lucro_bruto / biblioteca_mes
                 jan_df(5,lucro_bruto,porcentagem_lucro_bruto)
                 #PRO LABORE
-                pro_labore = biblioteca_mes * 0.12
+                custos = str(bd.custos_fixos_ler()).replace("[","").replace("]","")
+                custos_list = custos.split(",")
+                pro_lab = int(custos_list[1])
+
+                pro_labore = pro_lab
                 porcentagem_pro_labore = pro_labore / biblioteca_mes
                 jan_df(7,pro_labore,porcentagem_pro_labore)
                 #TI
-                ti = 45
+                ti = int(custos_list[3])
                 porcentagem_ti = ti / biblioteca_mes
                 jan_df(8,ti,porcentagem_ti)
                 #DESPESAS/RECEITAS OPERACIONAIS GERAIS E ADM
@@ -468,19 +472,19 @@ class tratamento_db:
                 porcentagem_uber_flash = uber_flash  / biblioteca_mes 
                 jan_df(10,uber_flash,porcentagem_uber_flash)
                 #SITE
-                site = 468 / 12
+                site = int(custos_list[5]) / 12
                 porcentagem_site = site  / biblioteca_mes
                 jan_df(11,site ,porcentagem_site)
                 #DNS
-                dns = 50 / 12
+                dns = int(custos_list[7])
                 porcentagem_dns = dns  / biblioteca_mes
                 jan_df(12,dns ,porcentagem_dns)
                 #MARKETING
-                marketing = 40 / 12
+                marketing = int(custos_list[9])
                 porcentagem_marketing = marketing  / biblioteca_mes
                 jan_df(13,marketing ,porcentagem_marketing)
                 #NUVEM DE ARQUIVOS
-                nuvem_arquivos = 0 / 12
+                nuvem_arquivos = int(custos_list[11])
                 porcentagem_nuvem_arquivos = nuvem_arquivos  / biblioteca_mes
                 jan_df(14,nuvem_arquivos ,porcentagem_nuvem_arquivos)
                 #OUTRAS DESPESAS/RECEITAS
@@ -488,11 +492,11 @@ class tratamento_db:
                 porcentagem_outras_despesas = outras_despesas_receitas / biblioteca_mes
                 jan_df(9,outras_despesas_receitas,porcentagem_outras_despesas)
                 #INVESTIMENTO
-                investimento = 150
+                investimento = 100
                 porcentagem_investimento = investimento / biblioteca_mes
                 jan_df(16,investimento,porcentagem_investimento)
                 #RESULTADO DO MES ANTERIOR
-                resultado_anterior = 1
+                resultado_anterior = 0
                 porcentagem_resultado_anterior = resultado_anterior / biblioteca_mes
                 jan_df(17,resultado_anterior,porcentagem_resultado_anterior)
                 #OUTRAS RECEITAS
@@ -585,8 +589,8 @@ if __name__ == '__main__':
     #tr.planilha_completa()
     #tr.data_prazo()
     #tr.estoque_analise()
-    #tr.dre()
-    tr.custos_fixos()
+    tr.dre()
+    #tr.custos_fixos()
     #tr.salvar('custos_fixos.xlsx',)
     
 
