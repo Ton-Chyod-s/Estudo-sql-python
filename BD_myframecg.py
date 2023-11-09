@@ -2,7 +2,7 @@ from sqlalchemy.orm import declarative_base, sessionmaker, relationship
 from sqlalchemy import String, Integer, select, update, delete, ForeignKey, Column, Float
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from asyncio import run
-import bd
+#import bd
 import time
 
 #conectar/criar banco de dados
@@ -92,7 +92,7 @@ class Custos_fixos(Base):
     site = Column(Integer, nullable=False)
     dns = Column(Integer, nullable=False)
     marketing = Column(Integer, nullable=False)
-    nuvem_arquivos = Column(Integer, nullable=False)
+    nuvem_arquivos = Column(Integer)
     def __repr__(self):
         return f'Pro Labore,{self.pro_labore},TI,{self.ti},Site,{self.site},DNS,{self.dns},Marketing,{self.marketing},Nuvem de arquivos,{self.nuvem_arquivos}'
 
@@ -240,63 +240,63 @@ async def atualizar_venda_status(dado_antigo, dado_novo):
 
 async def atualizar_despesasvenda_uber_flash(dado_antigo, dado_novo):
     async with session() as s:
-        query = await s.execute(
+        await s.execute(
             update(Despesavenda).where(Despesavenda.venda_id == dado_antigo).values(uber_flash=dado_novo)
         )
         await s.commit()
 
 async def atualizar_despesasvenda_impressao(dado_antigo, dado_novo):
     async with session() as s:
-        query = await s.execute(
+        await s.execute(
             update(Despesavenda).where(Despesavenda.venda_id == dado_antigo).values(impressao=dado_novo)
         )
         await s.commit()
 
 async def atualizar_despesasvenda_outros(dado_antigo, dado_novo):
     async with session() as s:
-        query = await s.execute(
+        await s.execute(
             update(Despesavenda).where(Despesavenda.venda_id == dado_antigo).values(outros=dado_novo)
         )
         await s.commit()
 
 async def atualizar_estoque_produto(dado_antigo, dado_novo):
     async with session() as s:
-        query = await s.execute(
+        await s.execute(
             update(Estoque).where(Estoque.produto == dado_antigo).values(produto=dado_novo)
         )
         await s.commit()
 
 async def atualizar_estoque_qtde(dado_antigo, dado_novo):
     async with session() as s:
-        query = await s.execute(
+        await s.execute(
             update(Estoque).where(Estoque.id == dado_antigo).values(qtde=dado_novo)
         )
         await s.commit()
 
 async def atualizar_estoque_valor(dado_antigo, dado_novo):
     async with session() as s:
-        query = await s.execute(
+        await s.execute(
             update(Estoque).where(Estoque.valor == dado_antigo).values(valor=dado_novo)
         )
         await s.commit()
 
 async def atualizar_estoque_data_pedido(dado_antigo, dado_novo):
     async with session() as s:
-        query = await s.execute(
+        await s.execute(
             update(Estoque).where(Estoque.data_pedido == dado_antigo).values(data_pedido=dado_novo)
         )
         await s.commit()
 
 async def atualizar_estoque_ecomerce(dado_antigo, dado_novo):
     async with session() as s:
-        query = await s.execute(
+        await s.execute(
             update(Estoque).where(Estoque.ecomerce == dado_antigo).values(ecomerce=dado_novo)
         )
         await s.commit()
 
 async def atualizar_estoque_fornecedor(dado_antigo, dado_novo):
     async with session() as s:
-        query = await s.execute(
+        await s.execute(
             update(Estoque).where(Estoque.fornecedor == dado_antigo).values(fornecedor=dado_novo)
         )
         await s.commit()
@@ -408,6 +408,7 @@ def custos_fixos_ler():
 if __name__ == '__main__':
     run(create_database())
 
+    """
    #adicionar informações no banco de dados estoque
     for i in bd.estoque_2023:
         linha = i.split(".")
@@ -440,4 +441,4 @@ if __name__ == '__main__':
 
     #adicionar informações no banco de dados dre
     for i in bd.dre_2023:
-        run(inserir_dre(i))
+        run(inserir_dre(i))"""

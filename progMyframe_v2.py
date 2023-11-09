@@ -1,20 +1,14 @@
 from main import Ui_MainWindow
-from PyQt6.QtWidgets import QMainWindow, QApplication, QWidget, QVBoxLayout, QWidget, QFrame, QLabel
+from PyQt6.QtWidgets import QMainWindow, QApplication
 import sys
 import BD_myframecg as bd
 from asyncio import run
 import os
 from PyQt6.QtCore import QTimer
-import matplotlib.pyplot as plt
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-import numpy as np
 import tratamento_db_v2 as tr
-import plotly.graph_objs as go
-import plotly.offline as pyo
-from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWidgets import QMainWindow, QApplication
 from PyQt6 import QtWidgets
-from time import sleep
+
 
 class Principal(Ui_MainWindow, QMainWindow):
     def __init__(self,parent = None) -> None:
@@ -339,7 +333,8 @@ class Principal(Ui_MainWindow, QMainWindow):
                 txt = 'vazio'
             else:
                 return txt
-            
+
+        #pegando as informações digitada pelo usuario
         nome = isEmpty(self.estoque_popup.lineEdit_form_nome.text())
         produto = isEmpty(self.estoque_popup.lineEdit_form_produto.text())
         ecommerce = isEmpty(self.estoque_popup.lineEdit_form_ecomerce.text())
@@ -347,35 +342,68 @@ class Principal(Ui_MainWindow, QMainWindow):
         valor = isEmpty(self.estoque_popup.lineEdit_form_valor.text())
         data = isEmpty(self.estoque_popup.lineEdit_form_data.text())
  
-        try:
-            self.estoque_ = str(run(bd.buscar_fornecedor(nome))).replace("[","").replace("]","")
-            lol = self.estoque_.split(", ")
+        
+        self.estoque_ = str(run(bd.buscar_fornecedor(nome))).replace("[","").replace("]","")
+        lol = self.estoque_.split(", ")
 
-            for i in lol:
-                self.estoque_list = i.split('.')
-            
-            nome_db = self.estoque_popup.lineEdit_form_nome.setText(self.estoque_list[3])
-            produto_db = self.estoque_popup.lineEdit_form_produto.setText(self.estoque_list[5])
-            ecommerce_db = self.estoque_popup.lineEdit_form_ecomerce.setText(self.estoque_list[13])
-            qtde_db = self.estoque_popup.lineEdit_form_quantidade.setText(self.estoque_list[7])
-            valor_db = self.estoque_popup.lineEdit_form_valor.setText(self.estoque_list[9])
-            data_db = self.estoque_popup.lineEdit_form_data.setText(self.estoque_list[11])
-
-        except:
-            pass
+        for i in lol:
+            self.estoque_list = i.split('.')
+        
+        nome_db = self.estoque_list[3]
+        produto_db = self.estoque_list[5]
+        ecommerce_db = self.estoque_list[13]
+        qtde_db = self.estoque_list[7]
+        valor_db = self.estoque_list[9]
+        data_db = self.estoque_list[11]
 
         run(bd.atualizar_estoque_fornecedor(nome_db,nome))
         run(bd.atualizar_estoque_produto(produto_db,produto))
         run(bd.atualizar_estoque_ecomerce(ecommerce_db,ecommerce))
-        run(bd.atualizar_estoque_qtde(qtde_db,qtde))
-        run(bd.atualizar_estoque_valor(valor_db,valor))
-        run(bd.atualizar_estoque_data_pedido(data_db,data))
+        #run(bd.atualizar_estoque_qtde(qtde_db,qtde))
+        #run(bd.atualizar_estoque_valor(valor_db,valor))
+        #run(bd.atualizar_estoque_data_pedido(data_db,data))
+
+        print('chego até aqui')
 
     def deletar_estoque(self):
-        pass
+        try:
+            def isEmpty(txt):
+                if txt == '':
+                    txt = 'vazio'
+                else:
+                    return txt
+                
+            nome = isEmpty(self.estoque_popup.lineEdit_form_nome.text())
 
+            run(bd.deletar_linha_estoque(nome))
+
+            self.estoque_popup.lineEdit_form_nome.setText('')
+            self.estoque_popup.lineEdit_form_produto.setText('')
+            self.estoque_popup.lineEdit_form_ecomerce.setText('')
+            self.estoque_popup.lineEdit_form_quantidade.setText('')
+            self.estoque_popup.lineEdit_form_valor.setText('')
+            self.estoque_popup.lineEdit_form_data.setText('')
+
+            self.label_erro.setText('Dados deletado!')
+            self.frame_erro.setStyleSheet("background-color: green;")
+            self.frame_erro.show()
+            # Configurar um timer para ocultar o rótulo após 1 segundo
+            self.timer = QTimer(self)
+            self.timer.timeout.connect(self.hide_message)
+            self.timer.start(1500)  # 1000 ms = 1 segundo
+        except:
+            self.label_erro.setText('Dados não encontrar!')
+            self.frame_erro.setStyleSheet("background-color: red;")
+            self.frame_erro.show()
+            # Configurar um timer para ocultar o rótulo após 1 segundo
+            self.timer = QTimer(self)
+            self.timer.timeout.connect(self.hide_message)
+            self.timer.start(1500)  # 1000 ms = 1 segundo
+        
     def salvar_estoque(self):
-        pass
+        tratamento = tr.tratamento_db()
+        tratamento.estoque_analise()
+        tratamento.salvar('Estoque.xlsx',)
 
     def custos_fixos(self):
         from custos_fixos import Ui_MainWindow_estoque
@@ -404,6 +432,19 @@ class Principal(Ui_MainWindow, QMainWindow):
         dns = isEmpty(self.estoque_.lineEdit_form_quantidade.text())
         marketing = isEmpty(self.estoque_.lineEdit_form_valor.text())
         nuvem_arquivos = isEmpty(self.estoque_.lineEdit_form_data.text())
+
+        if pro_labore == None:
+            pro_labore = 0
+        if ti == None:
+            ti = 0
+        if site == None:
+            site = 0
+        if dns == None:
+            dns = 0
+        if marketing == None:
+            marketing = 0
+        if nuvem_arquivos == None:
+            nuvem_arquivos = 0
         
         try:
             run(bd.custos_fixos(pro_labore,ti,site,dns,marketing,nuvem_arquivos))
@@ -417,7 +458,7 @@ class Principal(Ui_MainWindow, QMainWindow):
         self.estoque_.lineEdit_form_valor.setText('')
         self.estoque_.lineEdit_form_data.setText('')
         
-        self.janela.hide()
+        
         principal.show()
         qt.exec()
 
