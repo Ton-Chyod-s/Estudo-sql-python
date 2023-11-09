@@ -492,7 +492,7 @@ class tratamento_db:
                 porcentagem_outras_despesas = outras_despesas_receitas / biblioteca_mes
                 jan_df(9,outras_despesas_receitas,porcentagem_outras_despesas)
                 #INVESTIMENTO
-                investimento = 100
+                investimento = 0
                 porcentagem_investimento = investimento / biblioteca_mes
                 jan_df(16,investimento,porcentagem_investimento)
                 #RESULTADO DO MES ANTERIOR

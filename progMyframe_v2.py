@@ -14,6 +14,9 @@ class Principal(Ui_MainWindow, QMainWindow):
     def __init__(self,parent = None) -> None:
         self.tratamento = tr.tratamento_db()
         self.banco_dados = bd.estoque_()
+        meta_venda = 685
+        estoque_quadros = 324
+        meta_mes = meta_venda + estoque_quadros
         super().__init__(parent)
         super().setupUi(self)
         self.frame_erro.hide()
@@ -36,6 +39,7 @@ class Principal(Ui_MainWindow, QMainWindow):
         self.planilha_venda()
         self.planilha_estoque()
         self.planilha_dre()
+        self.label_plan_label.setText(f'Meta - RECEITA BRUTA {meta_mes}')
 
     def planilha_estoque(self):
         
@@ -721,6 +725,8 @@ class Principal(Ui_MainWindow, QMainWindow):
             self.timer = QTimer(self)
             self.timer.timeout.connect(self.hide_message)
             self.timer.start(1500)  # 1000 ms = 1 segundo
+    
+    
     
 if __name__ == '__main__':
     qt = QApplication(sys.argv)
