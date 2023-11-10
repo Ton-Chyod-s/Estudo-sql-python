@@ -426,13 +426,14 @@ class tratamento_db:
                     despesa_dezembro -= linha_lista
             except Exception as e:
                 print(e)
-
+        
         def preencher_dre(mes_nome,porcentagem_nome,biblioteca_mes,biblioteca_despesas):
             try:
                 def jan_df(linha,valor,porcentagem):
                     self.df.at[linha,mes_nome] = valor
                 #receita bruta
                 jan_df(0,biblioteca_mes,1)
+               
                 #devolução
                 devolucao = 0
                 porcentagem_devolucao = devolucao / biblioteca_mes

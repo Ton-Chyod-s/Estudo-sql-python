@@ -6,7 +6,7 @@ from asyncio import run
 import os
 from PyQt6.QtCore import QTimer
 import tratamento_db_v2 as tr
-from PyQt6.QtWidgets import QMainWindow, QApplication
+from PyQt6.QtWidgets import QMainWindow, QApplication, QLineEdit
 from PyQt6 import QtWidgets
 
 
@@ -163,6 +163,10 @@ class Principal(Ui_MainWindow, QMainWindow):
     def hide_message(self):
         self.frame_erro.hide()
         self.timer.stop()
+
+    def hide_mensagem_estoque(self):
+            self.estoque_popup.frame_3.hide()
+            self.timer.stop()
 
     def inserir_cliente(self):
         def isEmpty(txt):
@@ -321,6 +325,7 @@ class Principal(Ui_MainWindow, QMainWindow):
         self.janela = QtWidgets.QMainWindow()
         self.estoque_popup = Ui_MainWindow_estoque()
         self.estoque_popup.setupUi(self.janela)
+        self.estoque_popup.frame_3.hide()
         self.estoque_popup.pushButton_form_inserir.clicked.connect(self.inserir_estoque)
         self.estoque_popup.pushButton_form_atualizar.clicked.connect(self.atualizar_estoque)
         self.estoque_popup.pushButton_form_deletar.clicked.connect(self.deletar_estoque)
@@ -348,31 +353,36 @@ class Principal(Ui_MainWindow, QMainWindow):
  
         
         self.estoque_ = str(run(bd.buscar_fornecedor(nome))).replace("[","").replace("]","")
-        lol = self.estoque_.split(", ")
+        list_resultado_pesquisa = self.estoque_.split(", ")
 
-        for i in lol:
-            self.estoque_list = i.split('.')
         
-        nome_db = self.estoque_list[3]
-        produto_db = self.estoque_list[5]
-        ecommerce_db = self.estoque_list[13]
-        qtde_db = self.estoque_list[7]
-        valor_db = self.estoque_list[9]
-        data_db = self.estoque_list[11]
+        lista_linha = ([i.split('.') for i in list_resultado_pesquisa])
+       
+        #escolhendo uma opção
+        opcao = 1
+        result = 0
 
+        for linha in range(len(lista_linha)):
+            if opcao == linha:
+                result = lista_linha[linha]
+                break
+       
+        id = int(result[1])
+        nome_db = result[3]
+       
         run(bd.atualizar_estoque_fornecedor(nome_db,nome))
-        run(bd.atualizar_estoque_produto(produto_db,produto))
-        run(bd.atualizar_estoque_ecomerce(ecommerce_db,ecommerce))
-        run(bd.atualizar_estoque_qtde(qtde_db,qtde))
-        run(bd.atualizar_estoque_valor(valor_db,valor))
-        run(bd.atualizar_estoque_data_pedido(data_db,data))
+        run(bd.atualizar_estoque_produto(id,produto))
+        run(bd.atualizar_estoque_ecomerce(id,ecommerce))
+        run(bd.atualizar_estoque_qtde(id,qtde))
+        run(bd.atualizar_estoque_valor(id,valor))
+        run(bd.atualizar_estoque_data_pedido(id,data))
 
-        self.label_erro.setText('Dados Atualizados com sucesso!')
-        self.frame_erro.setStyleSheet("background-color: green;")
-        self.frame_erro.show()
+        self.estoque_popup.label_popup_estpque.setText('Dados Atualizados com sucesso!')
+        self.estoque_popup.frame_3.setStyleSheet("background-color: green;")
+        self.estoque_popup.frame_3.show()
         # Configurar um timer para ocultar o rótulo após 1 segundo
         self.timer = QTimer(self)
-        self.timer.timeout.connect(self.hide_message)
+        self.timer.timeout.connect(self.hide_mensagem_estoque)
         self.timer.start(1500)  # 1000 ms = 1 segundo
 
     def deletar_estoque(self):
@@ -662,43 +672,44 @@ class Principal(Ui_MainWindow, QMainWindow):
         
         try:
             self.estoque_ = str(run(bd.buscar_fornecedor(nome_estoque))).replace("[","").replace("]","")
-            lol = self.estoque_.split(", ")
+            list_resultado_pesquisa = self.estoque_.split(", ")
 
-            for i in lol:
-                self.estoque_list = i.split('.')
+            lista_linha = ([i.split('.') for i in list_resultado_pesquisa])
+
+            #self.estoque_popup.label_popup_estpque
+            self.estoque_popup.frame_3.setStyleSheet("background-color: red;")
+            self.estoque_popup.frame_3.show()
+            # Configurar um timer para ocultar o rótulo após 1 segundo
+            self.timer = QTimer(self)
+            self.timer.timeout.connect(self.hide_mensagem_estoque)
+            self.timer.start(1500)  # 1000 ms = 1 segundo
+
+            #escolhendo uma opção
+            opcao = 1
+            result = 0
+
+            for linha in range(len(lista_linha)):
+                if opcao == linha:
+                    result = lista_linha[linha]
+                    break
             
-            self.estoque_popup.lineEdit_form_nome.setText(self.estoque_list[3])
-            self.estoque_popup.lineEdit_form_produto.setText(self.estoque_list[5])
-            self.estoque_popup.lineEdit_form_ecomerce.setText(self.estoque_list[13])
-            self.estoque_popup.lineEdit_form_quantidade.setText(self.estoque_list[7])
-            self.estoque_popup.lineEdit_form_valor.setText(self.estoque_list[9])
-            self.estoque_popup.lineEdit_form_data.setText(self.estoque_list[11])
+
+
+            self.estoque_popup.lineEdit_form_nome.setText(result[3])
+            self.estoque_popup.lineEdit_form_produto.setText(result[5])
+            self.estoque_popup.lineEdit_form_ecomerce.setText(result[13])
+            self.estoque_popup.lineEdit_form_quantidade.setText(result[7])
+            self.estoque_popup.lineEdit_form_valor.setText(result[9])
+            self.estoque_popup.lineEdit_form_data.setText(result[11])
 
         except:
-            self.label_erro.setText('Cliente não encontrado no banco de dados!')
-            self.frame_erro.setStyleSheet("background-color: red;")
-            self.frame_erro.show()
-
-    def atualiza_estoque(self):
-        try:
-            nome_estoque = self.lineEdit_form_nome.text()
-            produto_estoque = self.lineEdit_form_produto.text()
-            e_comerce_estoque  = self.lineEdit_form_ecomerce.text()
-            quantidade_estoque = self.lineEdit_form_quantidade.text()
-            valor_estoque = self.lineEdit_form_valor.text()
-            data_estoque = self.lineEdit_form_data.text()
-
-            run(bd.atualizar_estoque_fornecedor(self.estoque_list[3],nome_estoque))
-            run(bd.atualizar_estoque_produto(self.estoque_list[5],produto_estoque))
-            run(bd.atualizar_estoque_ecomerce(self.estoque_list[13],e_comerce_estoque))
-            run(bd.atualizar_estoque_qtde(self.estoque_list[1],quantidade_estoque))
-            run(bd.atualizar_estoque_valor(self.estoque_list[9],valor_estoque))
-            run(bd.atualizar_estoque_data_pedido(self.estoque_list[11],data_estoque))
-        
-        except:
-            self.label_erro.setText('Campo em branco')
-            self.frame_erro.setStyleSheet("background-color: red;")
-            self.frame_erro.show()
+            self.estoque_popup.label_popup_estpque.setText('Cliente não encontrado no banco de dados!')
+            self.estoque_popup.frame_3.setStyleSheet("background-color: red;")
+            self.estoque_popup.frame_3.show()
+            # Configurar um timer para ocultar o rótulo após 1 segundo
+            self.timer = QTimer(self)
+            self.timer.timeout.connect(self.hide_mensagem_estoque)
+            self.timer.start(1500)  # 1000 ms = 1 segundo
 
     def deletar_linha_estoque(self):
        

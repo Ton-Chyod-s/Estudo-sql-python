@@ -259,45 +259,45 @@ async def atualizar_despesasvenda_outros(dado_antigo, dado_novo):
         )
         await s.commit()
 
-async def atualizar_estoque_produto(dado_antigo, dado_novo):
+async def atualizar_estoque_produto(id, dado_novo):
     async with session() as s:
         await s.execute(
-            update(Estoque).where(Estoque.produto == dado_antigo).values(produto=dado_novo)
+            update(Estoque).where(Estoque.id == id).values(produto=dado_novo)
         )
         await s.commit()
 
-async def atualizar_estoque_qtde(dado_antigo, dado_novo):
+async def atualizar_estoque_qtde(id, dado_novo):
     async with session() as s:
         await s.execute(
-            update(Estoque).where(Estoque.qtde == dado_antigo).values(qtde=dado_novo)
+            update(Estoque).where(Estoque.id == id).values(qtde=dado_novo)
         )
         await s.commit()
 
-async def atualizar_estoque_valor(dado_antigo, dado_novo):
+async def atualizar_estoque_valor(id, dado_novo):
     async with session() as s:
         await s.execute(
-            update(Estoque).where(Estoque.valor == dado_antigo).values(valor=dado_novo)
+            update(Estoque).where(Estoque.id == id).values(valor=dado_novo)
         )
         await s.commit()
 
-async def atualizar_estoque_data_pedido(dado_antigo, dado_novo):
+async def atualizar_estoque_data_pedido(id, dado_novo):
     async with session() as s:
         await s.execute(
-            update(Estoque).where(Estoque.data_pedido == dado_antigo).values(data_pedido=dado_novo)
+            update(Estoque).where(Estoque.id == id).values(data_pedido=dado_novo)
         )
         await s.commit()
 
-async def atualizar_estoque_ecomerce(dado_antigo, dado_novo):
+async def atualizar_estoque_ecomerce(id, dado_novo):
     async with session() as s:
         await s.execute(
-            update(Estoque).where(Estoque.ecomerce == dado_antigo).values(ecomerce=dado_novo)
+            update(Estoque).where(Estoque.id == id).values(ecomerce=dado_novo)
         )
         await s.commit()
 
-async def atualizar_estoque_fornecedor(dado_antigo, dado_novo):
+async def atualizar_estoque_fornecedor(id, dado_novo):
     async with session() as s:
         await s.execute(
-            update(Estoque).where(Estoque.fornecedor == dado_antigo).values(fornecedor=dado_novo)
+            update(Estoque).where(Estoque.id == id).values(fornecedor=dado_novo)
         )
         await s.commit()
 
