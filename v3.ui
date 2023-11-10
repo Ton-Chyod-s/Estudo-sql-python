@@ -113,7 +113,7 @@
            <number>0</number>
           </property>
           <property name="rightMargin">
-           <number>0</number>
+           <number>9</number>
           </property>
           <property name="bottomMargin">
            <number>0</number>
@@ -132,7 +132,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_erro">
+           <widget class="QPushButton" name="pushButton">
             <property name="maximumSize">
              <size>
               <width>15</width>
@@ -140,12 +140,10 @@
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">border: none;
-box-shadow: none;
-background-color: rgb(150, 150, 150);</string>
+             <string notr="true">background-color: rgb(208, 208, 0);</string>
             </property>
             <property name="text">
-             <string>X</string>
+             <string>x</string>
             </property>
            </widget>
           </item>

@@ -26,7 +26,7 @@ class Principal(Ui_MainWindow, QMainWindow):
         self.pushButton_formulario.clicked.connect(self.formulario)
         self.pushButton_planilha.clicked.connect(self.planilha)
         self.pushButton_dashboard.clicked.connect(self.dashboard)
-        self.pushButton_erro.clicked.connect(self.fechar_popup)
+        self.pushButton.clicked.connect(self.fechar_popup)
         self.pushButton_baixar.clicked.connect(self.baixar_excel)
         self.pushButton_atualizar_2.clicked.connect(self.atualizar_bd)
         self.pushButton_deletar_2.clicked.connect(self.deletar_linha_bd)
@@ -230,9 +230,9 @@ class Principal(Ui_MainWindow, QMainWindow):
             
         nome = isEmpty(self.estoque_popup.lineEdit_form_nome.text())
         if nome == None:
-            self.label_erro.setText('Campo em branco')
-            self.frame_erro.setStyleSheet("background-color: red;")
-            self.frame_erro.show()
+            self.estoque_popup.label_popup_estpque.setText('Campos em branco!')
+            self.estoque_popup.frame_3.setStyleSheet("background-color: red;")
+            self.estoque_popup.frame_3.show()
         else:    
             produto = isEmpty(self.estoque_popup.lineEdit_form_produto.text())
             ecomerce = isEmpty(self.estoque_popup.lineEdit_form_ecomerce.text())
@@ -331,70 +331,78 @@ class Principal(Ui_MainWindow, QMainWindow):
         self.estoque_popup.pushButton_form_deletar.clicked.connect(self.deletar_estoque)
         self.estoque_popup.pushButton_form_procurar.clicked.connect(self.procurar_estoque)
         self.estoque_popup.pushButton_form_salvar.clicked.connect(self.salvar_estoque)
+        self.estoque_popup.pushButton_x.clicked.connect(self.esconder_popup_estoque)
 
         self.janela.show()
         qt.exec()
 
+    def esconder_popup_estoque(self):
+        self.estoque_popup.frame_3.hide()
+
     def atualizar_estoque(self):
-        
-        def isEmpty(txt):
-            if txt == '':
-                txt = 'vazio'
-            else:
-                return txt
-
-        #pegando as informações digitada pelo usuario
-        nome = isEmpty(self.estoque_popup.lineEdit_form_nome.text())
-        produto = isEmpty(self.estoque_popup.lineEdit_form_produto.text())
-        ecommerce = isEmpty(self.estoque_popup.lineEdit_form_ecomerce.text())
-        qtde = isEmpty(self.estoque_popup.lineEdit_form_quantidade.text())
-        valor = isEmpty(self.estoque_popup.lineEdit_form_valor.text())
-        data = isEmpty(self.estoque_popup.lineEdit_form_data.text())
- 
-        
-        self.estoque_ = str(run(bd.buscar_fornecedor(nome))).replace("[","").replace("]","")
-        list_resultado_pesquisa = self.estoque_.split(", ")
-
-        
-        lista_linha = ([i.split('.') for i in list_resultado_pesquisa])
-       
-        #escolhendo uma opção
-        opcao = 1
-        result = 0
-
-        for linha in range(len(lista_linha)):
-            if opcao == linha:
-                result = lista_linha[linha]
-                break
-       
-        id = int(result[1])
-        nome_db = result[3]
-       
-        run(bd.atualizar_estoque_fornecedor(nome_db,nome))
-        run(bd.atualizar_estoque_produto(id,produto))
-        run(bd.atualizar_estoque_ecomerce(id,ecommerce))
-        run(bd.atualizar_estoque_qtde(id,qtde))
-        run(bd.atualizar_estoque_valor(id,valor))
-        run(bd.atualizar_estoque_data_pedido(id,data))
-
-        self.estoque_popup.label_popup_estpque.setText('Dados Atualizados com sucesso!')
-        self.estoque_popup.frame_3.setStyleSheet("background-color: green;")
-        self.estoque_popup.frame_3.show()
-        # Configurar um timer para ocultar o rótulo após 1 segundo
-        self.timer = QTimer(self)
-        self.timer.timeout.connect(self.hide_mensagem_estoque)
-        self.timer.start(1500)  # 1000 ms = 1 segundo
-
-    def deletar_estoque(self):
         try:
             def isEmpty(txt):
                 if txt == '':
                     txt = 'vazio'
                 else:
                     return txt
-                
-            nome = isEmpty(self.estoque_popup.lineEdit_form_nome.text())
 
+            #pegando as informações digitada pelo usuario
+            nome = isEmpty(self.estoque_popup.lineEdit_form_nome.text())
+            produto = isEmpty(self.estoque_popup.lineEdit_form_produto.text())
+            ecommerce = isEmpty(self.estoque_popup.lineEdit_form_ecomerce.text())
+            qtde = isEmpty(self.estoque_popup.lineEdit_form_quantidade.text())
+            valor = isEmpty(self.estoque_popup.lineEdit_form_valor.text())
+            data = isEmpty(self.estoque_popup.lineEdit_form_data.text())
+    
+            self.estoque_ = str(run(bd.buscar_fornecedor(nome))).replace("[","").replace("]","")
+            list_resultado_pesquisa = self.estoque_.split(", ")
+
+            lista_linha = ([i.split('.') for i in list_resultado_pesquisa])
+        
+            try:
+                id = int(lista_linha[1])
+                nome_db = lista_linha[3]
+            except:
+                nova_lista = self.estoque_.split('.')
+                id = nova_lista[1]
+                nome_db = nova_lista[3]
+        
+            run(bd.atualizar_estoque_fornecedor(nome_db,nome))
+            run(bd.atualizar_estoque_produto(id,produto))
+            run(bd.atualizar_estoque_ecomerce(id,ecommerce))
+            run(bd.atualizar_estoque_qtde(id,qtde))
+            run(bd.atualizar_estoque_valor(id,valor))
+            run(bd.atualizar_estoque_data_pedido(id,data))
+
+            self.estoque_popup.label_popup_estpque.setText('Dados Atualizados com sucesso!')
+            self.estoque_popup.frame_3.setStyleSheet("background-color: green;")
+            self.estoque_popup.frame_3.show()
+            # Configurar um timer para ocultar o rótulo após 1 segundo
+            self.timer = QTimer(self)
+            self.timer.timeout.connect(self.hide_mensagem_estoque)
+            self.timer.start(1500)  # 1000 ms = 1 segundo
+            
+        except:
+            self.estoque_popup.label_popup_estpque.setText('Atualização falhou!')
+            self.estoque_popup.frame_3.setStyleSheet("background-color: red;")
+            self.estoque_popup.frame_3.show()
+            
+    def deletar_estoque(self):
+        
+        def isEmpty(txt):
+            if txt == '':
+                txt = 'vazio'
+            else:
+                return txt
+            
+        nome = isEmpty(self.estoque_popup.lineEdit_form_nome.text())
+        if nome == None:
+            print('lol')
+            self.estoque_popup.label_popup_estpque.setText('Cliente não encontrado!')
+            self.estoque_popup.frame_3.setStyleSheet("background-color: red;")
+            self.estoque_popup.frame_3.show()
+        else:
             run(bd.deletar_linha_estoque(nome))
 
             self.estoque_popup.lineEdit_form_nome.setText('')
@@ -404,17 +412,9 @@ class Principal(Ui_MainWindow, QMainWindow):
             self.estoque_popup.lineEdit_form_valor.setText('')
             self.estoque_popup.lineEdit_form_data.setText('')
 
-            self.label_erro.setText('Dados deletado!')
-            self.frame_erro.setStyleSheet("background-color: green;")
-            self.frame_erro.show()
-            # Configurar um timer para ocultar o rótulo após 1 segundo
-            self.timer = QTimer(self)
-            self.timer.timeout.connect(self.hide_message)
-            self.timer.start(1500)  # 1000 ms = 1 segundo
-        except:
-            self.label_erro.setText('Dados não encontrar!')
-            self.frame_erro.setStyleSheet("background-color: red;")
-            self.frame_erro.show()
+            self.estoque_popup.label_popup_estpque.setText('Dados deletado!')
+            self.frame_3.setStyleSheet("background-color: green;")
+            self.frame_3.show()
             # Configurar um timer para ocultar o rótulo após 1 segundo
             self.timer = QTimer(self)
             self.timer.timeout.connect(self.hide_message)
@@ -435,90 +435,102 @@ class Principal(Ui_MainWindow, QMainWindow):
         self.estoque_.pushButton_form_deletar.clicked.connect(self.deletar_custos)
         self.estoque_.pushButton_form_procurar.clicked.connect(self.procurar_custos)
         self.estoque_.pushButton_form_salvar.clicked.connect(self.salvar_custos)
+        self.estoque_.frame_popup_custos.hide()
+        self.estoque_.pushButton_popup_custos_fixos.clicked.connect(self.esconder_popup_custos_fixos)
 
         self.janela.show()
         qt.exec()
 
+    def esconder_popup_custos_fixos(self):
+        self.estoque_.frame_popup_custos.hide()
+
     def inserir_custos(self):
-        def isEmpty(txt):
-            if txt == '':
-                txt = 'vazio'
-            else:
-                return txt
-        
-        pro_labore = isEmpty(self.estoque_.lineEdit_form_nome.text())
-        ti = isEmpty(self.estoque_.lineEdit_form_produto.text())
-        site = isEmpty(self.estoque_.lineEdit_form_ecomerce.text())
-        dns = isEmpty(self.estoque_.lineEdit_form_quantidade.text())
-        marketing = isEmpty(self.estoque_.lineEdit_form_valor.text())
-        nuvem_arquivos = isEmpty(self.estoque_.lineEdit_form_data.text())
-
-        if pro_labore == None:
-            pro_labore = 0
-        if ti == None:
-            ti = 0
-        if site == None:
-            site = 0
-        if dns == None:
-            dns = 0
-        if marketing == None:
-            marketing = 0
-        if nuvem_arquivos == None:
-            nuvem_arquivos = 0
-        
         try:
-            run(bd.custos_fixos(pro_labore,ti,site,dns,marketing,nuvem_arquivos))
-        except:
-            pass
-
-        self.estoque_.lineEdit_form_nome.setText('')
-        self.estoque_.lineEdit_form_produto.setText('')
-        self.estoque_.lineEdit_form_ecomerce.setText('')
-        self.estoque_.lineEdit_form_quantidade.setText('')
-        self.estoque_.lineEdit_form_valor.setText('')
-        self.estoque_.lineEdit_form_data.setText('')
-        
-        
-        principal.show()
-        qt.exec()
-
-    def atualizar_custos(self):
-        
-        def isEmpty(txt):
+            def isEmpty(txt):
                 if txt == '':
                     txt = 'vazio'
                 else:
                     return txt
             
-        pro_labore = isEmpty(self.estoque_.lineEdit_form_nome.text())
-        ti = isEmpty(self.estoque_.lineEdit_form_produto.text())
-        site = isEmpty(self.estoque_.lineEdit_form_ecomerce.text())
-        dns = isEmpty(self.estoque_.lineEdit_form_quantidade.text())
-        marketing = isEmpty(self.estoque_.lineEdit_form_valor.text())
-        nuvem_arquivos = isEmpty(self.estoque_.lineEdit_form_data.text())
+            pro_labore = isEmpty(self.estoque_.lineEdit_form_nome.text())
+            ti = isEmpty(self.estoque_.lineEdit_form_produto.text())
+            site = isEmpty(self.estoque_.lineEdit_form_ecomerce.text())
+            dns = isEmpty(self.estoque_.lineEdit_form_quantidade.text())
+            marketing = isEmpty(self.estoque_.lineEdit_form_valor.text())
+            nuvem_arquivos = isEmpty(self.estoque_.lineEdit_form_data.text())
 
-        
-        linha = self.tratamento.custos_fixos()
-        linha_list = linha.iloc[0]
-        pro_abore_db = int(linha_list.loc['Pro Labore'])
-        ti_db = int(linha_list.loc['TI'])
-        site_db = int(linha_list.loc['Site'])
-        dns_db = int(linha_list.loc['DNS'])
-        marketing_db = int(linha_list.loc['Marketing'])
-        nuvem_arquivos_db = int(linha_list.loc['Nuvem de arquivos'])
+            if ti == None:
+                ti = 0
+            if site == None:
+                site = 0
+            if dns == None:
+                dns = 0
+            if marketing == None:
+                marketing = 0
+            if nuvem_arquivos == None:
+                nuvem_arquivos = 0
+            
+            run(bd.custos_fixos(pro_labore,ti,site,dns,marketing,nuvem_arquivos))
+            
+            self.estoque_.lineEdit_form_nome.setText('')
+            self.estoque_.lineEdit_form_produto.setText('')
+            self.estoque_.lineEdit_form_ecomerce.setText('')
+            self.estoque_.lineEdit_form_quantidade.setText('')
+            self.estoque_.lineEdit_form_valor.setText('')
+            self.estoque_.lineEdit_form_data.setText('')
+            
+            principal.show()
+            qt.exec()
+        except:
+            self.estoque_.label_popup_custos_fixos.setText('Campos em branco!')
+            self.estoque_.frame_popup_custos.setStyleSheet("background-color: red;")
+            self.estoque_.frame_popup_custos.show()
+
+    def atualizar_custos(self):
+        try:
+            def isEmpty(txt):
+                    if txt == '':
+                        txt = 'vazio'
+                    else:
+                        return txt
+                
+            pro_labore = isEmpty(self.estoque_.lineEdit_form_nome.text())
+            ti = isEmpty(self.estoque_.lineEdit_form_produto.text())
+            site = isEmpty(self.estoque_.lineEdit_form_ecomerce.text())
+            dns = isEmpty(self.estoque_.lineEdit_form_quantidade.text())
+            marketing = isEmpty(self.estoque_.lineEdit_form_valor.text())
+            nuvem_arquivos = isEmpty(self.estoque_.lineEdit_form_data.text())
+
+            
+            linha = self.tratamento.custos_fixos()
+            linha_list = linha.iloc[0]
+            pro_abore_db = int(linha_list.loc['Pro Labore'])
+            ti_db = int(linha_list.loc['TI'])
+            site_db = int(linha_list.loc['Site'])
+            dns_db = int(linha_list.loc['DNS'])
+            marketing_db = int(linha_list.loc['Marketing'])
+            nuvem_arquivos_db = int(linha_list.loc['Nuvem de arquivos'])
 
 
-        run(bd.atualizar_custo_pro_labore(pro_abore_db,pro_labore))
-        run(bd.atualizar_custo_ti(ti_db,ti))
-        run(bd.atualizar_custo_site(site_db,site))
-        run(bd.atualizar_custo_dns(dns_db,dns))
-        run(bd.atualizar_custo_marketing(marketing_db,marketing))
-        run(bd.atualizar_custo_nuvem_arquivos(nuvem_arquivos_db,nuvem_arquivos))
+            run(bd.atualizar_custo_pro_labore(pro_abore_db,pro_labore))
+            run(bd.atualizar_custo_ti(ti_db,ti))
+            run(bd.atualizar_custo_site(site_db,site))
+            run(bd.atualizar_custo_dns(dns_db,dns))
+            run(bd.atualizar_custo_marketing(marketing_db,marketing))
+            run(bd.atualizar_custo_nuvem_arquivos(nuvem_arquivos_db,nuvem_arquivos))
+        except:
+            self.estoque_.label_popup_custos_fixos.setText('Atualização falhou!')
+            self.estoque_.frame_popup_custos.setStyleSheet("background-color: red;")
+            self.estoque_.frame_popup_custos.show()
 
     def deletar_custos(self):
         try:
             pro_labore = self.estoque_.lineEdit_form_nome.text()
-        
+            if pro_labore == '':
+                self.estoque_.label_popup_custos_fixos.setText('Cliente não encontrado no banco de dados!')
+                self.estoque_.frame_popup_custos.setStyleSheet("background-color: red;")
+                self.estoque_.frame_popup_custos.show()
+
             run(bd.deletar_linha_custo(pro_labore))
             
             self.estoque_.lineEdit_form_nome.setText('')
@@ -529,7 +541,9 @@ class Principal(Ui_MainWindow, QMainWindow):
             self.estoque_.lineEdit_form_data.setText('')
             
         except:
-            pass
+            self.estoque_.label_popup_custos_fixos.setText('Cliente não encontrado no banco de dados!')
+            self.estoque_.frame_popup_custos.setStyleSheet("background-color: red;")
+            self.estoque_.frame_popup_custos.show()
         
     def procurar_custos(self):
         try:
@@ -545,7 +559,9 @@ class Principal(Ui_MainWindow, QMainWindow):
             self.estoque_.lineEdit_form_valor.setText(id_list[9])
             self.estoque_.lineEdit_form_data.setText(id_list[11])
         except:
-            pass
+            self.estoque_.label_popup_custos_fixos.setText('Cliente não encontrado no banco de dados!')
+            self.estoque_.frame_popup_custos.setStyleSheet("background-color: red;")
+            self.estoque_.frame_popup_custos.show()
 
     def salvar_custos(self):
         tratamento = tr.tratamento_db()
@@ -668,33 +684,27 @@ class Principal(Ui_MainWindow, QMainWindow):
             self.frame_erro.show()
 
     def procurar_estoque(self):
-        nome_estoque = self.estoque_popup.lineEdit_form_procurar_nome.text()
-        
         try:
+            nome_estoque = self.estoque_popup.lineEdit_form_procurar_nome.text()
             self.estoque_ = str(run(bd.buscar_fornecedor(nome_estoque))).replace("[","").replace("]","")
+           
             list_resultado_pesquisa = self.estoque_.split(", ")
-
             lista_linha = ([i.split('.') for i in list_resultado_pesquisa])
+            quantidade = len(lista_linha)
 
-            #self.estoque_popup.label_popup_estpque
-            self.estoque_popup.frame_3.setStyleSheet("background-color: red;")
+            self.estoque_popup.label_popup_estpque.setText(f'{quantidade}')
             self.estoque_popup.frame_3.show()
-            # Configurar um timer para ocultar o rótulo após 1 segundo
-            self.timer = QTimer(self)
-            self.timer.timeout.connect(self.hide_mensagem_estoque)
-            self.timer.start(1500)  # 1000 ms = 1 segundo
-
+            
             #escolhendo uma opção
-            opcao = 1
+            self.opcao = quantidade
             result = 0
 
-            for linha in range(len(lista_linha)):
-                if opcao == linha:
-                    result = lista_linha[linha]
+            for linha in range(1, len(lista_linha) + 1):
+                print(linha)
+                if self.opcao == linha:
+                    result = lista_linha[linha - 1]
                     break
-            
-
-
+    
             self.estoque_popup.lineEdit_form_nome.setText(result[3])
             self.estoque_popup.lineEdit_form_produto.setText(result[5])
             self.estoque_popup.lineEdit_form_ecomerce.setText(result[13])
@@ -706,39 +716,7 @@ class Principal(Ui_MainWindow, QMainWindow):
             self.estoque_popup.label_popup_estpque.setText('Cliente não encontrado no banco de dados!')
             self.estoque_popup.frame_3.setStyleSheet("background-color: red;")
             self.estoque_popup.frame_3.show()
-            # Configurar um timer para ocultar o rótulo após 1 segundo
-            self.timer = QTimer(self)
-            self.timer.timeout.connect(self.hide_mensagem_estoque)
-            self.timer.start(1500)  # 1000 ms = 1 segundo
-
-    def deletar_linha_estoque(self):
-       
-        nome_estoque = self.lineEdit_form_procurar_nome.text()
-        nome_ = nome_estoque.replace("",'0')
-        if nome_ == '0':
-            self.label_erro.setText('Campo em branco')
-            self.frame_erro.setStyleSheet("background-color: red;")
-            self.frame_erro.show()
-        else:
-            run(bd.deletar_linha_estoque(nome_estoque))
-
-            self.lineEdit_form_nome.setText('')
-            self.lineEdit_form_produto.setText('')
-            self.lineEdit_form_ecomerce.setText('')
-            self.lineEdit_form_quantidade.setText('')
-            self.lineEdit_form_valor.setText('')
-            self.lineEdit_form_data.setText('')
-        
-            self.label_erro.setText('Dados Deletado com sucesso!')
-            self.frame_erro.setStyleSheet("background-color: green;")
-            self.frame_erro.show()
-            # Configurar um timer para ocultar o rótulo após 1 segundo
-            self.timer = QTimer(self)
-            self.timer.timeout.connect(self.hide_message)
-            self.timer.start(1500)  # 1000 ms = 1 segundo
-    
-    
-    
+            
 if __name__ == '__main__':
     qt = QApplication(sys.argv)
     principal = Principal()
