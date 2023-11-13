@@ -584,13 +584,13 @@ class tratamento_db:
     
 if __name__ == '__main__':
     tr = tratamento_db()
-    #tr.vendas()
-    #tr.grafico_barra()
+    tr.vendas()
+    tr.grafico_barra()
     #tr.cliente_s()
     #tr.planilha_completa()
     #tr.data_prazo()
     #tr.estoque_analise()
-    tr.dre()
+    #tr.dre()
     #tr.custos_fixos()
     #tr.salvar('custos_fixos.xlsx',)
     
