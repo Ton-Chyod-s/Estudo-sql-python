@@ -6,8 +6,11 @@ from asyncio import run
 import os
 from PyQt6.QtCore import QTimer
 import tratamento_db_v2 as tr
-from PyQt6.QtWidgets import QMainWindow, QApplication, QLineEdit
+from PyQt6.QtWidgets import QMainWindow, QApplication, QLineEdit, QFrame, QVBoxLayout, QWidget
 from PyQt6 import QtWidgets
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+from PyQt5 import QtCore, QtWidgets, QtWebEngineWidgets
+import matplotlib.pyplot as plt
 
 
 class Principal(Ui_MainWindow, QMainWindow):
@@ -40,6 +43,23 @@ class Principal(Ui_MainWindow, QMainWindow):
         self.planilha_estoque()
         self.planilha_dre()
         self.label_plan_label.setText(f'Meta - RECEITA BRUTA {meta_mes}')
+
+        tratamento = tr.tratamento_db()
+        self.browser = QtWebEngineWidgets.QWebEngineView(self)
+        self.frame_vendas_mes = self.stackedWidget.findChild(QFrame,'frame_vendas_mes')
+        
+        vlayout = QtWidgets.QVBoxLayout(self.frame_vendas_mes)
+        vlayout.addWidget(self.browser)
+
+        ####----adicionando grafico no frame----####
+        
+        layout = QVBoxLayout(self.frame_vendas_mes)
+        
+        plt.figure(figsize=(3, 2))
+        canvas = FigureCanvas(plt.gcf())
+        
+        #tratamento.vendas()
+        #tratamento.grafico_barra()
 
     def planilha_estoque(self):
         

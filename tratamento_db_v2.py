@@ -114,7 +114,7 @@ class tratamento_db:
                         #preencher dicionario para futuros calculo
                         try:
                             data = linha_str[9]
-                            data_split = data.split("-")
+                            data_split = data.split("/")
 
                             def condicao(mes_num,mes_nome):
                                 if data_split[0] == mes_num:

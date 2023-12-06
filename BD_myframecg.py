@@ -2,7 +2,7 @@ from sqlalchemy.orm import declarative_base, sessionmaker, relationship
 from sqlalchemy import String, Integer, select, update, delete, ForeignKey, Column, Float
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from asyncio import run
-#import bd
+import bd
 import time
 
 #conectar/criar banco de dados
@@ -408,7 +408,7 @@ def custos_fixos_ler():
 if __name__ == '__main__':
     run(create_database())
 
-    """
+    
    #adicionar informações no banco de dados estoque
     for i in bd.estoque_2023:
         linha = i.split(".")
@@ -441,4 +441,4 @@ if __name__ == '__main__':
 
     #adicionar informações no banco de dados dre
     for i in bd.dre_2023:
-        run(inserir_dre(i))"""
+        run(inserir_dre(i))
